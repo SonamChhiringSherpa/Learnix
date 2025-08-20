@@ -11,9 +11,16 @@
   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="../assets/css/main.css" rel="stylesheet">
-  <style>
-    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
-  </style>
+   <style>
+    .editor-box { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:2rem; }
+    .editor, .preview { flex:1; min-width:300px; }
+    textarea { width:100%; height:300px; background:#0b1620; color:#d6e9ff; border:none; border-radius:8px; padding:12px; font-family:monospace; font-size:14px; resize:vertical; }
+    iframe { width:100%; height:300px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .tag-description { margin-top:1.5rem; background:#f9f9f9; border-left:5px solid #0d6efd; padding:15px; border-radius:8px; }
+    .tag-description code { background:#eef; padding:2px 4px; border-radius:4px; }
+  
+</style>
+
 </head>
 
 <body class="course-details-page">
@@ -62,32 +69,38 @@
           </aside>
 
           <div class="col-lg-9">
-            <article>
-              <h3>Creating a Form</h3>
-              <p>Forms collect input from users such as text, email, password, or options.</p>
-              <div class="terminal mb-3">
-&lt;form action="/submit" method="post"&gt;<br>
-&nbsp;&nbsp;Name: &lt;input type="text" name="name"&gt;&lt;br&gt;<br>
-&nbsp;&nbsp;Email: &lt;input type="email" name="email"&gt;&lt;br&gt;<br>
-&nbsp;&nbsp;Password: &lt;input type="password" name="password"&gt;&lt;br&gt;<br>
-&nbsp;&nbsp;&lt;input type="submit" value="Submit"&gt;<br>
-&lt;/form&gt;
-              </div>
-            </article>
+  <article class="mb-5">
+    <h3>Lesson 5: Forms & Inputs</h3>
+    <p>Forms let users input data. Input fields, checkboxes, radios, and buttons are the building blocks of interactive websites.</p>
+  </article>
 
-            <article>
-              <h3>Other Input Types</h3>
-              <p>HTML supports many inputs like checkboxes, radio buttons, and dropdowns.</p>
-              <div class="terminal mb-3">
-&lt;input type="checkbox" name="subscribe"&gt; Subscribe<br>
-&lt;input type="radio" name="gender" value="male"&gt; Male<br>
-&lt;input type="radio" name="gender" value="female"&gt; Female<br>
-&lt;select name="country"&gt;<br>
-&nbsp;&nbsp;&lt;option&gt;Nepal&lt;/option&gt;<br>
-&nbsp;&nbsp;&lt;option&gt;India&lt;/option&gt;<br>
-&lt;/select&gt;
-              </div>
-            </article>
+  <!-- Basic Form -->
+  <article class="mb-5">
+    <h4>Form Example</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name"><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email"><br><br>
+
+  <input type="checkbox" id="subscribe"> Subscribe to newsletter<br><br>
+
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female<br><br>
+
+  <button type="submit">Submit</button>
+</form>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview1"></iframe>
+      </div>
+    </div>
+  </article>
 
             <div class="d-flex justify-content-between">
               <a href="html-lesson-4.html" class="btn btn-outline-secondary">Previous</a>
@@ -141,5 +154,19 @@
     <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>
+  function updatePreview(editorId, previewId) {
+    const code = document.getElementById(editorId).value;
+    const iframe = document.getElementById(previewId);
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  }
+
+  window.onload = function() {
+    updatePreview('codeEditor1','livePreview1');
+  }
+</script>
 </body>
 </html>

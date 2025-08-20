@@ -12,8 +12,15 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="../assets/css/main.css" rel="stylesheet">
   <style>
-    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
-  </style>
+    .editor-box { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:2rem; }
+    .editor, .preview { flex:1; min-width:300px; }
+    textarea { width:100%; height:300px; background:#0b1620; color:#d6e9ff; border:none; border-radius:8px; padding:12px; font-family:monospace; font-size:14px; resize:vertical; }
+    iframe { width:100%; height:300px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .tag-description { margin-top:1.5rem; background:#f9f9f9; border-left:5px solid #0d6efd; padding:15px; border-radius:8px; }
+    .tag-description code { background:#eef; padding:2px 4px; border-radius:4px; }
+  
+</style>
+
 </head>
 
 <body class="course-details-page">
@@ -63,21 +70,42 @@
           </aside>
 
           <div class="col-lg-9">
-            <article>
-              <h3>Links</h3>
-              <p>Links are created using the <code>&lt;a&gt;</code> tag.</p>
-              <div class="terminal mb-3">
-&lt;a href="https://www.example.com"&gt;Visit Example&lt;/a&gt;
-              </div>
-            </article>
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+    <h3>Lesson 3: Links & Images</h3>
+    <p>Links (<code>&lt;a&gt;</code>) connect pages, and images (<code>&lt;img&gt;</code>) display visuals. Together, they make your site interactive and engaging.</p>
+  </article>
 
-            <article>
-              <h3>Images</h3>
-              <p>Images are displayed with the <code>&lt;img&gt;</code> tag. Always include <code>alt</code> text for accessibility.</p>
-              <div class="terminal mb-3">
-&lt;img src="image.jpg" alt="Description of image"&gt;
-              </div>
-            </article>
+  <!-- Links Example -->
+  <article class="mb-5">
+    <h4>Creating Links</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
+<a href="https://www.w3schools.com">Visit W3Schools</a><br>
+<a href="lesson-4.html" target="_blank">Go to Lesson 4</a>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview1"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Images Example -->
+  <article class="mb-5">
+    <h4>Adding Images</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor2" oninput="updatePreview('codeEditor2','livePreview2')">
+<img src="https://via.placeholder.com/150" alt="Sample Image">
+<img src="https://via.placeholder.com/100" alt="Another Image">
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview2"></iframe>
+      </div>
+    </div>
+  </article>
 
             <div class="d-flex justify-content-between">
               <a href="html-lesson-2.html" class="btn btn-outline-secondary">Previous</a>
@@ -125,10 +153,26 @@
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script>
+  function updatePreview(editorId, previewId) {
+    const code = document.getElementById(editorId).value;
+    const iframe = document.getElementById(previewId);
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  }
+
+  window.onload = function() {
+    updatePreview('codeEditor1','livePreview1');
+    updatePreview('codeEditor2','livePreview2');
+  }
+</script>
+</body>
 </html>

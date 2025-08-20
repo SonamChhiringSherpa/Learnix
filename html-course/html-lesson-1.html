@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>HTML Lesson 1: Introduction</title>
-  <meta name="description" content="Bash basics: what a shell is, running commands, getting help, and understanding the prompt.">
+  <meta name="description" content="HTML basics: what HTML is, its structure, and your very first webpage.">
   <link href="../assets/img/favicon.png" rel="icon">
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -12,7 +12,47 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="../assets/css/main.css" rel="stylesheet">
   <style>
-    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
+    .editor-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .editor, .preview {
+      flex: 1;
+      min-width: 300px;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      background: #0b1620;
+      color: #d6e9ff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .tag-description {
+      margin-top: 1.5rem;
+      background: #f9f9f9;
+      border-left: 5px solid #0d6efd;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .tag-description code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body class="course-details-page">
@@ -66,41 +106,46 @@
           <div class="col-lg-9">
             <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
               <h3>What is HTML?</h3>
-              <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It provides the basic structure of a page, which is enhanced and styled using CSS, and made interactive with JavaScript.</p>
-              <div class="terminal mb-3">
-&lt;!DOCTYPE html&gt;<br>
-&lt;html&gt;<br>
-&nbsp;&nbsp;&lt;head&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My First Page&lt;/title&gt;<br>
-&nbsp;&nbsp;&lt;/head&gt;<br>
-&nbsp;&nbsp;&lt;body&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello, World!&lt;/h1&gt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Welcome to HTML learning.&lt;/p&gt;<br>
-&nbsp;&nbsp;&lt;/body&gt;<br>
-&lt;/html&gt;
-              </div>
+              <p>HTML (HyperText Markup Language) is the building block of the web. It describes the structure of web pages using <b>elements</b> (tags). Every website you visit is built on top of HTML.</p>
+              <p>Think of HTML as the foundation of a house — without it, nothing stands. CSS adds design (paint, layout), and JavaScript adds interactivity (doors that open when clicked).</p>
             </article>
 
             <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
-              <h4>HTML Page Structure</h4>
-              <p>An HTML page is made up of elements wrapped in <code>&lt;tags&gt;</code>. The main parts are:</p>
-              <ul>
-                <li><code>&lt;!DOCTYPE html&gt;</code> – Declares this is an HTML5 document.</li>
-                <li><code>&lt;html&gt;</code> – Root element of the page.</li>
-                <li><code>&lt;head&gt;</code> – Contains metadata (title, styles, etc.).</li>
-                <li><code>&lt;body&gt;</code> – Holds the visible page content.</li>
-              </ul>
-              <img src="../assets/img/education/html-structure.webp" alt="HTML Structure" class="img-fluid rounded mb-3">
+              <h4>Try It Yourself</h4>
+              <p>Edit the code in the left box and instantly see the result on the right!</p>
+              <div class="editor-box">
+                <!-- Code Editor -->
+                <div class="editor">
+                  <label class="fw-bold">HTML Code Editor</label>
+                  <textarea id="codeEditor">
+<h1>Hello, World!</h1>
+<p>Welcome to HTML learning.</p>
+</textarea>                  
+
+
+                </div>
+                <!-- Live Preview -->
+                <div class="preview">
+                  <label class="fw-bold">Live Preview</label>
+                  <iframe id="livePreview"></iframe>
+                </div>
+              </div>
             </article>
 
             <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
-              <h4>First Output</h4>
-              <p>When you open the above code in a browser, you’ll see:</p>
-              <div class="terminal mb-3">
-<h1>Hello, World!</h1><br>
-<p>Welcome to HTML learning.</p>
+              <h4>Understanding the Structure</h4>
+              <p>An HTML document is structured using different parts. Let’s break down the example:</p>
+              <div class="tag-description">
+                <ul>
+                  <li><code>&lt;!DOCTYPE html&gt;</code> → Defines this is an HTML5 document.</li>
+                  <li><code>&lt;html&gt;...&lt;/html&gt;</code> → Root element of the page.</li>
+                  <li><code>&lt;head&gt;...&lt;/head&gt;</code> → Contains metadata like title, styles, links.</li>
+                  <li><code>&lt;title&gt;</code> → Sets the page’s title (shown in the browser tab).</li>
+                  <li><code>&lt;body&gt;...&lt;/body&gt;</code> → Contains all the visible content of the page.</li>
+                  <li><code>&lt;h1&gt;</code> → A heading tag (largest).</li>
+                  <li><code>&lt;p&gt;</code> → A paragraph of text.</li>
+                </ul>
               </div>
-              <p>This is the simplest example of an HTML page in action.</p>
             </article>
 
             <div class="d-flex justify-content-between">
@@ -112,15 +157,13 @@
       </div>
     </section>
   </main>
-</body>
-
 
   <footer id="footer" class="footer accent-background">
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
           <a href="../index.html" class="logo d-flex align-items-center"><span class="sitename">Learner</span></a>
-          <p>Start your Bash journey with the basics.</p>
+          <p>Start your HTML journey with interactive lessons and practice editors.</p>
         </div>
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
@@ -155,7 +198,22 @@
   <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/js/main.js"></script>
+  <script>
+  window.onload = function () {
+    const codeEditor = document.getElementById("codeEditor");
+    const livePreview = document.getElementById("livePreview");
+
+    function updatePreview() {
+      livePreview.srcdoc = codeEditor.value;
+    }
+
+    // Update when user types
+    codeEditor.addEventListener("input", updatePreview);
+
+    // Run once on load
+    updatePreview();
+  };
+</script>
+
 </body>
 </html>
-
-

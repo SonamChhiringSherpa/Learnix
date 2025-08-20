@@ -11,9 +11,16 @@
   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="../assets/css/main.css" rel="stylesheet">
-  <style>
-    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
-  </style>
+   <style>
+    .editor-box { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:2rem; }
+    .editor, .preview { flex:1; min-width:300px; }
+    textarea { width:100%; height:300px; background:#0b1620; color:#d6e9ff; border:none; border-radius:8px; padding:12px; font-family:monospace; font-size:14px; resize:vertical; }
+    iframe { width:100%; height:300px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .tag-description { margin-top:1.5rem; background:#f9f9f9; border-left:5px solid #0d6efd; padding:15px; border-radius:8px; }
+    .tag-description code { background:#eef; padding:2px 4px; border-radius:4px; }
+  
+</style>
+
 </head>
 
 <body class="course-details-page">
@@ -63,32 +70,63 @@
           </aside>
 
           <div class="col-lg-9">
-            <article>
-              <h3>Lists</h3>
-              <div class="terminal mb-3">
-&lt;ul&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br>
-&lt;/ul&gt;<br><br>
+  <article class="mb-5">
+    <h3>Lesson 4: Lists & Tables</h3>
+    <p>Lists organize items, and tables display structured data.</p>
+  </article>
 
-&lt;ol&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;Step 1&lt;/li&gt;<br>
-&nbsp;&nbsp;&lt;li&gt;Step 2&lt;/li&gt;<br>
-&lt;/ol&gt;
-              </div>
-            </article>
+  <!-- Lists Example -->
+  <article class="mb-5">
+    <h4>Lists</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
+<ul>
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Cherry</li>
+</ul>
 
-            <article>
-              <h3>Tables</h3>
-              <div class="terminal mb-3">
-&lt;table border="1"&gt;<br>
-&nbsp;&nbsp;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;<br>
-&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;<br>
-&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;Bob&lt;/td&gt;&lt;td&gt;30&lt;/td&gt;&lt;/tr&gt;<br>
-&lt;/table&gt;
-              </div>
-            </article>
+<ol>
+  <li>Step One</li>
+  <li>Step Two</li>
+  <li>Step Three</li>
+</ol>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview1"></iframe>
+      </div>
+    </div>
+  </article>
 
+  <!-- Tables Example -->
+  <article class="mb-5">
+    <h4>Tables</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor2" oninput="updatePreview('codeEditor2','livePreview2')">
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Alice</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Bob</td>
+    <td>22</td>
+  </tr>
+</table>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview2"></iframe>
+      </div>
+    </div>
+  </article>
             <div class="d-flex justify-content-between">
               <a href="html-lesson-3.html" class="btn btn-outline-secondary">Previous</a>
               <a href="html-lesson-5.html" class="btn btn-primary">Next: Forms</a>
@@ -141,4 +179,19 @@
     <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>
+  function updatePreview(editorId, previewId) {
+    const code = document.getElementById(editorId).value;
+    const iframe = document.getElementById(previewId);
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  }
+
+  window.onload = function() {
+    updatePreview('codeEditor1','livePreview1');
+    updatePreview('codeEditor2','livePreview2');
+  }
+</script>
 </html>
