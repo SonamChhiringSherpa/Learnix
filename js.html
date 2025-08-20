@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS Web‑Game Studio — Multi‑Project Course + In‑Browser Editor</title>
+  <style>
+    :root{
+      --bg:#0e1020; --panel:#13162f; --muted:#9aa2bf; --text:#ecf0ff; --accent:#8aa2ff; --mint:#5df2bf; --warn:#ffd37c; --bad:#ff7c9c;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:radial-gradient(1000px 600px at 80% -10%,#1d2152 0%,transparent 55%),radial-gradient(900px 600px at -10% 20%,#181c47 0%,transparent 55%),var(--bg);color:var(--text)}
+    header{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:linear-gradient(180deg,#0e1020cc,#0e102000)}
+    .wrap{max-width:1400px;margin:auto;padding:14px}
+    .title{display:flex;align-items:center;gap:12px}
+    .logo{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 200deg,var(--accent),var(--mint));box-shadow:0 0 30px #7c9cff44}
+    .kicker{color:var(--muted);font-size:13px}
+
+    /* Layout */
+    .grid{display:grid;grid-template-columns: 1fr 530px; gap:16px; align-items:start}
+    @media (max-width:1200px){.grid{grid-template-columns:1fr}}
+
+    section{background:linear-gradient(180deg,#14183a,#0f1332);border:1px solid #2a3163;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 10px 40px #0006}
+    h2{margin:0 0 8px}
+    h3{margin:18px 0 8px}
+    .pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid #2a3163;background:#121637;color:var(--muted);margin-right:6px}
+    pre{background:#0a0d21;border:1px solid #232752;border-radius:12px;padding:12px;overflow:auto}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    details{border:1px dashed #2a3163;border-radius:12px;padding:10px;margin:10px 0}
+    details[open]{background:#0f1433}
+
+    /* Right side Studio */
+    .studio{position:sticky;top:74px;background:linear-gradient(180deg,#13183f,#0e1330);border:1px solid #2a3163;border-radius:16px;padding:0;box-shadow:0 10px 40px #0007}
+    .studio header{position:static;background:none}
+    .bar{display:flex;gap:8px;align-items:center;padding:12px;border-bottom:1px solid #242a56}
+    .bar select,.bar input{background:#0b0f29;border:1px solid #2a3163;color:var(--text);padding:8px;border-radius:10px}
+    .btn{cursor:pointer;user-select:none;border:1px solid #2a3163;background:#1a1f45;color:var(--text);padding:8px 12px;border-radius:12px}
+    .btn:hover{background:#202654}
+
+    .split{display:grid;grid-template-rows: 220px 280px 140px; gap:10px; padding:12px}
+    @media (max-width:1200px){.split{grid-template-rows: 220px 260px 140px}}
+    textarea{width:100%;height:100%;background:#0a0d21;color:#dbe1ff;border:1px solid #232752;border-radius:12px;padding:12px}
+    iframe{width:100%;height:100%;background:#070a18;border:1px solid #232752;border-radius:12px}
+    .console{background:#070a18;border:1px solid #232752;border-radius:12px;padding:8px;overflow:auto;font:12px/1.5 ui-monospace,monospace}
+    .console .log{white-space:pre-wrap}
+
+    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .small{font-size:12px;color:var(--muted)}
+    ul.tight li{margin:6px 0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1 style="margin:6px 0 0">JS Web‑Game Studio</h1>
+        <div class="kicker">Advanced lessons + multiple templates + in‑browser editor & runner</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <!-- Left: Course Content -->
+    <div>
+      <section id="intro">
+        <h2>Overview</h2>
+        <p>Build multiple small web games with modern JavaScript. The course mixes text lessons and runnable templates. Use the studio on the right to edit/run/export each project. No frameworks required; everything is Canvas 2D + plain JS.</p>
+        <div>
+          <span class="pill">Canvas 2D</span>
+          <span class="pill">Game Loop</span>
+          <span class="pill">Input</span>
+          <span class="pill">Collisions</span>
+          <span class="pill">Tilemaps</span>
+          <span class="pill">ECS‑lite</span>
+          <span class="pill">State Machines</span>
+          <span class="pill">Audio</span>
+          <span class="pill">Polish & Juice</span>
+        </div>
+      </section>
+
+      <section id="lesson-arch">
+        <h2>Lesson: Architecture for Tiny Games</h2>
+        <div class="grid2">
+          <div>
+            <h3>Core loop</h3>
+<pre><code>let last=0; function loop(ms){
+  const dt=Math.min(0.032,(ms-last)/1000); last=ms;
+  update(dt); render(ms/1000); requestAnimationFrame(loop);
+} requestAnimationFrame(loop);</code></pre>
+            <h3>Game state</h3>
+<pre><code>const Game = { scene:'menu', score:0, entities:[] };</code></pre>
+            <h3>Systems (ECS‑lite)</h3>
+<pre><code>function SystemMove(e,dt){ if(e.vx) e.x+=e.vx*dt; if(e.vy) e.y+=e.vy*dt; }
+function SystemAABB(a,b){ return a.x<b.x+b.w && a.x+a.w>b.x && a.y<b.y+b.h && a.y+a.h>b.y; }</code></pre>
+          </div>
+          <div>
+            <h3>Scene graph / FSM</h3>
+<pre><code>const Scene={MENU:'menu',PLAY:'play',OVER:'over'};
+let scene=Scene.MENU;
+function setScene(s){scene=s;}</code></pre>
+            <h3>Event bus (tiny)</h3>
+<pre><code>const Bus={h:{}, on(t,f){(this.h[t] ||= []).push(f)}, emit(t,...a){(this.h[t]||[]).forEach(f=>f(...a))} };
+Bus.on('score',v=> Game.score+=v);</code></pre>
+            <p class="small">Use composition of small systems over deep class trees. Keep entities plain objects.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="lesson-collision">
+        <h2>Lesson: Collisions, Physics‑Lite & Camera</h2>
+        <ul class="tight">
+          <li><strong>AABB</strong> for rectangles; SAT for rotated shapes (optional).</li>
+          <li><strong>Resolution</strong>: push out along the smallest overlap; clamp to world.</li>
+          <li><strong>Camera</strong>: track target with <code>lerp</code>; render with <code>ctx.translate</code>.</li>
+        </ul>
+<pre><code>function overlap(a,b){
+  const dx=(a.x+a.w/2)-(b.x+b.w/2), dy=(a.y+a.h/2)-(b.y+b.h/2);
+  const ox=a.w/2+b.w/2-Math.abs(dx), oy=a.h/2+b.h/2-Math.abs(dy);
+  return (ox>0&&oy>0)? {ox,oy,dx,dy}: null;
+}
+</code></pre>
+      </section>
+
+      <section id="lesson-tilemap">
+        <h2>Lesson: Tilemaps & Level Data</h2>
+        <p>Represent levels as 2D arrays. Solid tiles are just AABBs. Draw only what's visible.</p>
+<pre><code>const map=[
+  '################',
+  '#..............#',
+  '#....###.......#',
+  '#..............#',
+  '################',
+]; // # = solid
+</code></pre>
+      </section>
+
+      <section id="lesson-polish">
+        <h2>Lesson: Juice & UX</h2>
+        <ul class="tight">
+          <li>Screen shake: add a tiny random camera offset on hits.</li>
+          <li>Squash & stretch: scale sprites briefly on impact.</li>
+          <li>Audio cues: short beeps for collect/hit; longer for win/lose.</li>
+          <li>Ease: <code>lerp</code> UI transitions and score popups.</li>
+        </ul>
+      </section>
+
+      <section id="projects">
+        <h2>Projects Included</h2>
+        <ol>
+          <li><strong>Paddle Breaker</strong> — paddle, ball physics, bricks, levels, powerups.</li>
+          <li><strong>Endless Runner</strong> — obstacle spawn, ground physics, parallax.</li>
+          <li><strong>Top‑Down Shooter</strong> — WASD + mouse aim, enemies, collectibles.</li>
+          <li><strong>Flappy Clone</strong> — pipe gaps, gravity, precise collision.</li>
+        </ol>
+        <p class="small">Pick a project from the dropdown on the right, edit, then Run.</p>
+      </section>
+
+      <section id="exercises">
+        <h2>Challenges</h2>
+        <ul class="tight">
+          <li>Add a start menu and game over screen to each template.</li>
+          <li>Implement a coin pickup with a <code>+100</code> popup and sound.</li>
+          <li>Mobile: add on‑screen buttons (left/right/jump/fire).</li>
+          <li>Export your project (download as <code>.html</code>) and share.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Right: Studio (Editor + Preview + Console) -->
+    <aside class="studio">
+      <div class="bar">
+        <label class="small">Project: </label>
+        <select id="projectPick"></select>
+        <input id="projName" placeholder="Save name (optional)" />
+        <button class="btn" id="btnRun">Run ▶</button>
+        <button class="btn" id="btnSave">Save</button>
+        <button class="btn" id="btnLoad">Load</button>
+        <button class="btn" id="btnExport">Export</button>
+      </div>
+      <div class="split">
+        <textarea id="editor" spellcheck="false"></textarea>
+        <iframe id="preview" title="Game Preview"></iframe>
+        <div class="console" id="console"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    // ---------- Project templates (multiple complete games) ----------
+    const Templates = {
+      'Paddle Breaker': `// Paddle Breaker — arrows to move, break all bricks
+const W=640,H=360; setupCanvas(W,H);
+let paddle={x:W/2-40,y:H-28,w:80,h:12,s:320};
+let ball={x:W/2,y:H-40,vx:160,vy:-180,r:6,stuck:false};
+let bricks=[]; let cols=10, rows=5, margin=36;
+for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) bricks.push({x:margin+c*((W-2*margin)/cols), y:60+r*20, w:(W-2*margin)/cols-4, h:12,hp:1});
+
+onUpdate(dt=>{
+  const k = input();
+  paddle.x += (k.right-k.left)*paddle.s*dt; paddle.x=clamp(paddle.x,0,W-paddle.w);
+  if(ball.stuck){ ball.x=paddle.x+paddle.w/2; ball.y=paddle.y-10; if(k.fire) { ball.stuck=false; ball.vy=-220; ball.vx=160*(Math.random()>0.5?1:-1);} }
+  ball.x += ball.vx*dt; ball.y += ball.vy*dt;
+  if(ball.x<ball.r||ball.x>W-ball.r) ball.vx*=-1;
+  if(ball.y<ball.r) ball.vy*=-1; if(ball.y>H+40) resetBall();
+  if(aabb({x:ball.x-ball.r,y:ball.y-ball.r,w:ball.r*2,h:ball.r*2}, {...paddle})){
+    ball.vy = -Math.abs(ball.vy);
+    const hit = (ball.x - (paddle.x+paddle.w/2)) / (paddle.w/2);
+    ball.vx = 220*hit; sfx(1000,50);
+  }
+  bricks = bricks.filter(b=>{
+    if(aabb({x:ball.x-ball.r,y:ball.y-ball.r,w:ball.r*2,h:ball.r*2}, b)){
+      ball.vy*=-1; sfx(800,50); return false;
+    } return true;
+  });
+});
+
+onRender((t,ctx)=>{
+  clear('#0b0f2a');
+  ctx.fillStyle='#ffd37c'; ctx.fillRect(paddle.x,paddle.y,paddle.w,paddle.h);
+  ctx.fillStyle='#8aa2ff'; ctx.beginPath(); ctx.arc(ball.x,ball.y,ball.r,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#5df2bf'; bricks.forEach(b=> ctx.fillRect(b.x,b.y,b.w,b.h));
+  text('Bricks: '+bricks.length, 12, 18);
+  if(ball.stuck) text('Press SPACE to launch', W/2-90, H/2);
+});
+
+function resetBall(){ ball.stuck=true; ball.x=paddle.x+paddle.w/2; ball.y=paddle.y-10; ball.vx=120; ball.vy=-180; }
+`,
+
+      'Endless Runner': `// Endless Runner — Space to jump, avoid spikes
+const W=640,H=360; setupCanvas(W,H);
+let g=1400; let ground=H-40; let t=0; let speed=200;
+let p={x:80,y:ground-24,w:24,h:24,vy:0,onGround:true};
+let obs=[]; function spawn(){ if(Math.random()<0.02) obs.push({x:W+20,y:ground-16,w:20,h:16}); }
+
+onUpdate(dt=>{
+  t+=dt; spawn(); obs.forEach(o=> o.x-=speed*dt); obs=obs.filter(o=>o.x>-30);
+  const k=input(); if(k.fire && p.onGround){ p.vy=-520; p.onGround=false; sfx(900,70); }
+  p.vy += g*dt; p.y += p.vy*dt; if(p.y>ground-24){ p.y=ground-24; p.vy=0; p.onGround=true; }
+  obs.forEach(o=>{ if(aabb(p,o)){ shake(8,200); sfx(220,120); reset(); } });
+});
+
+onRender((tt,ctx)=>{
+  clear('#0a0e26');
+  // parallax
+  ctx.fillStyle='#1a2153'; for(let i=0;i<50;i++) ctx.fillRect((i*37+tt*20)%W,(i*53+tt*10)%H,2,2);
+  ctx.fillStyle='#2a345f'; ctx.fillRect(0,ground+12,W,H-ground-12);
+  ctx.fillStyle='#ffd37c'; ctx.fillRect(p.x,p.y,p.w,p.h);
+  ctx.fillStyle='#ff7c9c'; obs.forEach(o=> ctx.fillRect(o.x,o.y,o.w,o.h));
+  text('Jump: SPACE',12,18);
+});
+
+function reset(){ obs=[]; p.x=80; p.y=ground-24; p.vy=0; }
+`,
+
+      'Top‑Down Shooter': `// Top-Down Shooter — Arrows move, mouse aims, Space to fire
+const W=640,H=360; setupCanvas(W,H,true);
+let player={x:W/2,y:H/2,w:18,h:18,v:220};
+let bullets=[], enemies=[], t=0, score=0;
+
+onUpdate(dt=>{
+  t+=dt; const k=input();
+  player.x += (k.right-k.left)*player.v*dt; player.y += (k.down-k.up)*player.v*dt;
+  player.x=clamp(player.x,0,W-player.w); player.y=clamp(player.y,0,H-player.h);
+  if(k.fire && bullets.length<30){ bullets.push({x:player.x+9,y:player.y+9,vx:(k.mx-player.x-9)*2,vy:(k.my-player.y-9)*2}); sfx(1200,60); }
+  bullets.forEach(b=>{ b.x+=b.vx*dt; b.y+=b.vy*dt; }); bullets=bullets.filter(b=>b.x>-10&&b.x<W+10&&b.y>-10&&b.y<H+10);
+  if(Math.random()<0.02){ const side=Math.floor(Math.random()*4); let x=0,y=0; if(side===0){x=-20;y=Math.random()*H}else if(side===1){x=W+20;y=Math.random()*H}else if(side===2){y=-20;x=Math.random()*W}else{y=H+20;x=Math.random()*W} enemies.push({x,y,w:16,h:16,vx:(player.x-x)/2,vy:(player.y-y)/2}); }
+  enemies.forEach(e=>{ e.x+=e.vx*dt; e.y+=e.vy*dt; });
+  enemies=enemies.filter(e=>{ for(const b of bullets){ if(aabb(e,{x:b.x-3,y:b.y-3,w:6,h:6})){ score++; sfx(900,80); b.x=-999; return false; } } if(aabb(e,player)){ shake(6,200); sfx(200,120); score=Math.max(0,score-1); return false;} return true; });
+});
+
+onRender((tt,ctx)=>{
+  clear('#0a0f2b');
+  ctx.fillStyle='#86f7a2'; bullets.forEach(b=> ctx.fillRect(b.x-3,b.y-3,6,6));
+  ctx.fillStyle='#ff7c9c'; enemies.forEach(e=> ctx.fillRect(e.x,e.y,e.w,e.h));
+  ctx.fillStyle='#ffd37c'; ctx.fillRect(player.x,player.y,player.w,player.h);
+  text('Score: '+score,12,18);
+});
+`,
+
+      'Flappy Clone': `// Flappy Clone — Space to flap, pass gaps to score
+const W=640,H=360; setupCanvas(W,H);
+let bird={x:140,y:180,w:18,h:14,vy:0}; let g=900; let pipes=[], t=0, score=0;
+function addPipe(){ const gap=90, y=60+Math.random()*(H-120-gap); pipes.push({x:W,yTop:0,hTop:y,w:34}); pipes.push({x:W,yTop:y+gap,hTop:H-(y+gap),w:34}); }
+
+onUpdate(dt=>{
+  t+=dt; if(Math.random()<0.015) addPipe(); pipes.forEach(p=> p.x -= 140*dt); pipes=pipes.filter(p=> p.x>-40);
+  const k=input(); if(k.fire){ bird.vy=-300; sfx(1000,50); }
+  bird.vy += g*dt; bird.y += bird.vy*dt;
+  if(bird.y<0||bird.y>H) reset();
+  for(let i=0;i<pipes.length;i+=2){ const top={x:pipes[i].x,y:0,w:pipes[i].w,h:pipes[i].hTop}; const bot={x:pipes[i+1].x,y:H-pipes[i+1].hTop,w:pipes[i+1].w,h:pipes[i+1].hTop}; if(aabb(bird,top)||aabb(bird,bot)){ shake(8,200); sfx(220,120); reset(); }
+    if(top.x+top.w<bird.x && !top.passed){ top.passed=bot.passed=true; score++; }
+  }
+});
+
+onRender((tt,ctx)=>{
+  clear('#0b0f27');
+  ctx.fillStyle='#ffd37c'; ctx.fillRect(bird.x,bird.y,bird.w,bird.h);
+  ctx.fillStyle='#8aa2ff'; pipes.forEach((p,i)=>{ if(i%2===0){ ctx.fillRect(p.x,0,p.w,p.hTop);} else { ctx.fillRect(p.x,H-p.hTop,p.w,p.hTop);} });
+  text('Score: '+score,12,18);
+});
+
+function reset(){ bird={x:140,y:180,w:18,h:14,vy:0}; pipes=[]; score=0; }
+` };
+
+    // ---------- Studio: populate, load, run ----------
+    const editor = document.getElementById('editor');
+    const pick = document.getElementById('projectPick');
+    const cons = document.getElementById('console');
+    const iframe = document.getElementById('preview');
+    const nameInput = document.getElementById('projName');
+    const btnRun = document.getElementById('btnRun');
+    const btnSave = document.getElementById('btnSave');
+    const btnLoad = document.getElementById('btnLoad');
+    const btnExport = document.getElementById('btnExport');
+
+    Object.keys(Templates).forEach(k=>{ const o=document.createElement('option'); o.textContent=k; o.value=k; pick.appendChild(o); });
+    pick.value = 'Paddle Breaker'; editor.value = Templates[pick.value];
+
+    pick.addEventListener('change',()=>{ editor.value = Templates[pick.value]; logClear(); run(); });
+    btnRun.addEventListener('click', run);
+    btnSave.addEventListener('click', ()=>{ const key=nameInput.value||pick.value; localStorage.setItem('game:'+key, editor.value); flash('Saved: '+key); });
+    btnLoad.addEventListener('click', ()=>{ const key=nameInput.value||pick.value; const val=localStorage.getItem('game:'+key); if(val){ editor.value=val; flash('Loaded: '+key); run(); } else flash('No save for '+key); });
+    btnExport.addEventListener('click', exportHTML);
+
+    function log(s, type='log'){ const div=document.createElement('div'); div.className='log'; div.textContent = (type==='err'?'⛔ ':'')+s; cons.appendChild(div); cons.scrollTop=cons.scrollHeight; }
+    function logClear(){ cons.innerHTML=''; }
+    function flash(s){ log('• '+s); }
+
+    // Build an isolated page in the iframe with engine helpers and user code
+    function run(){
+      logClear();
+      const userCode = editor.value;
+      const src = `<!doctype html><html><head><meta charset="utf-8"><style>
+        html,body{margin:0;height:100%;background:#070a18;color:#fff;font:14px ui-monospace,monospace}
+        #wrap{position:relative;height:100%}
+        canvas{display:block;width:100%;height:100%;background:#0a0f28}
+        #overlay{position:absolute;inset:0;pointer-events:none}
+      </style></head><body>
+      <div id="wrap"><canvas id="c" width="640" height="360"></canvas><div id="overlay"></div></div>
+      <script>
+        // Pipe console back to parent
+        const send=(type,msg)=> parent.postMessage({type, msg}, '*');
+        console.log = (...a)=> send('log', a.join(' '));
+        console.error = (...a)=> send('err', a.join(' '));
+        // Minimal engine helpers exposed to user code
+        const canvas=document.getElementById('c');
+        const ctx=canvas.getContext('2d');
+        let last=0, upd=null, ren=null, shakeAmp=0, shakeEnd=0;
+        const keys={}; addEventListener('keydown',e=>{ keys[e.key]=1; if(e.code==='Space') keys.space=1; }); addEventListener('keyup',e=>{ keys[e.key]=0; if(e.code==='Space') keys.space=0; });
+        const mouse={x:0,y:0,down:0}; canvas.addEventListener('mousemove',e=>{ const r=canvas.getBoundingClientRect(); mouse.x=(e.clientX-r.left)*(canvas.width/r.width); mouse.y=(e.clientY-r.top)*(canvas.height/r.height); }); canvas.addEventListener('mousedown',()=>mouse.down=1); canvas.addEventListener('mouseup',()=>mouse.down=0);
+        function input(){ return {left:+(keys.ArrowLeft||keys.a), right:+(keys.ArrowRight||keys.d), up:+(keys.ArrowUp||keys.w), down:+(keys.ArrowDown||keys.s), fire:+(keys.space||mouse.down), mx:mouse.x, my:mouse.y}; }
+        function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+        function aabb(a,b){ return a.x<b.x+b.w && a.x+a.w>b.x && a.y<b.y+b.h && a.y+a.h>b.y }
+        function clear(color){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle=color||'#000'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+        function text(t,x,y){ ctx.fillStyle='#fff'; ctx.font='14px ui-monospace,monospace'; ctx.fillText(t,x,y); }
+        function sfx(freq=880,ms=100){ try{ const ac=new (window.AudioContext||window.webkitAudioContext)(); const o=ac.createOscillator(); const g=ac.createGain(); o.connect(g); g.connect(ac.destination); o.type='square'; o.frequency.value=freq; g.gain.value=0.02; o.start(); setTimeout(()=>{o.stop(); ac.close();}, ms); }catch(e){} }
+        function shake(amp=6,dur=120){ shakeAmp=amp; shakeEnd=performance.now()+dur; }
+        function onUpdate(f){ upd=f }
+        function onRender(f){ ren=f }
+        function setupCanvas(w,h){ canvas.width=w; canvas.height=h; }
+        function loop(ms){ const dt=Math.min(0.032,(ms-last)/1000); last=ms; try{ upd&&upd(dt);}catch(e){ console.error(e.message); } try{ const t=ms/1000; ctx.save(); if(performance.now()<shakeEnd){ ctx.translate((Math.random()*2-1)*shakeAmp,(Math.random()*2-1)*shakeAmp); } ren&&ren(t,ctx); ctx.restore(); }catch(e){ console.error(e.message);} requestAnimationFrame(loop); }
+        requestAnimationFrame(loop);
+        // --- User code starts here ---\n\n${userCode.replace(/\\/g,'\\\\').replace(/`/g,'\\`')}\n\n        // --- User code ends ---
+      <\/script></body></html>`;
+      iframe.srcdoc = src;
+    }
+
+    // Receive console logs from iframe
+    addEventListener('message', ev=>{ if(!ev.data) return; if(ev.data.type==='log') log(ev.data.msg); if(ev.data.type==='err') log(ev.data.msg,'err'); });
+
+    // Export as a standalone HTML file
+    function exportHTML(){
+      const html = `<!doctype html><meta charset="utf-8"><title>${(nameInput.value||pick.value)} — Export</title>\n`+
+        `<style>html,body{height:100%;margin:0;background:#0b0f28;color:#fff;font:14px ui-monospace,monospace}canvas{display:block;width:100%;height:100%}</style>\n`+
+        `<canvas id="c" width="640" height="360"></canvas>\n`+
+        `<script>const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let last=0,upd=null,ren=null;`+
+        `const keys={};addEventListener('keydown',e=>{keys[e.key]=1;if(e.code==='Space')keys.space=1});addEventListener('keyup',e=>{keys[e.key]=0;if(e.code==='Space')keys.space=0});`+
+        `const mouse={x:0,y:0,down:0};canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=(e.clientX-r.left)*(canvas.width/r.width);mouse.y=(e.clientY-r.top)*(canvas.height/r.height)});canvas.addEventListener('mousedown',()=>mouse.down=1);canvas.addEventListener('mouseup',()=>mouse.down=0);`+
+        `function input(){return{left:+(keys.ArrowLeft||keys.a),right:+(keys.ArrowRight||keys.d),up:+(keys.ArrowUp||keys.w),down:+(keys.ArrowDown||keys.s),fire:+(keys.space||mouse.down),mx:mouse.x,my:mouse.y}}`+
+        `function clamp(v,a,b){return Math.max(a,Math.min(b,v))}function aabb(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}`+
+        `function clear(c){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=c||'#000';ctx.fillRect(0,0,canvas.width,canvas.height)}function text(t,x,y){ctx.fillStyle='#fff';ctx.font='14px ui-monospace,monospace';ctx.fillText(t,x,y)}`+
+        `function sfx(f=880,m=100){try{const ac=new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator();const g=ac.createGain();o.connect(g);g.connect(ac.destination);o.type='square';o.frequency.value=f;g.gain=value=0.02;o.start();setTimeout(()=>{o.stop();ac.close()},m)}catch(e){}}`+
+        `function onUpdate(f){upd=f}function onRender(f){ren=f}function setupCanvas(w,h){canvas.width=w;canvas.height=h}`+
+        `function loop(ms){const dt=Math.min(0.032,(ms-last)/1000);last=ms;try{upd&&upd(dt)}catch(e){console.error(e)}try{ren&&ren(ms/1000,ctx)}catch(e){console.error(e)}requestAnimationFrame(loop)}requestAnimationFrame(loop);`+
+        `\/\/ User code\n`+
+        editor.value.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;')+
+        `\n<\/script>`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download=(nameInput.value||pick.value).replace(/\s+/g,'_')+'.html'; a.click(); setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    }
+
+    // Auto-run the initial template
+    run();
+  </script>
+</body>
+</html>
