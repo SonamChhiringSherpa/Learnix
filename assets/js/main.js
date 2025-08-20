@@ -349,4 +349,246 @@
 
   window.addEventListener('load', initBashChatbot);
 
+  /**
+   * Bash Course: Progress, Dashboard, Quizzes, Roadmap, Gamification
+   */
+  function initBashCourseFeatures() {
+    const isBash = /bash/i.test(window.location.pathname);
+    if (!isBash) return;
+
+    const STORAGE_KEY = 'bashCourseProgress_v1';
+    const LESSONS = [
+      { id: 1, title: 'Introduction to Bash', path: 'bash-course/bash-lesson-1.html' },
+      { id: 2, title: 'Files & Directories', path: 'bash-course/bash-lesson-2.html' },
+      { id: 3, title: 'Viewing & Editing Files', path: 'bash-course/bash-lesson-3.html' },
+      { id: 4, title: 'Permissions', path: 'bash-course/bash-lesson-4.html' },
+      { id: 5, title: 'Scripting Basics', path: 'bash-course/bash-lesson-5.html' }
+    ];
+
+    function loadStore() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+    }
+    function saveStore(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+    function getStore() {
+      const s = loadStore();
+      return {
+        lessonsCompleted: s.lessonsCompleted || {},
+        quizzes: s.quizzes || {},
+        points: Number.isFinite(s.points) ? s.points : 0,
+        badges: Array.isArray(s.badges) ? s.badges : [],
+        lastLesson: s.lastLesson || 1
+      };
+    }
+    function updateStore(mutator) { const s = getStore(); mutator(s); saveStore(s); return s; }
+    function addPoints(n) { updateStore(s => { s.points = Math.max(0, (s.points || 0) + n); }); }
+    function addBadge(name) { updateStore(s => { if (!s.badges.includes(name)) s.badges.push(name); }); }
+    function markLessonComplete(id) { updateStore(s => { s.lessonsCompleted[id] = true; s.lastLesson = id; }); }
+    function setQuizScore(id, score, total) { updateStore(s => { s.quizzes[id] = { score: score, total: total }; }); }
+    function isLessonComplete(id) { const s = getStore(); return !!s.lessonsCompleted[id]; }
+    function getProgressPct() { const s = getStore(); const completed = LESSONS.filter(l => s.lessonsCompleted[l.id]).length; return Math.round((completed / LESSONS.length) * 100); }
+
+    function currentLessonIdFromPath() {
+      const m = window.location.pathname.match(/bash-lesson-(\d+)\.html/i);
+      return m ? parseInt(m[1], 10) : null;
+    }
+
+    // Quiz bank (2 quick MCQs each)
+    const QUIZZES = {
+      1: [
+        { q: 'Which command prints the current directory?', opts: ['whoami','pwd','dir'], a: 1 },
+        { q: 'Which program is a shell?', opts: ['bash','cat','chmod'], a: 0 }
+      ],
+      2: [
+        { q: 'Create a directory named projects', opts: ['mkdir projects','touch projects','mv projects'], a: 0 },
+        { q: 'List files with details', opts: ['ls -l','pwd -l','echo -l'], a: 0 }
+      ],
+      3: [
+        { q: 'Print a file content', opts: ['cat file.txt','chmod file.txt','mv file.txt'], a: 0 },
+        { q: 'Append text to notes.txt', opts: ['echo "Hi" > notes.txt','echo "Hi" >> notes.txt','cat >> "Hi" notes.txt'], a: 1 }
+      ],
+      4: [
+        { q: 'Make script.sh executable', opts: ['chmod +x script.sh','cat script.sh','bash script.sh +x'], a: 0 },
+        { q: 'What does 755 generally mean?', opts: ['rwx r-x r-x','rw- rw- rw-','r-- r-- r--'], a: 0 }
+      ],
+      5: [
+        { q: 'Add a shebang for Bash', opts: ['#!/usr/bin/env bash','#!/bin/env python','#!/usr/bin/node'], a: 0 },
+        { q: 'Print first argument $1 in script', opts: ['echo $1','print $1','read $1'], a: 0 }
+      ]
+    };
+
+    function renderDashboard() {
+      if (!/bash-course\.html$/i.test(window.location.pathname)) return;
+      if (document.getElementById('bashDashboard')) return;
+
+      const container = document.querySelector('main .section .container');
+      if (!container) return;
+
+      const s = getStore();
+      const pct = getProgressPct();
+      const nextLesson = LESSONS.find(l => !s.lessonsCompleted[l.id]) || LESSONS[LESSONS.length-1];
+      const resumeLesson = LESSONS.find(l => l.id === s.lastLesson) || LESSONS[0];
+
+      const dash = document.createElement('div');
+      dash.id = 'bashDashboard';
+      dash.className = 'row g-4 mb-4';
+      dash.innerHTML = `
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <h5 class="mb-0">Ayush</h5>
+                <span class="badge bg-primary">Bash</span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width:56px;height:56px;color:#fff;font-weight:600;">${(s.points||0)}</div>
+                <div>
+                  <div class="small text-muted">Points</div>
+                  <div class="fw-semibold">Earn by completing lessons & quizzes</div>
+                </div>
+              </div>
+              <hr/>
+              <div class="small text-muted mb-2">Badges</div>
+              <div id="badgeHolder" class="d-flex flex-wrap gap-2">${(s.badges||[]).map(b => `<span class='badge bg-success'>${b}</span>`).join('') || '<span class="text-muted">No badges yet</span>'}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Course Progress</h5>
+                <span class="small text-muted">${pct}% complete</span>
+              </div>
+              <div class="progress mb-3" style="height:10px;">
+                <div class="progress-bar" role="progressbar" style="width:${pct}%" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="d-flex gap-2">
+                <a href="${resumeLesson.path}" class="btn btn-primary"><i class="bi bi-play-fill"></i> Resume Lesson ${resumeLesson.id}</a>
+                <a href="${nextLesson.path}" class="btn btn-outline-primary">Next Lesson</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-3">Roadmap</h6>
+              <div class="row g-3">
+                ${LESSONS.map(l => {
+                  const done = isLessonComplete(l.id);
+                  return `<div class='col-md-4 col-lg-2'>
+                    <a href='${l.path}' class='text-decoration-none'>
+                      <div class='p-3 border rounded h-100 ${done ? 'border-success' : ''}'>
+                        <div class='d-flex align-items-center gap-2 mb-1'>
+                          <i class='bi ${done ? 'bi-check-circle-fill text-success' : 'bi-circle'}'></i>
+                          <strong>Lesson ${l.id}</strong>
+                        </div>
+                        <div class='small text-muted'>${l.title}</div>
+                      </div>
+                    </a>
+                  </div>`;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      container.prepend(dash);
+    }
+
+    function injectLessonUI(lessonId) {
+      const col = document.querySelector('main .section .container .row .col-lg-9');
+      if (!col) return;
+      if (document.getElementById('lessonProgressControls')) return;
+
+      const completed = isLessonComplete(lessonId);
+      const wrap = document.createElement('div');
+      wrap.id = 'lessonProgressControls';
+      wrap.className = 'card mb-4';
+      wrap.innerHTML = `
+        <div class="card-body d-flex flex-wrap gap-2 align-items-center justify-content-between">
+          <div>
+            <div class="small text-muted">Lesson ${lessonId}</div>
+            <div class="fw-semibold">Mark your progress and take the quiz</div>
+          </div>
+          <div class="d-flex gap-2">
+            <button id="btnMarkComplete" class="btn ${completed ? 'btn-success' : 'btn-outline-success'}">${completed ? 'Completed' : 'Mark as Completed'}</button>
+            <a href="../bash-practice.html?lesson=${lessonId}" class="btn btn-outline-primary"><i class="bi bi-terminal"></i> Practice</a>
+          </div>
+        </div>`;
+      col.prepend(wrap);
+
+      const btn = wrap.querySelector('#btnMarkComplete');
+      btn.addEventListener('click', function() {
+        if (isLessonComplete(lessonId)) return;
+        markLessonComplete(lessonId);
+        addPoints(10);
+        if (lessonId === 1) addBadge('First Steps');
+        if (LESSONS.every(l => isLessonComplete(l.id))) addBadge('Bash Novice');
+        btn.classList.remove('btn-outline-success');
+        btn.classList.add('btn-success');
+        btn.textContent = 'Completed';
+      });
+    }
+
+    function injectQuiz(lessonId) {
+      const questions = QUIZZES[lessonId];
+      if (!questions) return;
+      if (document.getElementById('lessonQuiz')) return;
+
+      const col = document.querySelector('main .section .container .row .col-lg-9');
+      if (!col) return;
+      const card = document.createElement('div');
+      card.id = 'lessonQuiz';
+      card.className = 'card mt-4';
+      const existingScore = getStore().quizzes[lessonId];
+      card.innerHTML = `
+        <div class="card-header"><strong>Quick Quiz</strong></div>
+        <div class="card-body">
+          ${questions.map((q, idx) => `
+            <div class="mb-3">
+              <div class="fw-semibold mb-1">Q${idx+1}. ${q.q}</div>
+              ${q.opts.map((opt, i) => `
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="q${idx}" id="q${idx}_${i}" value="${i}">
+                  <label class="form-check-label" for="q${idx}_${i}">${opt}</label>
+                </div>`).join('')}
+            </div>`).join('')}
+          <div class="d-flex gap-2 align-items-center">
+            <button id="btnSubmitQuiz" class="btn btn-primary">Submit Quiz</button>
+            <div id="quizFeedback" class="small"></div>
+          </div>
+        </div>`;
+      col.appendChild(card);
+
+      const feedback = card.querySelector('#quizFeedback');
+      if (existingScore) {
+        feedback.innerHTML = `<span class='text-success'>Previous score: ${existingScore.score}/${existingScore.total}</span>`;
+      }
+
+      card.querySelector('#btnSubmitQuiz').addEventListener('click', function() {
+        let score = 0;
+        questions.forEach((q, idx) => {
+          const sel = card.querySelector(`input[name="q${idx}"]:checked`);
+          if (sel && parseInt(sel.value, 10) === q.a) score += 1;
+        });
+        const total = questions.length;
+        setQuizScore(lessonId, score, total);
+        if (score === total) { addPoints(5); addBadge('Quiz Whiz'); feedback.innerHTML = `<span class='text-success'>Perfect! ${score}/${total}</span>`; }
+        else { feedback.innerHTML = `<span class='text-primary'>Score: ${score}/${total}</span>`; }
+      });
+    }
+
+    // Page routing
+    renderDashboard();
+    const lessonId = currentLessonIdFromPath();
+    if (lessonId) {
+      updateStore(s => { s.lastLesson = lessonId; });
+      injectLessonUI(lessonId);
+      injectQuiz(lessonId);
+    }
+  }
+
+  window.addEventListener('load', initBashCourseFeatures);
+
 })();
