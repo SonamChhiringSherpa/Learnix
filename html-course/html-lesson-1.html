@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>HTML Lesson 1: Introduction</title>
+  <meta name="description" content="Bash basics: what a shell is, running commands, getting help, and understanding the prompt.">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <style>
+    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
+  </style>
+</head>
+<body class="course-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">Learner</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+         <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../courses.html" class="active">Courses</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="../enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">HTML Lesson 1: Introduction</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="../courses.html">Courses</a></li>
+          <li><a href="../html-course.html">HTML</a></li>
+          <li class="current">Lesson 1</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <!-- Sidebar Lessons -->
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action active" href="html-lesson-1.html">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="html-lesson-2.html">2. Basic Tags</a>
+              <a class="list-group-item list-group-item-action" href="html-lesson-3.html">3. Links & Images</a>
+              <a class="list-group-item list-group-item-action" href="html-lesson-4.html">4. Lists & Tables</a>
+              <a class="list-group-item list-group-item-action" href="html-lesson-5.html">5. Forms</a>
+            </div>
+            <a href="../html-practice.html?lesson=1" class="btn btn-outline-primary w-100 mt-3">
+              <i class="bi bi-code-slash"></i> Practice
+            </a>
+          </aside>
+
+          <!-- Main Lesson Content -->
+          <div class="col-lg-9">
+            <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+              <h3>What is HTML?</h3>
+              <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It provides the basic structure of a page, which is enhanced and styled using CSS, and made interactive with JavaScript.</p>
+              <div class="terminal mb-3">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&nbsp;&nbsp;&lt;head&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My First Page&lt;/title&gt;<br>
+&nbsp;&nbsp;&lt;/head&gt;<br>
+&nbsp;&nbsp;&lt;body&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello, World!&lt;/h1&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Welcome to HTML learning.&lt;/p&gt;<br>
+&nbsp;&nbsp;&lt;/body&gt;<br>
+&lt;/html&gt;
+              </div>
+            </article>
+
+            <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+              <h4>HTML Page Structure</h4>
+              <p>An HTML page is made up of elements wrapped in <code>&lt;tags&gt;</code>. The main parts are:</p>
+              <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> – Declares this is an HTML5 document.</li>
+                <li><code>&lt;html&gt;</code> – Root element of the page.</li>
+                <li><code>&lt;head&gt;</code> – Contains metadata (title, styles, etc.).</li>
+                <li><code>&lt;body&gt;</code> – Holds the visible page content.</li>
+              </ul>
+              <img src="../assets/img/education/html-structure.webp" alt="HTML Structure" class="img-fluid rounded mb-3">
+            </article>
+
+            <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+              <h4>First Output</h4>
+              <p>When you open the above code in a browser, you’ll see:</p>
+              <div class="terminal mb-3">
+<h1>Hello, World!</h1><br>
+<p>Welcome to HTML learning.</p>
+              </div>
+              <p>This is the simplest example of an HTML page in action.</p>
+            </article>
+
+            <div class="d-flex justify-content-between">
+              <a href="../html-course.html" class="btn btn-outline-secondary">Back to Overview</a>
+              <a href="html-lesson-2.html" class="btn btn-primary">Next: Basic Tags</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="../index.html" class="logo d-flex align-items-center"><span class="sitename">Learner</span></a>
+          <p>Start your Bash journey with the basics.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../courses.html">Courses</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+            <li><a href="../privacy.html">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learner</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
