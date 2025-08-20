@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSS Studio — Interactive Course + In‑Browser Editor</title>
+  <style>
+    :root{ --bg:#0e1020; --panel:#13162f; --muted:#9aa2bf; --text:#ecf0ff; --accent:#8aa2ff; --mint:#5df2bf; --warn:#ffd37c; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:radial-gradient(1000px 600px at 80% -10%,#1d2152 0%,transparent 55%),radial-gradient(900px 600px at -10% 20%,#181c47 0%,transparent 55%),var(--bg);color:var(--text)}
+    header{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:linear-gradient(180deg,#0e1020cc,#0e102000)}
+    .wrap{max-width:1400px;margin:auto;padding:14px}
+    .title{display:flex;align-items:center;gap:12px}
+    .logo{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 200deg,var(--accent),var(--mint));box-shadow:0 0 30px #7c9cff44}
+    .kicker{color:var(--muted);font-size:13px}
+
+    /* Layout */
+    .grid{display:grid;grid-template-columns: 1fr 600px; gap:16px; align-items:start}
+    @media (max-width:1200px){.grid{grid-template-columns:1fr}}
+
+    section{background:linear-gradient(180deg,#14183a,#0f1332);border:1px solid #2a3163;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 10px 40px #0006}
+    h2{margin:0 0 8px}
+    h3{margin:18px 0 8px}
+    .pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid #2a3163;background:#121637;color:var(--muted);margin-right:6px}
+    pre{background:#0a0d21;border:1px solid #232752;border-radius:12px;padding:12px;overflow:auto}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    details{border:1px dashed #2a3163;border-radius:12px;padding:10px;margin:10px 0}
+    details[open]{background:#0f1433}
+
+    /* Right side Studio */
+    .studio{position:sticky;top:74px;background:linear-gradient(180deg,#13183f,#0e1330);border:1px solid #2a3163;border-radius:16px;padding:0;box-shadow:0 10px 40px #0007}
+    .bar{display:flex;gap:8px;align-items:center;padding:12px;border-bottom:1px solid #242a56}
+    .bar select,.bar input{background:#0b0f29;border:1px solid #2a3163;color:var(--text);padding:8px;border-radius:10px}
+    .btn{cursor:pointer;user-select:none;border:1px solid #2a3163;background:#1a1f45;color:var(--text);padding:8px 12px;border-radius:12px}
+    .btn:hover{background:#202654}
+
+    .split{display:grid;grid-template-rows: 280px 200px 220px; gap:10px; padding:12px}
+    @media (max-width:1200px){.split{grid-template-rows: 260px 200px 200px}}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    textarea{width:100%;height:100%;background:#0a0d21;color:#dbe1ff;border:1px solid #232752;border-radius:12px;padding:12px}
+    iframe{width:100%;height:100%;background:#f9fafc;border:1px solid #232752;border-radius:12px}
+    .console{background:#070a18;border:1px solid #232752;border-radius:12px;padding:8px;overflow:auto;font:12px/1.5 ui-monospace,monospace}
+    .console .log{white-space:pre-wrap}
+
+    .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    ul.tight li{margin:6px 0}
+    .small{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap title">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1 style="margin:6px 0 0">CSS Studio</h1>
+        <div class="kicker">Interactive CSS lessons + multi‑template playground with live HTML/CSS editor</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <!-- Left: Lessons -->
+    <div>
+      <section>
+        <h2>Overview</h2>
+        <p>Learn modern CSS by editing real code. Pick a template on the right, then tweak the HTML and CSS panes. Changes hot‑reload in the preview. Export to a standalone file when you're happy.</p>
+        <div>
+          <span class="pill">Selectors</span>
+          <span class="pill">Cascade & Specificity</span>
+          <span class="pill">Box Model</span>
+          <span class="pill">Flexbox</span>
+          <span class="pill">Grid</span>
+          <span class="pill">Positioning</span>
+          <span class="pill">Responsive</span>
+          <span class="pill">Variables</span>
+          <span class="pill">Animations</span>
+          <span class="pill">Accessibility</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Lesson 1 — Selectors, Cascade & Specificity</h2>
+        <div class="grid2">
+          <div>
+            <h3>Selectors</h3>
+<pre><code>/* type, class, id, attribute, pseudo */
+button {}
+.button.primary {}
+#cta {}
+input[disabled] {}
+li:nth-child(2) {}
+</code></pre>
+          </div>
+          <div>
+            <h3>Specificity</h3>
+<pre><code>/* id (1,0,0), class (0,1,0), type (0,0,1) */
+/* Avoid !important; raise specificity instead */
+#card .title { color: var(--accent); }
+.card h3 { color: #889; } /* overridden */
+</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Lesson 2 — Box Model & Layout</h2>
+        <ul class="tight">
+          <li>Elements have <em>content</em>, <em>padding</em>, <em>border</em>, <em>margin</em>.</li>
+          <li>Use <code>* { box-sizing: border-box }</code> for predictable sizing.</li>
+          <li><strong>Flexbox</strong> for 1‑D alignment; <strong>Grid</strong> for 2‑D layouts.</li>
+        </ul>
+<pre><code>.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Lesson 3 — Responsive, Variables, Media</h2>
+        <ul class="tight">
+          <li>Declare tokens with <code>:root{ --brand:#645cff }</code> and reuse via <code>var(--brand)</code>.</li>
+          <li>Media queries adapt layout to viewport width and preferences.</li>
+          <li>Use <code>clamp(min,preferred,max)</code> for fluid sizes.</li>
+        </ul>
+<pre><code>:root{ --brand:#645cff; --radius:16px }
+.card{ border-radius: var(--radius) }
+@media (max-width: 700px){ .sidebar{ display:none } }
+@media (prefers-reduced-motion: reduce){ *{ animation: none !important } }
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Lesson 4 — Motion & Polish</h2>
+        <ul class="tight">
+          <li>Transitions for micro‑interactions; keyframes for sequences.</li>
+          <li>Combine <code>transform</code> properties to avoid reflow.</li>
+          <li>Focus states and contrast for accessibility.</li>
+        </ul>
+<pre><code>.btn{transition: transform .15s ease, box-shadow .2s}
+.btn:hover{ transform: translateY(-2px) }
+@keyframes pop{ from{ transform:scale(.96); opacity:.6 } to{ transform:scale(1); opacity:1 } }
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Projects Included</h2>
+        <ol>
+          <li><strong>Flexbox Layout</strong> — toolbar + card row.</li>
+          <li><strong>CSS Grid Gallery</strong> — responsive image tiles.</li>
+          <li><strong>Card Components</strong> — shadow, radius, badges, chips.</li>
+          <li><strong>Navbar + Dropdown</strong> — sticky header, hover/focus menus.</li>
+          <li><strong>Pricing Table</strong> — equal‑height columns, feature ticks.</li>
+          <li><strong>Form Styles</strong> — inputs, states, validation hints.</li>
+          <li><strong>Animations & Transforms</strong> — buttons, loaders.</li>
+          <li><strong>Responsive Utilities</strong> — grid/flex switches and clamps.</li>
+        </ol>
+        <p class="small">Pick a project on the right, edit HTML/CSS, then Run. You can Save/Load (localStorage) or Export.</p>
+      </section>
+    </div>
+
+    <!-- Right: Studio (HTML + CSS editors + preview) -->
+    <aside class="studio">
+      <div class="bar">
+        <label class="small">Project:</label>
+        <select id="projectPick"></select>
+        <input id="projName" placeholder="Save name (optional)" />
+        <button class="btn" id="btnRun">Run ▶</button>
+        <button class="btn" id="btnSave">Save</button>
+        <button class="btn" id="btnLoad">Load</button>
+        <button class="btn" id="btnExport">Export</button>
+      </div>
+      <div class="split">
+        <div class="row">
+          <textarea id="htmlEditor" spellcheck="false" placeholder="&lt;!-- Edit HTML here --&gt;"></textarea>
+          <textarea id="cssEditor" spellcheck="false" placeholder="/* Edit CSS here */"></textarea>
+        </div>
+        <iframe id="preview" title="Preview"></iframe>
+        <div class="console" id="console"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    // -------- Templates (HTML + CSS) --------
+    const T = {
+      'Flexbox Layout': {
+        html: `
+<header class="toolbar">
+  <div class="brand">Acme</div>
+  <nav class="nav">
+    <a href="#">Home</a><a href="#">Docs</a><a href="#">Blog</a>
+  </nav>
+  <button class="btn">Sign in</button>
+</header>
+<main class="cards">
+  <article class="card"><h3>Alpha</h3><p>Short description for alpha.</p><button class="btn">Open</button></article>
+  <article class="card"><h3>Beta</h3><p>Short description for beta.</p><button class="btn">Open</button></article>
+  <article class="card"><h3>Gamma</h3><p>Short description for gamma.</p><button class="btn">Open</button></article>
+</main>`,
+        css: `
+:root{ --bg:#0b0f28; --text:#e7eaff; --muted:#98a2c6; --accent:#8aa2ff; --card:#12183a; --radius:16px; }
+*{ box-sizing:border-box }
+body{ margin:0; font:16px/1.5 Inter,system-ui,sans-serif; color:var(--text); background:var(--bg); }
+.toolbar{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#0e1433cc; backdrop-filter: blur(8px); border-bottom:1px solid #2a3163; }
+.nav{ display:flex; gap:12px }
+.nav a{ color:var(--muted); text-decoration:none; padding:6px 8px; border-radius:10px }
+.nav a:hover, .nav a:focus{ background:#1a2150; color:var(--text) }
+.brand{ font-weight:700 }
+.btn{ background:#1a1f45; color:var(--text); border:1px solid #2a3163; padding:8px 12px; border-radius:12px; cursor:pointer; transition:transform .15s ease, box-shadow .2s }
+.btn:hover{ transform: translateY(-2px) }
+.cards{ display:flex; flex-wrap:wrap; gap:16px; padding:20px; }
+.card{ flex:1 1 260px; background:var(--card); border:1px solid #2a3163; border-radius:var(--radius); padding:16px; box-shadow:0 6px 30px #0006; }
+.card h3{ margin:0 0 6px }
+.card p{ color:var(--muted) }
+`},
+
+      'CSS Grid Gallery': {
+        html: `
+<h2 class="title">Gallery</h2>
+<section class="gallery">
+  <figure><img src="https://picsum.photos/seed/1/600/400" alt=""/><figcaption>One</figcaption></figure>
+  <figure><img src="https://picsum.photos/seed/2/600/800" alt=""/><figcaption>Two</figcaption></figure>
+  <figure><img src="https://picsum.photos/seed/3/600/400" alt=""/><figcaption>Three</figcaption></figure>
+  <figure><img src="https://picsum.photos/seed/4/600/700" alt=""/><figcaption>Four</figcaption></figure>
+  <figure><img src="https://picsum.photos/seed/5/600/500" alt=""/><figcaption>Five</figcaption></figure>
+</section>`,
+        css: `
+:root{ --gap:12px }
+body{ margin:0; font:16px/1.5 system-ui, sans-serif; background:#0b0f28; color:#e7eaff }
+.title{ margin:16px; opacity:.9 }
+.gallery{ display:grid; gap:var(--gap); grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); padding:16px }
+figure{ margin:0; background:#12183a; border:1px solid #2a3163; border-radius:12px; overflow:hidden }
+img{ width:100%; height:auto; display:block }
+figcaption{ padding:8px 10px; color:#9aa2bf }
+@media (min-width:900px){ .gallery{ grid-auto-rows: 8px } figure{ display:grid } figure>img{ grid-row:1; grid-column:1 } }
+`},
+
+      'Card Components': {
+        html: `
+<section class="cards">
+  <article class="card success">
+    <header><span class="badge">New</span><h3>Success</h3></header>
+    <p>Operation completed successfully.</p>
+    <footer><button class="btn">Okay</button></footer>
+  </article>
+  <article class="card warn">
+    <header><span class="badge">Beta</span><h3>Warning</h3></header>
+    <p>Check your details and try again.</p>
+    <footer><button class="btn">Review</button></footer>
+  </article>
+</section>`,
+        css: `
+:root{ --success:#5df2bf; --warn:#ffd37c; --card:#12183a }
+*{ box-sizing:border-box }
+body{ margin:0; font:16px/1.5 Inter,system-ui; background:#0b0f28; color:#ecf0ff }
+.cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; padding:16px }
+.card{ border-radius:16px; border:1px solid #2a3163; background:var(--card); padding:14px; box-shadow:0 6px 30px #0006; animation: pop .3s ease }
+.card header{ display:flex; align-items:center; gap:10px }
+.badge{ font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid #2a3163; color:#9aa2bf }
+.card.success .badge{ border-color: var(--success); color: var(--success) }
+.card.warn .badge{ border-color: var(--warn); color: var(--warn) }
+.btn{ background:#1a1f45; color:#fff; border:1px solid #2a3163; padding:8px 12px; border-radius:12px; cursor:pointer }
+@keyframes pop{ from{ transform:scale(.96); opacity:.6 } to{ transform:scale(1); opacity:1 } }
+`},
+
+      'Navbar + Dropdown': {
+        html: `
+<header class="nav">
+  <a class="brand" href="#">Nova</a>
+  <nav>
+    <details>
+      <summary>Products</summary>
+      <a href="#">Alpha</a>
+      <a href="#">Beta</a>
+      <a href="#">Gamma</a>
+    </details>
+    <a href="#">Pricing</a>
+    <a href="#">About</a>
+  </nav>
+  <button class="btn">Get Started</button>
+</header>`,
+        css: `
+body{ margin:0; font:16px/1.5 Inter,system-ui; background:#0b0f28; color:#e7eaff }
+.nav{ position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#0e1433cc; backdrop-filter:blur(8px); border-bottom:1px solid #2a3163 }
+.brand{ font-weight:700; color:#e7eaff; text-decoration:none }
+nav{ display:flex; gap:10px; align-items:center }
+nav a, summary{ color:#9aa2bf; text-decoration:none; padding:6px 8px; border-radius:10px; cursor:pointer }
+nav a:hover, summary:hover{ background:#1a2150; color:#fff }
+summary::-webkit-details-marker{ display:none }
+details{ position:relative }
+details[open]{ background:#12183a; border:1px solid #2a3163; border-radius:12px; padding:8px }
+details a{ display:block; padding:6px 8px }
+.btn{ background:#1a1f45; color:#fff; border:1px solid #2a3163; padding:8px 12px; border-radius:12px; cursor:pointer }
+`},
+
+      'Pricing Table': {
+        html: `
+<section class="pricing">
+  <article class="plan">
+    <h3>Starter</h3>
+    <div class="price">$0</div>
+    <ul>
+      <li>1 project</li>
+      <li>Community support</li>
+    </ul>
+    <button class="btn">Choose</button>
+  </article>
+  <article class="plan highlight">
+    <h3>Pro</h3>
+    <div class="price">$12</div>
+    <ul>
+      <li>Unlimited projects</li>
+      <li>Email support</li>
+      <li>Analytics</li>
+    </ul>
+    <button class="btn">Choose</button>
+  </article>
+  <article class="plan">
+    <h3>Team</h3>
+    <div class="price">$29</div>
+    <ul>
+      <li>5 seats</li>
+      <li>Priority support</li>
+    </ul>
+    <button class="btn">Choose</button>
+  </article>
+</section>`,
+        css: `
+:root{ --card:#12183a }
+body{ margin:0; font:16px/1.5 Inter,system-ui; background:#0b0f28; color:#e7eaff }
+.pricing{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; padding:16px }
+.plan{ background:var(--card); border:1px solid #2a3163; border-radius:16px; padding:16px; text-align:center; box-shadow:0 6px 30px #0006 }
+.plan .price{ font-size:32px; margin:6px 0 10px }
+.plan.highlight{ outline:2px solid #8aa2ff; transform: translateY(-2px) }
+.btn{ background:#1a1f45; color:#fff; border:1px solid #2a3163; padding:8px 12px; border-radius:12px; cursor:pointer }
+`},
+
+      'Form Styles': {
+        html: `
+<form class="form">
+  <label>Username<input placeholder="yourname" required></label>
+  <label>Email<input type="email" placeholder="name@example.com" required></label>
+  <label>Password<input type="password" required></label>
+  <label><input type="checkbox"> I agree</label>
+  <button class="btn">Submit</button>
+</form>`,
+        css: `
+:root{ --card:#12183a }
+body{ margin:0; font:16px/1.5 Inter,system-ui; background:#0b0f28; color:#e7eaff }
+.form{ max-width:420px; margin:20px auto; background:var(--card); border:1px solid #2a3163; padding:16px; border-radius:16px; box-shadow:0 6px 30px #0006 }
+label{ display:grid; gap:6px; margin:10px 0 }
+input{ padding:10px; border-radius:10px; border:1px solid #2a3163; background:#0f1433; color:#e7eaff }
+input:focus{ outline:2px solid #8aa2ff; outline-offset:2px }
+input:invalid{ border-color:#ff7c9c }
+.btn{ margin-top:6px; background:#1a1f45; color:#fff; border:1px solid #2a3163; padding:8px 12px; border-radius:12px; cursor:pointer }
+`},
+
+      'Animations & Transforms': {
+        html: `
+<div class="buttons">
+  <button class="btn">Hover me</button>
+  <button class="btn pulse">Pulse</button>
+  <div class="loader"></div>
+</div>`,
+        css: `
+:root{ --card:#12183a }
+body{ margin:0; display:grid; place-items:center; height:100vh; background:#0b0f28; color:#e7eaff }
+.buttons{ display:flex; gap:12px; align-items:center }
+.btn{ background:#1a1f45; color:#fff; border:1px solid #2a3163; padding:10px 14px; border-radius:12px; cursor:pointer; transition: transform .15s ease, box-shadow .2s }
+.btn:hover{ transform: translateY(-2px) scale(1.02) }
+.pulse{ animation: pulse 1.2s infinite }
+@keyframes pulse{ 0%{ transform:scale(1)} 50%{ transform:scale(1.06)} 100%{ transform:scale(1)} }
+.loader{ width:28px; height:28px; border-radius:50%; border:3px solid #232752; border-top-color:#8aa2ff; animation: spin 1s linear infinite }
+@keyframes spin{ to{ transform: rotate(360deg) } }
+`},
+
+      'Responsive Utilities': {
+        html: `
+<header class="hero">
+  <h1>Fluid Type & Layout</h1>
+  <p>Resize the preview to see it adapt.</p>
+</header>
+<section class="grid">
+  <div class="box">A</div><div class="box">B</div><div class="box">C</div><div class="box">D</div>
+</section>`,
+        css: `
+:root{ --gap:12px }
+*{ box-sizing:border-box }
+body{ margin:0; font: clamp(14px, 1.5vw, 18px) / 1.5 Inter, system-ui; background:#0b0f28; color:#e7eaff }
+.hero{ padding: min(6vw, 32px) }
+.grid{ display:grid; gap:var(--gap); grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); padding:16px }
+.box{ background:#12183a; border:1px solid #2a3163; border-radius:12px; padding: min(4vw, 16px); min-height: 80px; display:grid; place-items:center }
+@media (max-width:700px){ .hero{ text-align:center } }
+`}
+    };
+
+    // -------- Studio logic --------
+    const htmlEditor = document.getElementById('htmlEditor');
+    const cssEditor = document.getElementById('cssEditor');
+    const iframe = document.getElementById('preview');
+    const pick = document.getElementById('projectPick');
+    const nameInput = document.getElementById('projName');
+    const btnRun = document.getElementById('btnRun');
+    const btnSave = document.getElementById('btnSave');
+    const btnLoad = document.getElementById('btnLoad');
+    const btnExport = document.getElementById('btnExport');
+    const cons = document.getElementById('console');
+
+    Object.keys(T).forEach(k=>{ const o=document.createElement('option'); o.textContent=k; o.value=k; pick.appendChild(o); });
+    pick.value = 'Flexbox Layout';
+    htmlEditor.value = T[pick.value].html.trim();
+    cssEditor.value  = T[pick.value].css.trim();
+
+    pick.addEventListener('change', ()=>{ htmlEditor.value=T[pick.value].html.trim(); cssEditor.value=T[pick.value].css.trim(); run(); flash('Loaded template: '+pick.value); });
+    btnRun.addEventListener('click', run);
+    btnSave.addEventListener('click', ()=>{ const key=nameInput.value||pick.value; localStorage.setItem('cssproj:'+key+':html', htmlEditor.value); localStorage.setItem('cssproj:'+key+':css', cssEditor.value); flash('Saved: '+key); });
+    btnLoad.addEventListener('click', ()=>{ const key=nameInput.value||pick.value; const h=localStorage.getItem('cssproj:'+key+':html'); const c=localStorage.getItem('cssproj:'+key+':css'); if(h||c){ if(h) htmlEditor.value=h; if(c) cssEditor.value=c; run(); flash('Loaded: '+key);} else { flash('No save for '+key); } });
+    btnExport.addEventListener('click', exportHTML);
+
+    function log(msg,type='log'){ const div=document.createElement('div'); div.className='log'; div.textContent=(type==='err'?'⛔ ':'')+msg; cons.appendChild(div); cons.scrollTop=cons.scrollHeight; }
+    function logClear(){ cons.innerHTML=''; }
+    function flash(s){ log('• '+s); }
+
+    function run(){
+      logClear();
+      const src = `<!doctype html><html><head><meta charset="utf-8">\n<style>${cssEditor.value.replace(/\\/g,'\\\\').replace(/`/g,'\\`')}<\/style></head><body>\n${htmlEditor.value.replace(/\\/g,'\\\\').replace(/`/g,'\\`')}\n</body></html>`;
+      iframe.srcdoc = src;
+    }
+
+    function exportHTML(){
+      const html = `<!doctype html>\n<meta charset="utf-8">\n<title>${(nameInput.value||pick.value)} — Export</title>\n<style>\n${cssEditor.value}\n</style>\n${htmlEditor.value}`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download=(nameInput.value||pick.value).replace(/\s+/g,'_')+'.html'; a.click(); setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    }
+
+    // Initial run
+    run();
+  </script>
+</body>
+</html>
