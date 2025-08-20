@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bash Lesson 4 - Permissions</title>
+  <meta name="description" content="Understand Unix permissions, chmod, and executable scripts in Bash.">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <style>.terminal{background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;border-radius:8px;padding:12px}</style>
+</head>
+<body class="course-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">Learner</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../courses.html" class="active">Courses</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 4: Permissions</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="../courses.html">Courses</a></li>
+          <li><a href="../bash-course.html">Bash</a></li>
+          <li class="current">Lesson 4</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="bash-lesson-1.html">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-2.html">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-3.html">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action active" href="bash-lesson-4.html">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-5.html">5. Scripting Basics</a>
+            </div>
+            <a href="../bash-practice.html?lesson=4" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+              <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+    <h3>Understanding File Permissions</h3>
+    <img src="../assets/img/course/file_permissions.jpg" alt="Permissions in Bash" class="img-fluid rounded mb-3" style="width: 400px;height: 400px;">
+    <p>Every file and directory in a Linux system has a set of permissions that define who can <strong>read</strong>, <strong>write</strong>, or <strong>execute</strong> it. These permissions are shown when you use <code>ls -l</code>:</p>
+    <div class="terminal mb-3">
+$ ls -l script.sh  
+-rw-r--r-- 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>This means:</p>
+    <ul>
+      <li><code>-</code> – It’s a regular file (not a directory).</li>
+      <li><code>rw-</code> – The owner (user) can read and write.</li>
+      <li><code>r--</code> – The group can only read.</li>
+      <li><code>r--</code> – Others (everyone else) can only read.</li>
+    </ul>
+    <p>To make a script executable:</p>
+    <div class="terminal mb-3">
+$ chmod +x script.sh  
+$ ls -l script.sh  
+-rwxr-xr-x 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>Now the owner, group, and others can all execute the file.</p>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <h4>Octal Notation for Permissions</h4>
+    <p>Bash also supports setting permissions using numbers. Each permission is represented by a digit:</p>
+    <ul>
+      <li><code>r</code> = 4 (read)</li>
+      <li><code>w</code> = 2 (write)</li>
+      <li><code>x</code> = 1 (execute)</li>
+    </ul>
+    <p>These are added together for each of the three groups: user, group, and others.</p>
+    <div class="terminal mb-3">
+$ chmod 755 script.sh  
+# 7 = rwx (4+2+1), 5 = r-x (4+0+1), 5 = r-x  
+$ ls -l script.sh  
+-rwxr-xr-x 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>Another example:</p>
+    <div class="terminal mb-3">
+$ chmod 644 notes.txt  
+# 6 = rw-, 4 = r--, 4 = r--  
+$ ls -l notes.txt  
+-rw-r--r-- 1 user user 14 Jan 1 00:00 notes.txt
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+    <h4>Changing Ownership</h4>
+    <p>Only the file's owner or the superuser can change ownership of a file or directory using <code>chown</code>:</p>
+    <div class="terminal mb-3">
+$ sudo chown newuser notes.txt  
+$ ls -l notes.txt  
+-rw-r--r-- 1 <strong>newuser</strong> user 14 Jan 1 00:00 notes.txt
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="300">
+    <h4>Practice Tip</h4>
+    <p>Try creating files and applying different permission combinations using both symbolic and numeric methods:</p>
+    <ul>
+      <li>Create a file and restrict access only to yourself</li>
+      <li>Make a script readable and executable for everyone</li>
+      <li>Use <code>chmod</code> and <code>chown</code> together to secure shared directories</li>
+    </ul>
+  </article>
+            <div class="d-flex justify-content-between">
+              <a href="bash-lesson-3.html" class="btn btn-outline-secondary">Prev: Viewing & Editing Files</a>
+              <a href="bash-lesson-5.html" class="btn btn-primary">Next: Scripting Basics</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">Learner</span></a>
+          <p>Control access to files and make scripts executable.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learner</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
