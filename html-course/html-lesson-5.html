@@ -68,31 +68,27 @@
             </a>
           </aside>
 
-          <div class="col-lg-9">
+         <div class="col-lg-9">
   <article class="mb-5">
     <h3>Lesson 5: Forms & Inputs</h3>
-    <p>Forms let users input data. Input fields, checkboxes, radios, and buttons are the building blocks of interactive websites.</p>
+    <p>
+      Forms are used to collect user input. They include fields like text boxes, checkboxes, radio buttons, and buttons 
+      to make a website interactive and functional.
+    </p>
   </article>
 
-  <!-- Basic Form -->
+  <!-- Text Inputs -->
   <article class="mb-5">
-    <h4>Form Example</h4>
+    <h4>Text & Email Inputs</h4>
     <div class="editor-box">
       <div class="editor">
         <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
 <form>
-  <label for="name">Name:</label>
-  <input type="text" id="name"><br><br>
+  <label for="username">Username:</label>
+  <input type="text" id="username" placeholder="Enter your name"><br><br>
 
   <label for="email">Email:</label>
-  <input type="email" id="email"><br><br>
-
-  <input type="checkbox" id="subscribe"> Subscribe to newsletter<br><br>
-
-  <input type="radio" name="gender" value="male"> Male
-  <input type="radio" name="gender" value="female"> Female<br><br>
-
-  <button type="submit">Submit</button>
+  <input type="email" id="email" placeholder="Enter your email"><br><br>
 </form>
         </textarea>
       </div>
@@ -102,9 +98,118 @@
     </div>
   </article>
 
+  <!-- Password & Number Inputs -->
+  <article class="mb-5">
+    <h4>Password & Number Inputs</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor2" oninput="updatePreview('codeEditor2','livePreview2')">
+<form>
+  <label for="password">Password:</label>
+  <input type="password" id="password"><br><br>
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" min="1" max="100"><br><br>
+</form>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview2"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Checkboxes & Radios -->
+  <article class="mb-5">
+    <h4>Checkboxes & Radio Buttons</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor3" oninput="updatePreview('codeEditor3','livePreview3')">
+<form>
+  <input type="checkbox" id="subscribe"> Subscribe to newsletter<br><br>
+
+  <input type="radio" name="gender" value="male"> Male
+  <input type="radio" name="gender" value="female"> Female
+</form>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview3"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Dropdown & Textarea -->
+  <article class="mb-5">
+    <h4>Select & Textarea</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor4" oninput="updatePreview('codeEditor4','livePreview4')">
+<form>
+  <label for="country">Choose a country:</label>
+  <select id="country">
+    <option value="nepal">Nepal</option>
+    <option value="india">India</option>
+    <option value="usa">USA</option>
+  </select><br><br>
+
+  <label for="message">Message:</label><br>
+  <textarea id="message" rows="4" cols="30" placeholder="Write your message..."></textarea>
+</form>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview4"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Buttons -->
+  <article class="mb-5">
+    <h4>Buttons</h4>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor5" oninput="updatePreview('codeEditor5','livePreview5')">
+<form>
+  <button type="submit">Submit</button>
+  <button type="reset">Reset</button>
+  <button type="button" onclick="alert('Hello!')">Click Me</button>
+</form>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview5"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Understanding Forms & Inputs -->
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+    <h4>Understanding Forms & Inputs</h4>
+    <p>
+      Forms are made up of different input elements, each serving a unique purpose. 
+      Here are the key tags and their functions:
+    </p>
+    <div class="tag-description">
+      <ul>
+        <li><code>&lt;form&gt;...&lt;/form&gt;</code> → Defines a form container.</li>
+        <li><code>&lt;input type="text"&gt;</code> → Single-line text input field.</li>
+        <li><code>&lt;input type="email"&gt;</code> → Email input with validation.</li>
+        <li><code>&lt;input type="password"&gt;</code> → Password (hidden characters).</li>
+        <li><code>&lt;input type="number"&gt;</code> → Numeric input with min/max.</li>
+        <li><code>&lt;input type="checkbox"&gt;</code> → Checkbox for multiple choices.</li>
+        <li><code>&lt;input type="radio"&gt;</code> → Radio button for single choice.</li>
+        <li><code>&lt;select&gt;...&lt;/select&gt;</code> → Dropdown list.</li>
+        <li><code>&lt;textarea&gt;...&lt;/textarea&gt;</code> → Multi-line text input.</li>
+        <li><code>&lt;button&gt;</code> → Buttons (submit, reset, custom actions).</li>
+      </ul>
+    </div>
+  </article>
+</div>
+
             <div class="d-flex justify-content-between">
               <a href="html-lesson-4.html" class="btn btn-outline-secondary">Previous</a>
-              <a href="html-course.html" class="btn btn-primary">Back to Overview</a>
+              <a href="../html-course.html" class="btn btn-primary">Back to Overview</a>
             </div>
           </div>
         </div>
@@ -166,7 +271,12 @@
 
   window.onload = function() {
     updatePreview('codeEditor1','livePreview1');
+    updatePreview('codeEditor2','livePreview2');
+    updatePreview('codeEditor3','livePreview3');
+    updatePreview('codeEditor4','livePreview4');
+    updatePreview('codeEditor5','livePreview5');
   }
 </script>
+
 </body>
 </html>

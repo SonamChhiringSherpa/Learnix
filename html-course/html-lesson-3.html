@@ -70,19 +70,25 @@
           </aside>
 
           <div class="col-lg-9">
+  <!-- Lesson Intro -->
   <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
     <h3>Lesson 3: Links & Images</h3>
-    <p>Links (<code>&lt;a&gt;</code>) connect pages, and images (<code>&lt;img&gt;</code>) display visuals. Together, they make your site interactive and engaging.</p>
+    <p>
+      Links (<code>&lt;a&gt;</code>) connect one page to another, or jump to a section within the same page.  
+      Images (<code>&lt;img&gt;</code>) add visuals that make your site attractive.  
+      Together, they are the foundation of web navigation and media.
+    </p>
   </article>
 
-  <!-- Links Example -->
+  <!-- Basic Links -->
   <article class="mb-5">
-    <h4>Creating Links</h4>
+    <h4>Basic Links</h4>
+    <p>Use the <code>&lt;a&gt;</code> tag with an <code>href</code> attribute to create hyperlinks.</p>
     <div class="editor-box">
       <div class="editor">
         <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
-<a href="https://www.w3schools.com">Visit W3Schools</a><br>
-<a href="lesson-4.html" target="_blank">Go to Lesson 4</a>
+<a href="html-lesson-1.html">Go to lesson 1</a><br>
+<a href="html-lesson-2.html">Go to lesson 2</a>
         </textarea>
       </div>
       <div class="preview">
@@ -91,14 +97,14 @@
     </div>
   </article>
 
-  <!-- Images Example -->
+  <!-- Open in New Tab -->
   <article class="mb-5">
-    <h4>Adding Images</h4>
+    <h4>Opening Links in a New Tab</h4>
+    <p>Add <code>target="_blank"</code> to make a link open in a new tab.</p>
     <div class="editor-box">
       <div class="editor">
         <textarea id="codeEditor2" oninput="updatePreview('codeEditor2','livePreview2')">
-<img src="https://via.placeholder.com/150" alt="Sample Image">
-<img src="https://via.placeholder.com/100" alt="Another Image">
+<a href="https://www.wikipedia.org" target="_blank">Visit Wikipedia in New Tab</a>
         </textarea>
       </div>
       <div class="preview">
@@ -106,6 +112,95 @@
       </div>
     </div>
   </article>
+
+  <!-- Anchor Links -->
+  <article class="mb-5">
+    <h4>Linking to Page Sections (Anchors)</h4>
+    <p>Use an <code>id</code> on an element and link with <code>#id</code>.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor3" oninput="updatePreview('codeEditor3','livePreview3')">
+<a href="#section1">Jump to Section 1</a>
+
+<h2 id="section1">Section 1</h2>
+<p>This is section 1 content.</p>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview3"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Linking an Image -->
+  <article class="mb-5">
+    <h4>Making an Image a Link</h4>
+    <p>Wrap an image inside an <code>&lt;a&gt;</code> tag to make it clickable.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor4" oninput="updatePreview('codeEditor4','livePreview4')">
+<a href="https://www.google.com/" target="_blank">
+  <img src="../assets/img/google.png" alt="Google logo">
+</a>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview4"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Basic Images -->
+  <article class="mb-5">
+    <h4>Adding Images</h4>
+    <p>Use <code>&lt;img&gt;</code> with <code>src</code> (image file path) and <code>alt</code> (description).</p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor5" oninput="updatePreview('codeEditor5','livePreview5')">
+<img src="../assets/img/google.png" alt="Sample Image">
+<img src="" alt="Another Image">
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview5"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Image Sizing -->
+  <article class="mb-5">
+    <h4>Image Size & Attributes</h4>
+    <p>You can control image width/height using attributes or CSS.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor6" oninput="updatePreview('codeEditor6','livePreview6')">
+<img src="" alt="Large Image" width="150">
+<img src="" alt="Square Image" height="50">
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview6"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Alt Text -->
+  <article class="mb-5">
+    <h4>Alt Text for Accessibility</h4>
+    <p><code>alt</code> provides alternative text if an image cannot be displayed and helps screen readers.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor7" oninput="updatePreview('codeEditor7','livePreview7')">
+<img src="" alt="This image could not be loaded">
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview7"></iframe>
+      </div>
+    </div>
+  </article>
+</div>
+
 
             <div class="d-flex justify-content-between">
               <a href="html-lesson-2.html" class="btn btn-outline-secondary">Previous</a>
@@ -170,9 +265,15 @@
   }
 
   window.onload = function() {
+    // Lesson 3 editors
     updatePreview('codeEditor1','livePreview1');
     updatePreview('codeEditor2','livePreview2');
+    updatePreview('codeEditor3','livePreview3');
+    updatePreview('codeEditor4','livePreview4');
+    updatePreview('codeEditor5','livePreview5');
+    updatePreview('codeEditor6','livePreview6');
+    updatePreview('codeEditor7','livePreview7');
   }
-</script>
+  </script>
 </body>
 </html>
