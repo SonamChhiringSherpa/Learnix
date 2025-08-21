@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bash Practice Puzzles</title>
+  <meta name="description" content="Interactive Bash puzzles with a simulated terminal to practice commands.">
+  <meta name="keywords" content="bash practice, bash puzzles, terminal, linux, shell">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    .terminal { background: #0b1620; color: #d6e9ff; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; border-radius: 8px; min-height: 240px; padding: 12px; overflow: auto; white-space: pre-wrap; }
+    .prompt-line { color: #8ab4f8; }
+    .terminal .output { color: #cfe5ff; }
+    .terminal-input { background: #0b1620; color: #e8f1ff; border: none; outline: none; width: 100%; font-family: inherit; }
+    .badge-task { font-size: .8rem; }
+  </style>
+</head>
+
+<body class="course-details-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Learner</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Practice Puzzles</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="bash-course.html">Bash</a></li>
+            <li class="current">Practice</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-header"><strong>Tasks</strong></div>
+              <div class="list-group list-group-flush" id="taskList">
+                <!-- Tasks will be injected based on lesson -->
+              </div>
+            </div>
+            <div class="alert alert-info mt-3 mb-0 small">
+              Use valid Bash commands only. Each task validates your command.
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>Simulated Terminal</strong>
+                <div>
+                  <button id="resetBtn" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="prompt" class="alert alert-primary mb-3 small" role="alert" style="white-space:pre-wrap"></div>
+                <div id="terminal" class="terminal" aria-live="polite"></div>
+                <div class="d-flex align-items-center mt-2">
+                  <span class="prompt-line me-2">$</span>
+                  <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" placeholder="Type a command and press Enter" />
+                </div>
+                <div id="feedback" class="mt-3"></div>
+                <div class="d-flex gap-2 mt-2">
+                  <button id="checkBtn" class="btn btn-primary">Check</button>
+                  <a href="bash-course.html" class="btn btn-outline-primary">Back to Lessons</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Learner</span>
+          </a>
+          <p>Practice Bash with guided, auto-validated tasks.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learner</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script>
+    (function() {
+      const terminal = document.getElementById('terminal');
+      const input = document.getElementById('terminalInput');
+      const feedback = document.getElementById('feedback');
+      const taskList = document.getElementById('taskList');
+      const resetBtn = document.getElementById('resetBtn');
+      const checkBtn = document.getElementById('checkBtn');
+
+      const initialFs = () => ({ cwd: '/', tree: { '/': { type: 'dir', children: {} } } });
+      let fs = initialFs();
+      let history = [];
+      let taskIndex = 0;
+      let lastResult = '';
+
+      // Levels by lesson for the 🎮 Bash Breaker game
+      const LESSON_LEVELS = {
+        '1': [
+          { title: 'Explorer: Where am I?', prompt: 'You just logged into a remote system.\nTask: Print the current working directory.', setup: (fs) => {}, validate: () => lastResult.trim() === '/', hint: 'Use pwd' },
+          { title: 'Intel: List the drop zone', prompt: 'The drop zone might contain files left by an insider.\nTask: List the names in the current directory.', setup: (fs) => { fs.tree['/'].children['alpha'] = { type: 'file', content: '' }; fs.tree['/'].children['beta'] = { type: 'file', content: '' }; }, validate: () => /alpha/.test(lastResult) && /beta/.test(lastResult), hint: 'Use ls' }
+        ],
+        '2': [
+          { title: 'Create a project folder', prompt: '🧰 Setup\nTask: Create a directory named "playground" in the current folder.', setup: (fs) => {}, validate: () => fs.tree['/'].children['playground']?.type === 'dir', hint: 'Use mkdir playground' },
+          { title: 'Create notes.txt', prompt: '📄 Files\nTask: Inside "playground", create a file named notes.txt (can be empty).', setup: (fs) => {}, validate: () => fs.tree['/'].children['playground']?.children?.['notes.txt']?.type === 'file', hint: 'Try: echo "" > playground/notes.txt or touch playground/notes.txt' },
+          { title: 'Append Hello', prompt: '✏️ Edit\nTask: Append the line "Hello" to playground/notes.txt.', setup: (fs) => {}, validate: () => { const f = fs.tree['/'].children['playground']?.children?.['notes.txt']; return f?.type === 'file' && /(^|\n)Hello(\n|$)/.test(f.content || ''); }, hint: 'Use echo "Hello" >> playground/notes.txt' },
+          { title: 'Investigator: Stash the secret', prompt: '🕵️ Scenario\nTask: Create a file playground/secret.txt with the exact content TOP-SECRET (single line).', setup: (fs) => {}, validate: () => { const f = fs.tree['/'].children['playground']?.children?.['secret.txt']; return f?.type === 'file' && (f.content || '').trim() === 'TOP-SECRET'; }, hint: 'Use echo "TOP-SECRET" > playground/secret.txt' },
+          { title: 'Organizer: Two artifacts', prompt: '📦 Task\nCreate two files inside playground named a.txt and b.txt.', setup: (fs) => {}, validate: () => { const p = fs.tree['/'].children['playground']; return p?.children?.['a.txt']?.type === 'file' && p?.children?.['b.txt']?.type === 'file'; }, hint: 'Use touch playground/a.txt and touch playground/b.txt' }
+        ],
+        '3': [
+          { title: 'Hacker: Leak the Password', prompt: '🎮 Scenario: You are a hacker in a CTF challenge.\nA file named secrets.txt might contain a password.\nTask: Print the line that contains the word "password" (case-sensitive).', setup: (fs) => { fs.tree['/'].children['secrets.txt'] = { type: 'file', content: 'note: do not share\nuser: alice\npassword=AlpHa!234\nbackup: weekly' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('password')), hint: 'Try: grep "password" secrets.txt' },
+          { title: 'Forensics: Find Failed Logins', prompt: '🔍 Scenario: Incident response. You need to list all failed logins.\nFile: logs.txt\nTask: Print only the lines that contain the word "FAILED".', setup: (fs) => { fs.tree['/'].children['logs.txt'] = { type: 'file', content: '2025-01-01 INFO service started\n2025-01-01 FAILED password for invalid user root\n2025-01-01 SUCCESS login for alice\n2025-01-02 FAILED login attempt from 10.0.0.5' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('FAILED')), hint: 'Use grep "FAILED" logs.txt' },
+          { title: 'DevOps: Who Uses 8080?', prompt: '🛠️ Scenario: Port audit. Which service uses port 8080?\nFile: services.txt\nTask: Print the line(s) that mention 8080.', setup: (fs) => { fs.tree['/'].children['services.txt'] = { type: 'file', content: 'web:80\napi:8080\nadmin:3000' }; }, validate: () => /8080/.test(lastResult), hint: 'grep 8080 services.txt' },
+          { title: 'Analyst: Show ERROR lines', prompt: '📊 Scenario: Log analysis. Extract all ERROR events.\nFile: app.log\nTask: Print only lines that contain "ERROR".', setup: (fs) => { fs.tree['/'].children['app.log'] = { type: 'file', content: 'INFO starting up\nWARN low memory\nERROR db timeout\nINFO ready\nERROR cache miss' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('ERROR')), hint: 'grep "ERROR" app.log' },
+          { title: 'CyberSec: API Keys Hunt', prompt: '🧪 Scenario: Secrets review. Extract API key mentions.\nFile: keys.txt\nTask: Print the line(s) that contain "API_KEY".', setup: (fs) => { fs.tree['/'].children['keys.txt'] = { type: 'file', content: 'token=abcd\nAPI_KEY=pk_test_12345\nowner=bob' }; }, validate: () => /API_KEY/.test(lastResult) && lastResult.split('\n').every(l => l.includes('API_KEY')), hint: 'grep "API_KEY" keys.txt' }
+        ],
+        '4': [
+          { title: 'Make an executable script', prompt: '🔐 Permissions\nTask: Create script.sh and make it executable.', setup: (fs) => {}, validate: () => { const s = fs.tree['/'].children['script.sh']; return s?.type === 'file' && s.exec === true; }, hint: 'Use touch script.sh then chmod +x script.sh' },
+          { title: 'Deploy rights', prompt: '🚀 Scenario\nA file deploy.sh exists but is not executable.\nTask: Make deploy.sh executable.', setup: (fs) => { fs.tree['/'].children['deploy.sh'] = { type: 'file', content: 'echo Deploy', exec: false }; }, validate: () => { const s = fs.tree['/'].children['deploy.sh']; return s?.type === 'file' && s.exec === true; }, hint: 'chmod +x deploy.sh' }
+        ],
+        '5': [
+          { title: 'Greeter Script (Alice)', prompt: '👋 Task\nCreate hello.sh that prints "Hello, Alice!" when run with argument Alice.', setup: (fs) => {}, validate: () => /Hello,\s*Alice!/.test(lastResult), hint: 'Write a script then run: bash hello.sh Alice' },
+          { title: 'Greeter Script (Bob)', prompt: '👋 Task\nUpdate or reuse hello.sh so it prints "Hello, Bob!" when run with argument Bob.', setup: (fs) => {}, validate: () => /Hello,\s*Bob!/.test(lastResult), hint: 'bash hello.sh Bob' }
+        ]
+      };
+
+      let tasks = [];
+
+      function print(line = '') { terminal.innerText += (terminal.innerText ? '\n' : '') + line; terminal.scrollTop = terminal.scrollHeight; }
+      function writeOutput(text = '') { lastResult = text; if (text !== '') { print(text); } }
+
+      function reset() { fs = initialFs(); history = []; terminal.innerText = ''; feedback.innerHTML = ''; lastResult = ''; updateTaskUI(); const t = tasks[taskIndex]; try { t && t.setup && t.setup(fs); } catch(e) {} print('Simulated Bash ready. Current directory: /'); }
+
+      function updateTaskUI() { [...taskList.children].forEach(btn => btn.classList.remove('active')); const active = taskList.querySelector(`[data-task="${taskIndex}"]`); if (active) active.classList.add('active'); const t = tasks[taskIndex]; document.getElementById('prompt').innerText = (t && t.prompt) ? t.prompt : ''; }
+
+      function renderTasks() {
+        taskList.innerHTML = '';
+        tasks.forEach((t, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center' + (i === 0 ? ' active' : '');
+          btn.setAttribute('data-task', String(i));
+          btn.innerHTML = `${t.title}<span class="badge bg-secondary badge-task">${i+1}</span>`;
+          taskList.appendChild(btn);
+        });
+      }
+
+      function selectTask(i) {
+        taskIndex = i;
+        updateTaskUI();
+        fs = initialFs();
+        terminal.innerText = '';
+        feedback.innerHTML = '';
+        lastResult = '';
+        const t = tasks[taskIndex];
+        try { t && t.setup && t.setup(fs); } catch(e) {}
+        print('Simulated Bash ready. Current directory: /');
+      }
+
+      function pathParts(path) { if (!path) return []; const clean = path.replace(/^\/+|\/+$/g, ''); return clean ? clean.split('/') : []; }
+      function getNode(path) { const parts = pathParts(path); let node = fs.tree['/']; for (const p of parts) { if (!node.children[p]) return null; node = node.children[p]; } return node; }
+      function ensurePath(dirPath) { const parts = pathParts(dirPath); let node = fs.tree['/']; for (const p of parts) { if (!node.children[p]) node.children[p] = { type: 'dir', children: {} }; node = node.children[p]; } return node; }
+
+      function exec(cmd) {
+        const line = cmd.trim();
+        if (!line) return;
+        print(`$ ${line}`);
+        history.push(line);
+        lastResult = '';
+
+        // Simple pipeline support: cat <file> | grep <pattern>
+        if (line.includes('|')) {
+          const parts = line.split('|').map(s => s.trim());
+          if (parts.length === 2) {
+            const left = parts[0];
+            const right = parts[1];
+            let leftOut = '';
+            let m;
+            if ((m = left.match(/^cat\s+(.+)$/))) {
+              const file = m[1];
+              const node = getNode(file);
+              if (node?.type === 'file') leftOut = node.content || '';
+            }
+            if ((m = right.match(/^grep\s+"([\s\S]*?)"$/)) || (m = right.match(/^grep\s+(\S+)$/))) {
+              const pattern = m[1];
+              const result = (leftOut.split('\n').filter(l => l.includes(pattern)).join('\n'));
+              writeOutput(result);
+              return;
+            }
+          }
+        }
+
+        let m;
+        if ((m = line.match(/^mkdir\s+([^\s]+)$/))) { const name = m[1]; const parent = fs.tree['/']; if (!parent.children[name]) parent.children[name] = { type: 'dir', children: {} }; return; }
+        if (line === 'ls' || line.startsWith('ls ')) { const target = fs.tree['/']; const names = Object.keys(target.children).sort(); writeOutput(names.join('\n')); return; }
+        if (line === 'pwd') { writeOutput('/'); return; }
+        if ((m = line.match(/^cd\s+(.+)$/))) { print('/'); return; }
+        if ((m = line.match(/^touch\s+(.+)$/))) { const file = m[1]; const dir = ensurePath(file.split('/').slice(0, -1).join('/')); const base = file.split('/').pop(); dir.children[base] = dir.children[base] || { type: 'file', content: '' }; return; }
+        if ((m = line.match(/^echo\s+"([\s\S]*)"\s*>\s*(.+)$/))) { const content = m[1]; const file = m[2]; const dir = ensurePath(file.split('/').slice(0, -1).join('/')); const base = file.split('/').pop(); dir.children[base] = { type: 'file', content }; return; }
+        if ((m = line.match(/^echo\s+"([\s\S]*)"\s*>>\s*(.+)$/))) { const content = m[1]; const file = m[2]; const dir = ensurePath(file.split('/').slice(0, -1).join('/')); const base = file.split('/').pop(); dir.children[base] = dir.children[base] || { type: 'file', content: '' }; dir.children[base].content += (dir.children[base].content ? '\n' : '') + content; return; }
+        if ((m = line.match(/^cat\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') writeOutput(node.content || ''); else writeOutput(`cat: ${file}: No such file`); return; }
+        if ((m = line.match(/^grep\s+"([\s\S]*?)"\s+(.+)$/)) || (m = line.match(/^grep\s+(\S+)\s+(.+)$/))) { const pattern = m[1]; const file = m[2]; const node = getNode(file); if (node?.type === 'file') { const result = (node.content || '').split('\n').filter(l => l.includes(pattern)).join('\n'); writeOutput(result); } else { writeOutput(`grep: ${file}: No such file`); } return; }
+        if ((m = line.match(/^chmod\s\+x\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') { node.exec = true; print(''); } else { print(`chmod: cannot access '${file}': No such file`); } return; }
+        if ((m = line.match(/^bash\s+(.+)\s*(.*)$/))) { const file = m[1]; const arg = m[2]?.trim(); const node = getNode(file); if (node?.type === 'file') { if (/hello\.sh$/.test(file) && arg) { print(`Hello, ${arg}!`); } else { print(''); } } else { print(`bash: ${file}: No such file or directory`); } return; }
+        if (line.startsWith('echo ') && line.includes('>') && line.includes('.sh')) { // write simple scripts
+          // allow writing scripts with echo 'content' > file.sh
+          const match = line.match(/^echo\s+"([\s\S]*)"\s*>\s*(.+\.sh)$/);
+          if (match) {
+            const content = match[1];
+            const file = match[2];
+            const dir = ensurePath(file.split('/').slice(0, -1).join('/'));
+            const base = file.split('/').pop();
+            dir.children[base] = { type: 'file', content };
+            return;
+          }
+        }
+        if (line === 'clear') { terminal.innerText = ''; lastResult = ''; return; }
+
+        writeOutput(`Command not supported in simulator: ${line}`);
+      }
+
+      function check() { const ok = tasks[taskIndex].validate(); if (ok) { feedback.innerHTML = '<div class="alert alert-success">Correct! ' + tasks[taskIndex].title + '</div>'; if (taskIndex < tasks.length - 1) { taskIndex += 1; selectTask(taskIndex); } else { feedback.innerHTML += '<div class="alert alert-primary mt-2">All tasks complete! 🎉</div>'; } } else { feedback.innerHTML = '<div class="alert alert-warning">Not yet. Hint: ' + tasks[taskIndex].hint + '</div>'; } }
+
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { exec(input.value); input.value = ''; } });
+      resetBtn.addEventListener('click', () => selectTask(taskIndex));
+      checkBtn.addEventListener('click', check);
+      taskList.addEventListener('click', (e) => { const btn = e.target.closest('[data-task]'); if (!btn) return; const i = parseInt(btn.getAttribute('data-task'), 10); selectTask(i); });
+      // Initialize levels based on ?lesson=<n>
+      const params = new URLSearchParams(window.location.search);
+      const lesson = params.get('lesson') || '1';
+      tasks = LESSON_LEVELS[lesson] || LESSON_LEVELS['1'];
+      renderTasks();
+      selectTask(0);
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
+

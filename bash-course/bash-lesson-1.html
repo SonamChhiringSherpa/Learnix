@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bash Lesson 1 - Introduction to Bash</title>
+  <meta name="description" content="Bash basics: what a shell is, running commands, getting help, and understanding the prompt.">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <style>
+    .terminal { background:#0b1620; color:#d6e9ff; font-family:monospace; white-space:pre-wrap; border-radius:8px; padding:12px; }
+  </style>
+</head>
+<body class="course-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">Learner</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../courses.html" class="active">Courses</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="../enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 1: Introduction</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="../courses.html">Courses</a></li>
+          <li><a href="../bash-course.html">Bash</a></li>
+          <li class="current">Lesson 1</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action active" href="bash-lesson-1.html">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-2.html">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-3.html">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-4.html">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="bash-lesson-5.html">5. Scripting Basics</a>
+            </div>
+            <a href="../bash-practice.html?lesson=1" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+           <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+  <h3>🧠 What is Bash?</h3>
+  <p><strong>Bash</strong> (short for <em>Bourne Again SHell</em>) is a powerful command-line tool that lets you interact with your computer by typing commands instead of clicking around.</p>
+  <p>It’s commonly used in Linux, macOS, WSL (Windows Subsystem for Linux), and on servers around the world.</p>
+  <p>Think of Bash as your way to talk directly to your operating system — like texting your computer what you want it to do.</p>
+  <!-- <img src="assets/img/education/courses-3.webp" alt="Terminal Concept" class="img-fluid rounded mb-3"> -->
+  <!-- <div class="terminal mb-3">
+        $ echo "Hello, world!"
+        Hello, world!
+        $ whoami
+        student
+        </div>-->
+     </article> 
+
+<article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+  <h4>💡 Why Should You Learn Bash?</h4>
+  <ul>
+    <li>🚀 <strong>Speed:</strong> Do tasks in seconds that might take minutes using a mouse.</li>
+    <li>🤖 <strong>Automation:</strong> Automate repetitive tasks using scripts.</li>
+    <li>🖥️ <strong>Server Control:</strong> Most servers don't have a graphical interface — only a terminal.</li>
+    <li>🎯 <strong>Precision:</strong> Use exact commands with fine-tuned options.</li>
+    <li>📂 <strong>Control:</strong> Create, delete, move files/folders without leaving your keyboard.</li>
+  </ul>
+</article>
+
+<article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+  <h4>💬 Understanding the Command Prompt</h4>
+  <p>When you open a terminal, you’ll see something like:</p>
+  <div class="terminal mb-3">
+student@pc:~$ 
+  </div>
+  <p>Here’s what that means:</p>
+  <ul>
+    <li><code>student</code> — your username</li>
+    <li><code>pc</code> — the name of the computer (host)</li>
+    <li><code>~</code> — your current folder (home directory)</li>
+    <li><code>$</code> — the shell is ready for your command (use <code>#</code> if you're root user)</li>
+  </ul>
+
+  <p>Let’s try a few basic commands:</p>
+  <div class="terminal mb-3">
+student@pc:~$ pwd
+/home/student
+
+student@pc:~$ date
+Mon Aug 19 13:45:12 UTC 2025
+  </div>
+</article>
+
+<article class="mb-5" data-aos="fade-up" data-aos-delay="300">
+  <h4>📚 How to Get Help</h4>
+  <p>If you don’t know how to use a command, you can usually ask it directly for help:</p>
+  <div class="terminal mb-3">
+$ echo --help
+Usage: echo [SHORT-OPTIONS] [STRING]...
+Print the STRING(s) to standard output.
+  </div>
+  <p>Or you can use the manual:</p>
+  <div class="terminal mb-3">
+$ man echo
+  </div>
+  <p>Use <code>q</code> to quit the manual view when you're done reading it.</p>
+</article>
+
+<article class="mb-5" data-aos="fade-up" data-aos-delay="350">
+  <h4>🎯 Summary</h4>
+  <ul>
+    <li>Bash is a shell used to communicate with your OS using commands.</li>
+    <li>You can navigate folders, manage files, and automate tasks.</li>
+    <li>It’s fast, powerful, and used by professionals worldwide.</li>
+  </ul>
+
+  <p class="mt-3"><strong>✅ Try this:</strong></p>
+  <div class="terminal mb-3">
+$ echo "I'm ready to learn Bash!"
+I'm ready to learn Bash!
+  </div>
+</article>
+
+
+            <div class="d-flex justify-content-between">
+              <a href="../bash-course.html" class="btn btn-outline-secondary">Back to Overview</a>
+              <a href="bash-lesson-2.html" class="btn btn-primary">Next: Files & Directories</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="../index.html" class="logo d-flex align-items-center"><span class="sitename">Learner</span></a>
+          <p>Start your Bash journey with the basics.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../courses.html">Courses</a></li>
+            <li><a href="../terms.html">Terms</a></li>
+            <li><a href="../privacy.html">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>A108 Adam Street</p>
+          <p>New York, NY 535022</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learner</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
+
+
