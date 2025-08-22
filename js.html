@@ -3,13 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>HTML Course</title>
-  <meta name="description" content="Learn javascript step-by-step with interactive lessons and practice examples.">
-  <meta name="keywords" content="html, web, frontend, development, markup">
-
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Course - Overview</title>
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -19,6 +14,7 @@
 
 <body class="course-details-page">
 
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <a href="index.html" class="logo d-flex align-items-center me-auto">
@@ -28,7 +24,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="js.html" class="active">Courses</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -46,8 +42,8 @@
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li class="current">JavaScript</li>
+            <li><a href="js.html">Courses</a></li>
+            <li class="current">JavaScript Overview</li>
           </ol>
         </nav>
       </div>
@@ -57,403 +53,39 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row">
 
-          <!-- Sidebar -->
-          <aside class="col-lg-3 mb-4">
-            <div class="list-group small">
-              <a class="list-group-item list-group-item-action" href="#lesson-1">1. Introduction to JS</a>
-              <a class="list-group-item list-group-item-action" href="#lesson-2">2. Variables & Data Types</a>
-              <a class="list-group-item list-group-item-action" href="#lesson-3">3. Functions & Loops</a>
-              <a class="list-group-item list-group-item-action" href="#lesson-4">4. DOM Manipulation</a>
-              <a class="list-group-item list-group-item-action" href="#lesson-5">5. Events & Game Logic</a>
-            </div>
-            <a href="#lesson-1" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 1</a>
-            <a href="jspractice.html" class="btn btn-outline-primary w-100 mt-2"><i class="bi bi-terminal"></i> Practice Questions</a>
-          </aside>
+<!-- Sidebar -->
+<aside class="col-lg-3 mb-4">
+  <div class="list-group small">
+    <a class="list-group-item list-group-item-action" href="lesson1.html">1. Introduction to JS</a>
+    <a class="list-group-item list-group-item-action" href="lesson2.html">2. Variables & Data Types</a>
+    <a class="list-group-item list-group-item-action" href="lesson3.html">3. Functions & Loops</a>
+    <a class="list-group-item list-group-item-action" href="lesson4.html">4. DOM Manipulation</a>
+    <a class="list-group-item list-group-item-action" href="lesson5.html">5. Events & Game Logic</a>
+    <!-- Practice Questions Link -->
+    <a class="list-group-item list-group-item-action text-success" href="jspractice.html">Practice Questions</a>
+  </div>
+</aside>
 
-          <!-- Lessons -->
+
+          <!-- Overview / Content -->
           <div class="col-lg-9">
+            <article class="mb-5">
+              <h3>Course Overview</h3>
+              <p>Welcome to the JavaScript course! This course will guide you through the fundamentals of JS and game development. You will learn by doing interactive exercises and coding directly in the browser.</p>
 
-            <!-- Lesson 1 -->
-            <article id="lesson-1" class="mb-5" data-aos="fade-up" data-aos-delay="150">
-              <h3>Lesson 1: Introduction to JavaScript</h3>
-              <p>JavaScript (JS) is a versatile programming language primarily used for web development. It allows you to make webpages dynamic and interactive.</p>
+              <h5>Course Content:</h5>
+              <ul>
+                <li>Lesson 1: Introduction to JavaScript</li>
+                <li>Lesson 2: Variables & Data Types</li>
+                <li>Lesson 3: Functions & Loops</li>
+                <li>Lesson 4: DOM Manipulation</li>
+                <li>Lesson 5: Events & Game Logic</li>
+              </ul>
 
-              <!-- Topic 1 -->
-              <h5>📌 What is JavaScript?</h5>
-              <div class="row g-3 align-items-stretch">
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Code Example</strong></div>
-                    <div class="card-body">
-                      <textarea id="lesson1-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Display a message in the console
-console.log("Hello, JavaScript!");
-
-// Show an alert
-alert("Welcome to JavaScript!");
-                      </textarea>
-                      <button class="btn btn-primary mt-2" onclick="runLesson1Topic1Code()">Run Code</button>
-                      <pre id="lesson1-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Explanation</strong></div>
-                    <div class="card-body">
-                      <p>JavaScript runs in the browser. <code>console.log()</code> prints messages to the console. <code>alert()</code> shows a popup message.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Add other Lesson 1 topics here as in your original code -->
+              <a href="lesson1.html" class="btn btn-primary mt-3">Start Lesson 1 →</a>
             </article>
-
-            <!-- Lesson 2 -->
-            <article id="lesson-2" class="mb-5" data-aos="fade-up" data-aos-delay="200">
-              <h3>Lesson 2: Variables & Data Types</h3>
-              <p>JavaScript uses variables to store data, and there are several data types that you will use frequently.</p>
-
-              <!-- Topic 1: Declaring Variables -->
-              <h5>📌 Declaring Variables</h5>
-              <div class="row g-3 align-items-stretch">
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Code Example</strong></div>
-                    <div class="card-body">
-                      <textarea id="lesson2-topic1-code" style="width:100%; height:160px;">
-var name = "Alice";
-let age = 25;
-const pi = 3.1416;
-
-console.log("Name:", name);
-console.log("Age:", age);
-console.log("Pi:", pi);
-                      </textarea>
-                      <button class="btn btn-sm btn-primary mt-2" onclick="runLesson2Topic1()">Run Code</button>
-                      <pre id="lesson2-topic1-output" style="background:#0b1620;color:#d6e9ff; padding:10px; min-height:80px;"></pre>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Explanation</strong></div>
-                    <div class="card-body">
-                      <p>
-                        Variables are used to store data. <code>var</code> and <code>let</code> are mutable, while <code>const</code> cannot be reassigned.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Topic 2: Data Types -->
-              <h5 class="mt-3">📌 Data Types</h5>
-              <div class="row g-3 align-items-stretch">
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Code Example</strong></div>
-                    <div class="card-body">
-                      <textarea id="lesson2-topic2-code" style="width:100%; height:160px;">
-let str = "Hello";     
-let num = 42;          
-let isTrue = true;     
-let undef;             
-let n = null;          
-
-console.log("String:", str);
-console.log("Number:", num);
-console.log("Boolean:", isTrue);
-console.log("Undefined:", undef);
-console.log("Null:", n);
-                      </textarea>
-                      <button class="btn btn-sm btn-primary mt-2" onclick="runLesson2Topic2()">Run Code</button>
-                      <pre id="lesson2-topic2-output" style="background:#0b1620;color:#d6e9ff; padding:10px; min-height:80px;"></pre>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Explanation</strong></div>
-                    <div class="card-body">
-                      <p>
-                        JavaScript has several data types: <code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Undefined</code>, <code>Null</code>, and more (Objects, Arrays). Each type is used for different kinds of data.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Topic 3: Type Conversion -->
-              <h5 class="mt-3">📌 Type Conversion</h5>
-              <div class="row g-3 align-items-stretch">
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Code Example</strong></div>
-                    <div class="card-body">
-                      <textarea id="lesson2-topic3-code" style="width:100%; height:160px;">
-let strNum = "123";
-let numValue = Number(strNum);
-let strValue = String(456);
-let boolValue = Boolean(0);
-
-console.log("String to Number:", numValue);
-console.log("Number to String:", strValue);
-console.log("Number to Boolean:", boolValue);
-                      </textarea>
-                      <button class="btn btn-sm btn-primary mt-2" onclick="runLesson2Topic3()">Run Code</button>
-                      <pre id="lesson2-topic3-output" style="background:#0b1620;color:#d6e9ff; padding:10px; min-height:80px;"></pre>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="card h-100">
-                    <div class="card-header py-2"><strong>Explanation</strong></div>
-                    <div class="card-body">
-                      <p>
-                        You can convert data types using <code>Number()</code>, <code>String()</code>, and <code>Boolean()</code>. Useful for performing operations with different types.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </article>
-            <!-- Lesson 3 -->
-<article id="lesson-3" class="mb-5" data-aos="fade-up" data-aos-delay="250">
-  <h3>Lesson 3: Functions & Loops</h3>
-  <p>Functions allow us to group code into reusable blocks, and loops let us repeat code efficiently.</p>
-
-  <!-- Topic 1: Functions -->
-  <h5>📌 Functions</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson3-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Function example
-function greet(name) {
-  console.log("Hello, " + name + "!");
-}
-
-greet("Alice");
-greet("Bob");
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson3Topic1Code()">Run Code</button>
-          <pre id="lesson3-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; min-height:80px;"></pre>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>Functions are reusable blocks of code. You define them with <code>function</code> keyword, and call them with arguments.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Topic 2: Loops -->
-  <h5 class="mt-3">📌 Loops</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson3-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Loop example
-for (let i = 1; i <= 5; i++) {
-  console.log("Iteration: " + i);
-}
-
-let colors = ["red", "green", "blue"];
-for (let color of colors) {
-  console.log("Color: " + color);
-}
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson3Topic2Code()">Run Code</button>
-          <pre id="lesson3-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; min-height:80px;"></pre>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>Loops allow you to repeat code. <code>for</code> loops iterate over a range or array. This is essential for repetitive tasks and game logic.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-<p id="demo">This will be replaced</p>
-<div id="demo-container"></div>
-<p class="highlight">This text can be highlighted</p>
-
-<!-- Lesson 4 -->
-<article id="lesson-4" class="mb-5" data-aos="fade-up" data-aos-delay="300">
-  <h3>Lesson 4: DOM Manipulation</h3>
-  <p>The Document Object Model (DOM) represents the structure of your webpage. JavaScript can interact with it to change content, style, and structure dynamically.</p>
-
-  <!-- Topic 1: Selecting Elements -->
-  <h5>📌 Selecting Elements</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson4-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Select elements by ID and class
-document.getElementById("demo").textContent = "Hello from JavaScript!";
-document.querySelector(".highlight").style.color = "red";
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson4Topic1Code()">Run Code</button>
-          <pre id="lesson4-topic1-output" style="background:#0b1620; color:#d6e9ff; padding:10px; border-radius:5px; min-height:80px;"></pre>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>Use <code>getElementById</code>, <code>querySelector</code>, and <code>querySelectorAll</code> to select HTML elements for reading or modifying their content and style.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Topic 2: Creating & Modifying Elements -->
-  <h5 class="mt-3">📌 Creating & Modifying Elements</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson4-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Create a new element and add it to the DOM
-let p = document.createElement("p");
-p.textContent = "This paragraph is added via JS";
-document.getElementById("demo-container").appendChild(p);
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson4Topic2Code()">Run Code</button>
-          <pre id="lesson4-topic2-output" style="background:#0b1620; color:#d6e9ff; padding:10px; border-radius:5px; min-height:80px;"></pre>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>You can create new elements using <code>createElement</code>, modify them, and add them to the DOM with <code>appendChild</code> or <code>insertBefore</code>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-<!-- Lesson 5 -->
-<article id="lesson-5" class="mb-5" data-aos="fade-up" data-aos-delay="400">
-  <h3>Lesson 5: Events & Game Logic</h3>
-  <p>Events allow your web pages to respond to user actions like clicks, mouse movements, or key presses. This is essential for interactive applications and games.</p>
-
-  <!-- Topic 1: Handling Click Events -->
-  <h5>📌 Click Events</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson5-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Click event example
-document.getElementById("clickBtn").addEventListener("click", function() {
-  console.log("Button clicked!");
-  alert("You clicked the button!");
-});
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson5Topic1()">Run Code</button>
-          <pre id="lesson5-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
-          <button id="clickBtn" class="btn btn-success mt-2">Click Me!</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>We attach a click event listener to a button. When the user clicks it, the function runs, showing an alert and logging to the console.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Topic 2: Key Events -->
-  <h5 class="mt-3">📌 Key Press Events</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson5-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Key press event
-document.addEventListener("keydown", function(event) {
-  console.log("Key pressed:", event.key);
-  document.getElementById("keyDisplay").textContent = "Last key pressed: " + event.key;
-});
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson5Topic2()">Run Code</button>
-          <pre id="lesson5-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
-          <p id="keyDisplay">Press any key to see it here.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>The <code>keydown</code> event triggers whenever a key is pressed. You can use <code>event.key</code> to find out which key the user pressed and update the DOM or game state accordingly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Topic 3: Simple Game Logic -->
-  <h5 class="mt-3">📌 Simple Game Logic Example</h5>
-  <div class="row g-3 align-items-stretch">
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Code Example</strong></div>
-        <div class="card-body">
-          <textarea id="lesson5-topic3-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Simple click counter game
-let score = 0;
-document.getElementById("gameBtn").addEventListener("click", function() {
-  score++;
-  document.getElementById("scoreDisplay").textContent = "Score: " + score;
-  console.log("Score:", score);
-});
-          </textarea>
-          <button class="btn btn-primary mt-2" onclick="runLesson5Topic3()">Run Code</button>
-          <pre id="lesson5-topic3-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
-          <button id="gameBtn" class="btn btn-warning mt-2">Click to Score!</button>
-          <p id="scoreDisplay">Score: 0</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100">
-        <div class="card-header py-2"><strong>Explanation</strong></div>
-        <div class="card-body">
-          <p>This example demonstrates a simple click-based game. Each button click increases the score, showing how events and variables can be combined for game logic.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</article>
-
-
           </div>
+
         </div>
       </div>
     </section>
@@ -473,7 +105,7 @@ document.getElementById("gameBtn").addEventListener("click", function() {
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="courses.html">Courses</a></li>
+              <li><a href="js.html">Courses</a></li>
               <li><a href="blog.html">Blog</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -497,101 +129,9 @@ document.getElementById("gameBtn").addEventListener("click", function() {
     <div id="preloader"></div>
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-      // Lesson 1 runners
-      function runLesson1Topic1Code() { runCode("lesson1-topic1-code", "lesson1-topic1-output"); }
-      // Add other Lesson 1 topic runners here
-
-      // Generic runner
-      function runCode(textareaId, outputId) {
-        const code = document.getElementById(textareaId).value;
-        const output = document.getElementById(outputId);
-        try {
-          const originalConsole = console.log;
-          let logs = [];
-          console.log = function (...args) {
-            logs.push(args.join(" "));
-            originalConsole.apply(console, args);
-          }
-          eval(code);
-          console.log = originalConsole;
-          output.textContent = logs.join("\n");
-        } catch (err) {
-          output.textContent = "Error: " + err.message;
-        }
-      }
-
-      function runLesson2Topic1() { runLesson2Code("lesson2-topic1-code", "lesson2-topic1-output"); }
-function runLesson2Topic2() { runLesson2Code("lesson2-topic2-code", "lesson2-topic2-output"); }
-function runLesson2Topic3() { runLesson2Code("lesson2-topic3-code", "lesson2-topic3-output"); }
-
-function runLesson2Code(textareaId, outputId) {
-    const code = document.getElementById(textareaId).value;
-    const output = document.getElementById(outputId);
-    try {
-        const originalConsole = console.log;
-        let logs = [];
-        console.log = function(...args){
-            logs.push(args.join(" "));
-            originalConsole.apply(console, args);
-        }
-        eval(code);
-        console.log = originalConsole;
-        output.textContent = logs.join("\n");
-    } catch(err) {
-        output.textContent = "Error: " + err.message;
-    }
-}  
-function runLesson3Topic1Code() { runLesson3Code("lesson3-topic1-code", "lesson3-topic1-output"); }
-function runLesson3Topic2Code() { runLesson3Code("lesson3-topic2-code", "lesson3-topic2-output"); }
-
-function runLesson3Code(textareaId, outputId) {
-    const code = document.getElementById(textareaId).value;
-    const output = document.getElementById(outputId);
-    try {
-        const originalConsole = console.log;
-        let logs = [];
-        console.log = function(...args){
-            logs.push(args.join(" "));
-            originalConsole.apply(console, args);
-        }
-        eval(code);
-        console.log = originalConsole;
-        output.textContent = logs.join("\n");
-    } catch(err) {
-        output.textContent = "Error: " + err.message;
-    }
-}
-function runLesson4Topic1Code() { runLesson4Code("lesson4-topic1-code", "lesson4-topic1-output"); }
-function runLesson4Topic2Code() { runLesson4Code("lesson4-topic2-code", "lesson4-topic2-output"); }
-
-function runLesson4Code(textareaId, outputId) {
-    const code = document.getElementById(textareaId).value;
-    const output = document.getElementById(outputId);
-    try {
-        const originalConsole = console.log;
-        let logs = [];
-        console.log = function(...args){
-            logs.push(args.join(" "));
-            originalConsole.apply(console, args);
-        }
-        eval(code);
-        console.log = originalConsole;
-        output.textContent = logs.join("\n");
-    } catch(err) {
-        output.textContent = "Error: " + err.message;
-    }
-}
-function runLesson5Topic1() { runCode("lesson5-topic1-code", "lesson5-topic1-output"); }
-  function runLesson5Topic2() { runCode("lesson5-topic2-code", "lesson5-topic2-output"); }
-  function runLesson5Topic3() { runCode("lesson5-topic3-code", "lesson5-topic3-output"); }
-</script>
-</body>
-
+  </body>
 </html>
