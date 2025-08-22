@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>CSS Lesson 3 - Lernix</title>
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body class="course-details-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Lernix</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">CSS Lesson 3: Functions, Loops & Layout</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="current">CSS Lesson 3</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+
+          <!-- Sidebar -->
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="#lesson-3-topic1">1. Box Model Basics</a>
+              <a class="list-group-item list-group-item-action" href="#lesson-3-topic2">2. Display & Layout</a>
+              <a class="list-group-item list-group-item-action" href="#lesson-3-topic3">3. Overflow Handling</a>
+            </div>
+            <a href="#lesson-3-topic1" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 3</a>
+            <a href="csspractice.html" class="btn btn-outline-primary w-100 mt-2"><i class="bi bi-terminal"></i> Practice Questions</a>
+          </aside>
+
+          <!-- Lesson 3 Content -->
+          <div class="col-lg-9">
+
+            <!-- Topic 1: Box Model Basics -->
+            <article id="lesson-3-topic1" class="mb-5" data-aos="fade-up" data-aos-delay="150">
+              <h3>📌 Box Model Basics</h3>
+              <p>The box model defines how elements are structured: content, padding, border, and margin.</p>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson3-code1" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.box { width: 100px; height: 100px; padding: 10px; border: 5px solid black; margin: 15px; background: lightblue; }
+</style>
+</head>
+<body>
+<div class="box">Box Model</div>
+</body>
+</html>
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson3Code1()">Run Code</button>
+                      <iframe id="lesson3-output1" style="width:100%; height:180px; border:1px solid #ccc; margin-top:10px;"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>Padding, border, and margin affect the total size and spacing of elements.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Topic 2: Display & Layout -->
+            <article id="lesson-3-topic2" class="mb-5" data-aos="fade-up" data-aos-delay="200">
+              <h3>📌 Display & Layout</h3>
+              <p>Control how elements are displayed and arranged using <code>display</code>, <code>inline-block</code>, <code>block</code>, and others.</p>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson3-code2" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.box1 { display: inline-block; width: 150px; height: 100px; background: lightcoral; margin:5px; }
+div.box2 { display: inline-block; width: 150px; height: 100px; background: lightgreen; margin:5px; }
+</style>
+</head>
+<body>
+<div class="box1">Box 1</div>
+<div class="box2">Box 2</div>
+</body>
+</html>
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson3Code2()">Run Code</button>
+                      <iframe id="lesson3-output2" style="width:100%; height:180px; border:1px solid #ccc; margin-top:10px;"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>Inline-block elements sit side by side but retain box dimensions. Block elements take full width.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Topic 3: Overflow Handling -->
+            <article id="lesson-3-topic3" class="mb-5" data-aos="fade-up" data-aos-delay="250">
+              <h3>📌 Overflow Handling</h3>
+              <p>Control what happens when content exceeds the container size using <code>overflow</code>.</p>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson3-code3" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.container { width: 200px; height: 80px; border: 2px solid black; overflow: auto; }
+div.content { width: 300px; height: 120px; background: lightyellow; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="content">This box is bigger than the container. Scroll to see the hidden content.</div>
+</div>
+</body>
+</html>
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson3Code3()">Run Code</button>
+                      <iframe id="lesson3-output3" style="width:100%; height:180px; border:1px solid #ccc; margin-top:10px;"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>Overflow allows you to scroll, hide, or show content that exceeds the container size.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer accent-background">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Lernix</span>
+            </a>
+            <p>Learn CSS with hands-on examples and practice exercises.</p>
+          </div>
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Contact Us</h4>
+            <p>info@lernix.com<br>+123 456 7890</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    function runLesson3Code1() {
+      const code = document.getElementById('lesson3-code1').value;
+      document.getElementById('lesson3-output1').srcdoc = code;
+    }
+    function runLesson3Code2() {
+      const code = document.getElementById('lesson3-code2').value;
+      document.getElementById('lesson3-output2').srcdoc = code;
+    }
+    function runLesson3Code3() {
+      const code = document.getElementById('lesson3-code3').value;
+      document.getElementById('lesson3-output3').srcdoc = code;
+    }
+  </script>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
