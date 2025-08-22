@@ -288,6 +288,71 @@ for (let color of colors) {
     </div>
   </div>
 </article>
+<p id="demo">This will be replaced</p>
+<div id="demo-container"></div>
+<p class="highlight">This text can be highlighted</p>
+
+<!-- Lesson 4 -->
+<article id="lesson-4" class="mb-5" data-aos="fade-up" data-aos-delay="300">
+  <h3>Lesson 4: DOM Manipulation</h3>
+  <p>The Document Object Model (DOM) represents the structure of your webpage. JavaScript can interact with it to change content, style, and structure dynamically.</p>
+
+  <!-- Topic 1: Selecting Elements -->
+  <h5>📌 Selecting Elements</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson4-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Select elements by ID and class
+document.getElementById("demo").textContent = "Hello from JavaScript!";
+document.querySelector(".highlight").style.color = "red";
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson4Topic1Code()">Run Code</button>
+          <pre id="lesson4-topic1-output" style="background:#0b1620; color:#d6e9ff; padding:10px; border-radius:5px; min-height:80px;"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>Use <code>getElementById</code>, <code>querySelector</code>, and <code>querySelectorAll</code> to select HTML elements for reading or modifying their content and style.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2: Creating & Modifying Elements -->
+  <h5 class="mt-3">📌 Creating & Modifying Elements</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson4-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Create a new element and add it to the DOM
+let p = document.createElement("p");
+p.textContent = "This paragraph is added via JS";
+document.getElementById("demo-container").appendChild(p);
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson4Topic2Code()">Run Code</button>
+          <pre id="lesson4-topic2-output" style="background:#0b1620; color:#d6e9ff; padding:10px; border-radius:5px; min-height:80px;"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>You can create new elements using <code>createElement</code>, modify them, and add them to the DOM with <code>appendChild</code> or <code>insertBefore</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
 
           </div>
         </div>
@@ -388,6 +453,26 @@ function runLesson3Topic1Code() { runLesson3Code("lesson3-topic1-code", "lesson3
 function runLesson3Topic2Code() { runLesson3Code("lesson3-topic2-code", "lesson3-topic2-output"); }
 
 function runLesson3Code(textareaId, outputId) {
+    const code = document.getElementById(textareaId).value;
+    const output = document.getElementById(outputId);
+    try {
+        const originalConsole = console.log;
+        let logs = [];
+        console.log = function(...args){
+            logs.push(args.join(" "));
+            originalConsole.apply(console, args);
+        }
+        eval(code);
+        console.log = originalConsole;
+        output.textContent = logs.join("\n");
+    } catch(err) {
+        output.textContent = "Error: " + err.message;
+    }
+}
+function runLesson4Topic1Code() { runLesson4Code("lesson4-topic1-code", "lesson4-topic1-output"); }
+function runLesson4Topic2Code() { runLesson4Code("lesson4-topic2-code", "lesson4-topic2-output"); }
+
+function runLesson4Code(textareaId, outputId) {
     const code = document.getElementById(textareaId).value;
     const output = document.getElementById(outputId);
     try {
