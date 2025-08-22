@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>JavaScript Practice - Lernix</title>
+  <meta name="description" content="Practice JavaScript with interactive questions and exercises.">
+  <meta name="keywords" content="javascript, js, practice, quiz, web development">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .quiz-container {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      max-width: 700px;
+      margin: auto;
+    }
+    .quiz-container button {
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .quiz-nav { margin-top: 20px; }
+  </style>
+</head>
+
+<body class="course-details-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Lernix</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="breadcrumbs" data-aos="fade-in">
+      <div class="container">
+        <h2>JavaScript Quiz & Practice</h2>
+        <p>Test your knowledge from Lessons 1 to 5 with interactive quizzes and exercises.</p>
+      </div>
+    </div>
+
+    <section id="quiz" class="container my-5" data-aos="fade-up" data-aos-delay="200">
+      <div class="quiz-container">
+        <h4 id="questionText" style="margin-bottom:20px;"></h4>
+        <div id="optionsContainer"></div>
+        <p id="feedback" style="margin-top:15px; font-weight:bold;"></p>
+
+        <div class="quiz-nav d-flex justify-content-between">
+          <button id="prevBtn" class="btn btn-secondary">Previous</button>
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Lernix</span>
+          </a>
+          <p>Learn JavaScript with hands-on examples and practice exercises.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+977 9876543210</span></p>
+          <p><strong>Email:</strong> <span>info@lernix.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Lernix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script>
+    const quizData = [
+      {type:"mcq", question:"Which of the following is NOT a JavaScript data type?", options:["Number","Boolean","Float","String"], correct:2},
+      {type:"mcq", question:"What keyword declares a variable with block scope?", options:["var","let","const","function"], correct:1},
+      {type:"mcq", question:"Which symbol is used for comments in JavaScript?", options:["//","<!-- -->","#","**"], correct:0},
+      {type:"mcq", question:"Which function converts a string to a number?", options:["parseInt()","String()","Number()","toString()"], correct:2},
+      {type:"fill", question:"Fill in the blank: To display a message in the console, we use ____.", answer:"console.log"},
+      {type:"fill", question:"Fill in the blank: To declare a constant, we use the ____ keyword.", answer:"const"},
+      {type:"mcq", question:"Which operator is used for strict equality comparison?", options:["==","=","===","!="], correct:2},
+      {type:"mcq", question:"Which loop is guaranteed to execute at least once?", options:["for","while","do...while","foreach"], correct:2},
+      {type:"fill", question:"Fill in the blank: A ____ is a reusable block of code that performs a specific task.", answer:"function"},
+      {type:"mcq", question:"Which event occurs when a user clicks on an element?", options:["onclick","onchange","onhover","onkeypress"], correct:0}
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      const qText = document.getElementById("questionText");
+      const optionsDiv = document.getElementById("optionsContainer");
+      const feedback = document.getElementById("feedback");
+
+      qText.innerHTML = `Q${currentQuestion+1}. ${q.question}`;
+      optionsDiv.innerHTML = "";
+      feedback.textContent = "";
+
+      if (q.type === "mcq") {
+        q.options.forEach((opt, index) => {
+          const btn = document.createElement("button");
+          btn.textContent = opt;
+          btn.className = "btn d-block w-100 text-start mb-2";
+          btn.style.background = "#2d2d2d";
+          btn.style.color = "#fff";
+          btn.onclick = () => {
+            feedback.style.color = (index === q.correct) ? "lightgreen" : "red";
+            feedback.textContent = (index === q.correct) ? "✅ Correct!" : "❌ Wrong! Try again.";
+          };
+          optionsDiv.appendChild(btn);
+        });
+      } else if (q.type === "fill") {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Type your answer...";
+        input.className = "form-control mb-3";
+        input.style.background = "#2d2d2d";
+        input.style.color = "#fff";
+        optionsDiv.appendChild(input);
+
+        const checkBtn = document.createElement("button");
+        checkBtn.textContent = "Check Answer";
+        checkBtn.className = "btn btn-success";
+        checkBtn.onclick = () => {
+          if (input.value.trim().toLowerCase() === q.answer.toLowerCase()) {
+            feedback.style.color = "lightgreen";
+            feedback.textContent = "✅ Correct!";
+          } else {
+            feedback.style.color = "red";
+            feedback.textContent = "❌ Incorrect! Hint: starts with '" + q.answer[0] + "'";
+          }
+        };
+        optionsDiv.appendChild(checkBtn);
+      }
+
+      document.getElementById("prevBtn").disabled = (currentQuestion === 0);
+      document.getElementById("nextBtn").disabled = (currentQuestion === quizData.length-1);
+    }
+
+    document.getElementById("prevBtn").onclick = () => {
+      if (currentQuestion > 0) { currentQuestion--; loadQuestion(); }
+    };
+
+    document.getElementById("nextBtn").onclick = () => {
+      if (currentQuestion < quizData.length-1) { currentQuestion++; loadQuestion(); }
+    };
+
+    window.onload = loadQuestion;
+  </script>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>
