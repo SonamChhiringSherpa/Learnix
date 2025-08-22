@@ -219,6 +219,75 @@ console.log("Number to Boolean:", boolValue);
               </div>
 
             </article>
+            <!-- Lesson 3 -->
+<article id="lesson-3" class="mb-5" data-aos="fade-up" data-aos-delay="250">
+  <h3>Lesson 3: Functions & Loops</h3>
+  <p>Functions allow us to group code into reusable blocks, and loops let us repeat code efficiently.</p>
+
+  <!-- Topic 1: Functions -->
+  <h5>📌 Functions</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson3-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Function example
+function greet(name) {
+  console.log("Hello, " + name + "!");
+}
+
+greet("Alice");
+greet("Bob");
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson3Topic1Code()">Run Code</button>
+          <pre id="lesson3-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; min-height:80px;"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>Functions are reusable blocks of code. You define them with <code>function</code> keyword, and call them with arguments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2: Loops -->
+  <h5 class="mt-3">📌 Loops</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson3-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Loop example
+for (let i = 1; i <= 5; i++) {
+  console.log("Iteration: " + i);
+}
+
+let colors = ["red", "green", "blue"];
+for (let color of colors) {
+  console.log("Color: " + color);
+}
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson3Topic2Code()">Run Code</button>
+          <pre id="lesson3-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; min-height:80px;"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>Loops allow you to repeat code. <code>for</code> loops iterate over a range or array. This is essential for repetitive tasks and game logic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
           </div>
         </div>
@@ -314,7 +383,28 @@ function runLesson2Code(textareaId, outputId) {
     } catch(err) {
         output.textContent = "Error: " + err.message;
     }
-}    </script>
+}  
+function runLesson3Topic1Code() { runLesson3Code("lesson3-topic1-code", "lesson3-topic1-output"); }
+function runLesson3Topic2Code() { runLesson3Code("lesson3-topic2-code", "lesson3-topic2-output"); }
+
+function runLesson3Code(textareaId, outputId) {
+    const code = document.getElementById(textareaId).value;
+    const output = document.getElementById(outputId);
+    try {
+        const originalConsole = console.log;
+        let logs = [];
+        console.log = function(...args){
+            logs.push(args.join(" "));
+            originalConsole.apply(console, args);
+        }
+        eval(code);
+        console.log = originalConsole;
+        output.textContent = logs.join("\n");
+    } catch(err) {
+        output.textContent = "Error: " + err.message;
+    }
+}
+</script>
 </body>
 
 </html>
