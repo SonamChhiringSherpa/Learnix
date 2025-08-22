@@ -431,10 +431,10 @@
     }
 
     const knowledge = [
-      { p: /doctype|html5/i, a: "Use &lt;!DOCTYPE html&gt; at the top to enable HTML5 standards mode." },
+      { p: /doctype|html5/i, a: "The <!DOCTYPE html> declaration is a special instruction that tells the web browser what version of HTML your page is written in.Use &lt;!DOCTYPE html&gt; at the top to enable HTML5 standards mode." },
       { p: /structure|skeleton|boilerplate/i, a: "Basic skeleton: &lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;title&gt;...&lt;/title&gt;&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;" },
       { p: /head(er)?|meta|title/i, a: "&lt;head&gt; holds metadata: &lt;title&gt;, &lt;meta name='viewport'&gt;, CSS &lt;link&gt;, and optional &lt;script&gt; (defer)." },
-      { p: /semantic|header|main|footer|section|article/i, a: "Use semantic tags (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;) for meaning and accessibility." },
+      { p: /semantic|header|main|footer|section|article/i, a: "A semantic tag in HTML is an element that clearly describes its meaning both to the browser and to developers.Use semantic tags (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;) for meaning and accessibility." },
       { p: /a\s+tag|link|href|anchor/i, a: "Links: &lt;a href='path'&gt;Label&lt;/a&gt;. For new tab, add target='_blank' and rel='noopener'." },
       { p: /img|image|alt/i, a: "Images: &lt;img src='...' alt='useful description'&gt;. The alt describes the image content or purpose." },
       { p: /list|ul|ol|li/i, a: "Lists: &lt;ul&gt;/&lt;ol&gt; contain &lt;li&gt; items. Nest lists inside an &lt;li&gt; when creating sublists." },
