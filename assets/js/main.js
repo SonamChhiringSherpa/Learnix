@@ -898,4 +898,223 @@
 
   window.addEventListener('load', initHtmlCourseFeatures);
 
+  /**
+   * HTML Practice: "Build a Webpage" Challenge (only on html-practice.html)
+   * - Level-based sandbox with tag unlocks and tag palette
+   * - Editor + live preview, DOM-based validation
+   * - Points + badges integrated with HTML course storage
+   */
+  function initHtmlPracticeGame() {
+    const isPractice = /\/html-practice\.html$/i.test(window.location.pathname);
+    if (!isPractice) return;
+    if (document.getElementById('hpGame')) return;
+
+    // Practice storage
+    const PRACTICE_KEY = 'htmlPractice_v1';
+    function loadP() { try { return JSON.parse(localStorage.getItem(PRACTICE_KEY) || '{}'); } catch(e) { return {}; } }
+    function saveP(s) { localStorage.setItem(PRACTICE_KEY, JSON.stringify(s)); }
+    function getP() {
+      const s = loadP();
+      return { level: Number.isFinite(s.level)?s.level:1, bestTimes: s.bestTimes || {}, unlockedTags: Array.isArray(s.unlockedTags)?s.unlockedTags:[] };
+    }
+    function setLevel(n, total) { const s = getP(); s.level = Math.max(1, Math.min(n, total)); saveP(s); return s.level; }
+
+    // HTML course points/badges
+    const COURSE_KEY = 'htmlCourseProgress_v1';
+    function loadC() { try { return JSON.parse(localStorage.getItem(COURSE_KEY) || '{}'); } catch(e){ return {}; } }
+    function saveC(s) { localStorage.setItem(COURSE_KEY, JSON.stringify(s)); }
+    function addCoursePoints(n) { const s = loadC(); s.points = Math.max(0, Number.isFinite(s.points)?(s.points+n):n); saveC(s); }
+    function addCourseBadge(name) { const s = loadC(); s.badges = Array.isArray(s.badges)?s.badges:[]; if (!s.badges.includes(name)) s.badges.push(name); saveC(s); }
+
+    // Levels
+    const LEVELS = [
+      { id:1, title:'Hello, HTML', goal:'Create an <h1> with text “Hello HTML”', starter:'<!-- Build your page here -->', hint:'Use <h1>Hello HTML</h1>', unlock:['h1'], validate: d=>{ const h=d.querySelector('h1'); return !!h && /hello\s*html/i.test(h.textContent||''); } },
+      { id:2, title:'Paragraph Basics', goal:'Add a <p> that contains the word “welcome”', starter:'<h1>Hello HTML</h1>', hint:'Use <p>Welcome to HTML</p>', unlock:['p'], validate: d=>{ const p=d.querySelector('p'); return !!p && /welcome/i.test(p.textContent||''); } },
+      { id:3, title:'Link It', goal:'Create a link to ../courses.html labeled “Courses”', starter:'<h1>Hello</h1>\n<p>Welcome</p>', hint:'<a href="../courses.html">Courses</a>', unlock:['a'], validate: d=>{ const a=d.querySelector('a[href="../courses.html"]'); return !!a && /courses/i.test(a.textContent||''); } },
+      { id:4, title:'Image Alt', goal:'Add an image with non-empty alt text', starter:'<h1>Gallery</h1>', hint:'<img src="assets/img/favicon.png" alt="Example">', unlock:['img'], validate: d=>{ const i=d.querySelector('img'); return !!i && !!(i.getAttribute('alt')||'').trim(); } },
+      { id:5, title:'List Items', goal:'Create a <ul> with at least 3 <li> items', starter:'<h1>Groceries</h1>', hint:'<ul>\n  <li>One</li>\n  <li>Two</li>\n  <li>Three</li>\n</ul>', unlock:['ul','li'], validate: d=>{ const ul=d.querySelector('ul'); return !!ul && ul.querySelectorAll('li').length>=3; } },
+      { id:6, title:'Form + Label', goal:'Label an email input using for/id', starter:'<h1>Contact</h1>', hint:'<label for="e">Email</label> <input id="e" type="email">', unlock:['label','input'], validate: d=>{ const i=d.querySelector('input[type="email"]'); if(!i) return false; const id=i.getAttribute('id'); if(!id) return false; const lab=d.querySelector(`label[for="${id}"]`); return !!lab; } }
+    ];
+
+    // Build UI
+    let container = document.querySelector('main .section .container');
+    if (!container) {
+      const mainRoot = document.querySelector('main.main') || document.querySelector('main') || document.body;
+      const section = document.createElement('section');
+      section.className = 'section';
+      const inner = document.createElement('div');
+      inner.className = 'container';
+      section.appendChild(inner);
+      mainRoot.appendChild(section);
+      container = inner;
+    }
+    const card = document.createElement('div');
+    card.className = 'card mb-4';
+    card.id = 'hpGame';
+    card.innerHTML = `
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-info text-dark" id="hpLevelBadge">Build a Webpage — Level 1/${LEVELS.length}</span>
+            <span class="small text-muted" id="hpGoal">Goal</span>
+          </div>
+          <div class="d-flex align-items-center gap-3 small text-muted">
+            <span><i class="bi bi-trophy"></i> <span id="hpProgress">0</span>/${LEVELS.length}</span>
+            <span><i class="bi bi-coin"></i> <span id="hpPoints">0</span> pts</span>
+            <button class="btn btn-sm btn-outline-secondary" id="hpReset">Reset</button>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="small text-muted mb-1">Unlocked tags</div>
+          <div id="hpPalette" class="d-flex flex-wrap gap-2"></div>
+        </div>
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <label class="form-label small">Editor</label>
+            <textarea id="hpEditor" class="form-control" rows="12" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;"></textarea>
+            <div class="small text-muted mt-1" id="hpHint"></div>
+          </div>
+          <div class="col-lg-6">
+            <label class="form-label small">Preview</label>
+            <iframe id="hpPreview" style="width:100%;height:300px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;"></iframe>
+            <div id="hpFeedback" class="mt-2"></div>
+          </div>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-primary" id="hpRun"><i class="bi bi-play-fill"></i> Run</button>
+          <button class="btn btn-success" id="hpNext" disabled><i class="bi bi-arrow-right-circle"></i> Next</button>
+        </div>
+      </div>
+    `;
+    container.prepend(card);
+
+    // Wiring
+    const badge = document.getElementById('hpLevelBadge');
+    const goal = document.getElementById('hpGoal');
+    const hint = document.getElementById('hpHint');
+    const progress = document.getElementById('hpProgress');
+    const pointsEl = document.getElementById('hpPoints');
+    const palette = document.getElementById('hpPalette');
+    const editor = document.getElementById('hpEditor');
+    const preview = document.getElementById('hpPreview');
+    const feedback = document.getElementById('hpFeedback');
+    const btnRun = document.getElementById('hpRun');
+    const btnNext = document.getElementById('hpNext');
+    const btnReset = document.getElementById('hpReset');
+
+    let levelIdx = Math.max(0, Math.min(LEVELS.length-1, getP().level - 1));
+    let levelStart = Date.now();
+
+    function coursePoints() { const s = loadC(); return Number.isFinite(s.points)?s.points:0; }
+
+    function snippetFor(tag) {
+      switch(tag) {
+        case 'h1': return '<h1>Title</h1>';
+        case 'p': return '<p>Paragraph text</p>';
+        case 'a': return '<a href="../courses.html">Courses</a>';
+        case 'img': return '<img src="assets/img/favicon.png" alt="Example">';
+        case 'ul': return '<ul>\n  <li>One</li>\n  <li>Two</li>\n  <li>Three</li>\n</ul>';
+        case 'li': return '<li>Item</li>';
+        case 'label': return '<label for="e">Email</label>';
+        case 'input': return '<input id="e" type="email">';
+        default: return `<${tag}></${tag}>`;
+      }
+    }
+
+    function insertAtCursor(textarea, text) {
+      const start = textarea.selectionStart || 0; const end = textarea.selectionEnd || 0;
+      const before = textarea.value.substring(0, start);
+      const after = textarea.value.substring(end);
+      textarea.value = before + text + after;
+      const pos = start + text.length;
+      textarea.selectionStart = textarea.selectionEnd = pos;
+      textarea.focus();
+    }
+
+    function renderPalette(unlocked) {
+      palette.innerHTML = '';
+      if (!unlocked.length) {
+        const span = document.createElement('span');
+        span.className = 'text-muted';
+        span.textContent = 'No tags yet — complete a level to unlock.';
+        palette.appendChild(span);
+        return;
+      }
+      unlocked.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-sm btn-outline-primary';
+        btn.setAttribute('data-tag', t);
+        // Show as literal tag text, not rendered HTML
+        btn.textContent = `<${t}>`;
+        btn.addEventListener('click', () => insertAtCursor(editor, '\n' + snippetFor(t) + '\n'));
+        palette.appendChild(btn);
+      });
+    }
+
+    function render() {
+      const L = LEVELS[levelIdx];
+      badge.textContent = `Build a Webpage — Level ${L.id}/${LEVELS.length}`;
+      goal.textContent = L.goal;
+      hint.innerHTML = `<span class="text-muted">Hint:</span> <code>${L.hint.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code>`;
+      editor.value = L.starter;
+      preview.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body></body></html>';
+      feedback.innerHTML = '';
+      btnNext.disabled = true;
+      progress.textContent = String(levelIdx);
+      pointsEl.textContent = String(coursePoints());
+      renderPalette(getP().unlockedTags);
+      levelStart = Date.now();
+    }
+
+    function run() {
+      preview.srcdoc = editor.value;
+      setTimeout(() => {
+        try {
+          const doc = preview.contentDocument || preview.contentWindow.document;
+          const ok = LEVELS[levelIdx].validate(doc);
+          if (ok) { feedback.innerHTML = '<span class="text-success">Correct! You may proceed.</span>'; btnNext.disabled = false; }
+          else { feedback.innerHTML = '<span class="text-warning">Not quite. Recheck the goal and hint.</span>'; btnNext.disabled = true; }
+        } catch(e) { feedback.innerHTML = '<span class="text-danger">Unable to validate. Check your HTML.</span>'; btnNext.disabled = true; }
+      }, 50);
+    }
+
+    function next() {
+      const elapsed = Math.round((Date.now() - levelStart) / 1000);
+      addCoursePoints(5);
+      const unlock = LEVELS[levelIdx].unlock || [];
+      const state = getP();
+      const set = new Set([...(state.unlockedTags||[]), ...unlock]);
+      saveP({ level: state.level, bestTimes: state.bestTimes || {}, unlockedTags: Array.from(set) });
+      if (elapsed <= 60 && levelIdx === LEVELS.length - 1) addCourseBadge('HTML Practitioner');
+      if (Array.from(set).length >= 8) addCourseBadge('HTML Builder');
+
+      if (levelIdx + 1 >= LEVELS.length) {
+        feedback.innerHTML = '<span class="text-success">All levels complete! 🎉</span>';
+        btnNext.disabled = true;
+        setLevel(LEVELS.length, LEVELS.length);
+        pointsEl.textContent = String(coursePoints());
+        renderPalette(Array.from(set));
+        return;
+      }
+      levelIdx += 1;
+      setLevel(levelIdx + 1, LEVELS.length);
+      render();
+    }
+
+    function resetAll() {
+      saveP({ level: 1, bestTimes: {}, unlockedTags: [] });
+      levelIdx = 0; render();
+    }
+
+    btnRun.addEventListener('click', run);
+    btnNext.addEventListener('click', next);
+    btnReset.addEventListener('click', resetAll);
+    editor.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); run(); } });
+
+    render();
+  }
+
+  window.addEventListener('load', initHtmlPracticeGame);
+
 })();
