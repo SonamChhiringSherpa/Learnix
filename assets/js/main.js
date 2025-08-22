@@ -915,7 +915,12 @@
     function saveP(s) { localStorage.setItem(PRACTICE_KEY, JSON.stringify(s)); }
     function getP() {
       const s = loadP();
-      return { level: Number.isFinite(s.level)?s.level:1, bestTimes: s.bestTimes || {}, unlockedTags: Array.isArray(s.unlockedTags)?s.unlockedTags:[] };
+      return {
+        level: Number.isFinite(s.level)?s.level:1,
+        bestTimes: s.bestTimes || {},
+        unlockedTags: Array.isArray(s.unlockedTags)?s.unlockedTags:[],
+        hintShown: s.hintShown || {}
+      };
     }
     function setLevel(n, total) { const s = getP(); s.level = Math.max(1, Math.min(n, total)); saveP(s); return s.level; }
 
@@ -1056,7 +1061,26 @@
       const L = LEVELS[levelIdx];
       badge.textContent = `Build a Webpage — Level ${L.id}/${LEVELS.length}`;
       goal.textContent = L.goal;
-      hint.innerHTML = `<span class="text-muted">Hint:</span> <code>${L.hint.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code>`;
+      // Hint: gated behind a button; costs 1 point once per level
+      const pState = getP();
+      const levelId = L.id;
+      if (pState.hintShown[levelId]) {
+        hint.innerHTML = `<span class="text-muted">Hint:</span> <code>${L.hint.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code>`;
+      } else {
+        hint.innerHTML = `<button id="hpShowHint" class="btn btn-sm btn-outline-secondary">Show hint (-1 pt)</button>`;
+        const btn = document.getElementById('hpShowHint');
+        btn.addEventListener('click', function(){
+          // Deduct once and persist
+          const st = getP();
+          if (!st.hintShown[levelId]) {
+            addCoursePoints(-1);
+            st.hintShown[levelId] = true;
+            saveP({ level: st.level, bestTimes: st.bestTimes || {}, unlockedTags: st.unlockedTags || [], hintShown: st.hintShown });
+            pointsEl.textContent = String(coursePoints());
+          }
+          hint.innerHTML = `<span class=\"text-muted\">Hint:</span> <code>${L.hint.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code>`;
+        });
+      }
       editor.value = L.starter;
       preview.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body></body></html>';
       feedback.innerHTML = '';
