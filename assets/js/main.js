@@ -350,6 +350,118 @@
   window.addEventListener('load', initBashChatbot);
 
   /**
+   * HTML Course Chatbot Widget (appears on pages whose path includes "html")
+   */
+  function initHtmlChatbot() {
+    const isHtmlPage = /(\/)html-course\.html$/i.test(window.location.pathname) || /html-course\/html-lesson-\d+\.html$/i.test(window.location.pathname);
+    if (!isHtmlPage) return;
+    if (document.getElementById('htmlChatToggle')) return;
+
+    const style = document.createElement('style');
+    style.id = 'html-chatbot-styles';
+    style.textContent = `
+      .html-chat-toggle { position: fixed; right: 18px; bottom: calc(86px + env(safe-area-inset-bottom, 0)); width: 52px; height: 52px; border-radius: 50%; border: none; background: linear-gradient(135deg, #f97316, #fb7185); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1054; box-shadow: 0 8px 24px rgba(249,115,22,.35); }
+      .html-chatbot { position: fixed; right: 18px; bottom: calc(150px + env(safe-area-inset-bottom, 0)); width: 380px; max-width: calc(100% - 24px); height: min(60vh, 520px); min-height: 320px; background: #fff; border-radius: 14px; box-shadow: 0 18px 48px rgba(0,0,0,.18); z-index: 1054; display: none; flex-direction: column; overflow: hidden; border: 1px solid rgba(0,0,0,.06); }
+      .html-chatbot.open { display: flex; }
+      .html-chatbot .hc-header { display:flex; align-items:center; justify-content:space-between; background: linear-gradient(135deg, #f97316, #fb7185); color:#fff; padding:10px 12px; }
+      .html-chatbot .hc-body { flex: 1 1 auto; overflow-y:auto; padding:12px; background: linear-gradient(180deg, #fff, #fff7ed); }
+      .html-chatbot .hc-msg { max-width:85%; margin: 6px 0; padding: 8px 10px; border-radius: 12px; font-size: .95rem; }
+      .html-chatbot .hc-msg.bot { background:#fff; border:1px solid rgba(0,0,0,.06); }
+      .html-chatbot .hc-msg.user { background: #fb923c; color:#fff; margin-left:auto; }
+      .html-chatbot .hc-input { display:flex; gap:8px; padding:8px; border-top:1px solid rgba(0,0,0,.06); background:#fff; }
+      .html-chatbot .hc-input input { flex:1 1 auto; border:1px solid rgba(0,0,0,.15); border-radius:10px; padding:10px; }
+      .html-chatbot .hc-input button { width:46px; border:none; border-radius:10px; background: linear-gradient(135deg, #f97316, #fb7185); color:#fff; }
+      @media (max-width: 576px) { .html-chatbot { right:12px; bottom: calc(140px + env(safe-area-inset-bottom, 0)); width: calc(100% - 24px); } .html-chat-toggle{ right:12px; } }
+    `;
+    document.head.appendChild(style);
+
+    const html = `
+      <div class="html-chatbot" id="htmlChatbot" aria-hidden="true" aria-label="HTML chatbot">
+        <div class="hc-header">
+          <div class="d-flex align-items-center gap-2"><i class="bi bi-filetype-html"></i><strong>HTML Helper</strong></div>
+          <button class="btn btn-sm btn-light" id="htmlChatClose" aria-label="Close chatbot"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="hc-body" id="hcBody" role="log"></div>
+        <div class="px-2 pb-1" id="hcSuggestions"></div>
+        <form class="hc-input" id="hcForm" autocomplete="off"><input id="hcInput" type="text" placeholder="Ask about tags, structure, semantics..." aria-label="Ask an HTML question"/><button type="submit" aria-label="Send"><i class="bi bi-send"></i></button></form>
+      </div>
+      <button class="html-chat-toggle" id="htmlChatToggle" title="Open HTML Helper" aria-expanded="false"><i class="bi bi-chat-dots"></i></button>
+    `;
+    document.body.insertAdjacentHTML('beforeend', html);
+
+    const container = document.getElementById('htmlChatbot');
+    const toggle = document.getElementById('htmlChatToggle');
+    const closeBtn = document.getElementById('htmlChatClose');
+    const body = document.getElementById('hcBody');
+    const form = document.getElementById('hcForm');
+    const input = document.getElementById('hcInput');
+
+    function open() { container.classList.add('open'); container.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); input.focus(); }
+    function close() { container.classList.remove('open'); container.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); }
+    toggle.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+
+    function addMsg(text, who) {
+      const div = document.createElement('div');
+      div.className = 'hc-msg ' + (who === 'user' ? 'user' : 'bot');
+      div.innerHTML = text;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function showTyping() {
+      const wrap = document.createElement('div');
+      wrap.className = 'hc-msg bot';
+      wrap.setAttribute('data-typing','true');
+      wrap.innerHTML = '<span class="text-muted">typing…</span>';
+      body.appendChild(wrap);
+      body.scrollTop = body.scrollHeight;
+      return wrap;
+    }
+    function hideTyping(node) { if (node && node.parentNode) node.parentNode.removeChild(node); }
+
+    function renderSuggestions() {
+      const holder = document.getElementById('hcSuggestions');
+      if (!holder) return;
+      const topics = ['What is <!DOCTYPE html>?','Semantic tags','Create a link','Image alt text','Lists and tables','Forms and labels'];
+      holder.innerHTML = topics.map(t=>`<button type="button" class="btn btn-sm btn-outline-secondary me-1 mb-1 hc-chip">${t.replace(/</g,'&lt;')}</button>`).join('');
+      holder.querySelectorAll('.hc-chip').forEach(btn => {
+        btn.addEventListener('click', () => { input.value = btn.textContent; input.focus(); });
+      });
+    }
+
+    const knowledge = [
+      { p: /doctype|html5/i, a: "Use &lt;!DOCTYPE html&gt; at the top to enable HTML5 standards mode." },
+      { p: /structure|skeleton|boilerplate/i, a: "Basic skeleton: &lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;title&gt;...&lt;/title&gt;&lt;/head&gt;&lt;body&gt;...&lt;/body&gt;&lt;/html&gt;" },
+      { p: /head(er)?|meta|title/i, a: "&lt;head&gt; holds metadata: &lt;title&gt;, &lt;meta name='viewport'&gt;, CSS &lt;link&gt;, and optional &lt;script&gt; (defer)." },
+      { p: /semantic|header|main|footer|section|article/i, a: "Use semantic tags (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;) for meaning and accessibility." },
+      { p: /a\s+tag|link|href|anchor/i, a: "Links: &lt;a href='path'&gt;Label&lt;/a&gt;. For new tab, add target='_blank' and rel='noopener'." },
+      { p: /img|image|alt/i, a: "Images: &lt;img src='...' alt='useful description'&gt;. The alt describes the image content or purpose." },
+      { p: /list|ul|ol|li/i, a: "Lists: &lt;ul&gt;/&lt;ol&gt; contain &lt;li&gt; items. Nest lists inside an &lt;li&gt; when creating sublists." },
+      { p: /table|thead|tbody|tr|th|td/i, a: "Tables: header cells use &lt;th&gt;, data cells &lt;td&gt;. Group with &lt;thead&gt; and &lt;tbody&gt;." },
+      { p: /forms?|input|label|placeholder|select|textarea/i, a: "Forms: associate labels and inputs via for/id. Use proper types (email, number). Provide helpful placeholders and aria-describedby for hints." },
+      { p: /accessib|aria|screen reader|alt|label/i, a: "Prefer native semantics; label inputs; provide alt text; manage focus for dialogs; use ARIA sparingly to supplement." },
+    ];
+    function answer(q) {
+      for (const k of knowledge) if (k.p.test(q)) return k.a;
+      return "Ask me about structure, semantics, links, images, lists, tables, or forms.";
+    }
+
+    addMsg("Hi! I'm your HTML Helper. Ask me about tags, semantics, links, images, lists, tables, and forms.", 'bot');
+    renderSuggestions();
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const q = (input.value||'').trim(); if (!q) return;
+      addMsg(q,'user'); input.value='';
+      const a = answer(q);
+      const typing = showTyping();
+      setTimeout(() => { hideTyping(typing); addMsg(a,'bot'); }, 250);
+    });
+  }
+
+  window.addEventListener('load', initHtmlChatbot);
+
+  /**
    * Bash Course: Progress, Dashboard, Quizzes, Roadmap, Gamification
    */
   function initBashCourseFeatures() {
@@ -590,5 +702,200 @@
   }
 
   window.addEventListener('load', initBashCourseFeatures);
+
+  /**
+   * HTML Course: Dashboard, Progress, Quizzes (mirrors Bash)
+   */
+  function initHtmlCourseFeatures() {
+    const isHtml = /html-course|html-lesson-/i.test(window.location.pathname);
+    if (!isHtml) return;
+
+    const STORAGE_KEY = 'htmlCourseProgress_v1';
+    const LESSONS = [
+      { id: 1, title: 'Introduction', path: 'html-course/html-lesson-1.html' },
+      { id: 2, title: 'Basic Tags', path: 'html-course/html-lesson-2.html' },
+      { id: 3, title: 'Links & Images', path: 'html-course/html-lesson-3.html' },
+      { id: 4, title: 'Lists & Tables', path: 'html-course/html-lesson-4.html' },
+      { id: 5, title: 'Forms', path: 'html-course/html-lesson-5.html' }
+    ];
+
+    function loadStore() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; } }
+    function saveStore(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+    function getStore() {
+      const s = loadStore();
+      return { lessonsCompleted: s.lessonsCompleted || {}, quizzes: s.quizzes || {}, points: Number.isFinite(s.points)?s.points:0, badges: Array.isArray(s.badges)?s.badges:[], lastLesson: s.lastLesson || 1 };
+    }
+    function updateStore(fn){ const s = getStore(); fn(s); saveStore(s); return s; }
+    function addPoints(n){ updateStore(s => { s.points = Math.max(0,(s.points||0)+n); }); }
+    function addBadge(name){ updateStore(s => { if (!s.badges.includes(name)) s.badges.push(name); }); }
+    function markLessonComplete(id){ updateStore(s => { s.lessonsCompleted[id] = true; s.lastLesson = id; }); }
+    function isLessonComplete(id){ const s = getStore(); return !!s.lessonsCompleted[id]; }
+    function setQuizScore(id,score,total){ updateStore(s => { s.quizzes[id] = { score, total }; }); }
+    function progressPct(){ const s = getStore(); const c = LESSONS.filter(l => s.lessonsCompleted[l.id]).length; return Math.round((c/LESSONS.length)*100); }
+
+    function currentLessonId(){ const m = window.location.pathname.match(/html-lesson-(\d+)\.html/i); return m?parseInt(m[1],10):null; }
+
+    const QUIZZES = {
+      1: [
+        { q: 'Correct HTML5 doctype?', opts: ['<!DOCTYPE html>','<!doctype HTML5>','<!HTML>'], a: 0 },
+        { q: 'Where does page title go?', opts: ['<body>','<head>','<footer>'], a: 1 }
+      ],
+      2: [
+        { q: 'Largest heading tag?', opts: ['<h1>','<h6>','<h0>'], a: 0 },
+        { q: 'Paragraph element is?', opts: ['<para>','<text>','<p>'], a: 2 }
+      ],
+      3: [
+        { q: 'Create a link?', opts: ['<a href="/">Home</a>','<link href="/">','<url>Home</url>'], a: 0 },
+        { q: 'Add alt text to image?', opts: ['<img src="a.jpg">','<img alt="A" src="a.jpg">','<image src="a.jpg" alt="A">'], a: 1 }
+      ],
+      4: [
+        { q: 'Unordered list element?', opts: ['<ol>','<ul>','<li>'], a: 1 },
+        { q: 'Header cell tag in tables?', opts: ['<th>','<td>','<tr>'], a: 0 }
+      ],
+      5: [
+        { q: 'Label an input correctly?', opts: ['<label><input> Name</label>','<label for="n">Name</label><input id="n">','<label id="n">Name</label><input for="n">'], a: 1 },
+        { q: 'Email field type?', opts: ['text','email','mail'], a: 1 }
+      ]
+    };
+
+    function renderDashboard(){
+      if (!/html-course\.html$/i.test(window.location.pathname)) return;
+      if (document.getElementById('htmlDashboard')) return;
+      const container = document.querySelector('main .section .container');
+      if (!container) return;
+      const s = getStore();
+      const pct = progressPct();
+      const next = LESSONS.find(l => !s.lessonsCompleted[l.id]) || LESSONS[LESSONS.length-1];
+      const resume = LESSONS.find(l => l.id === s.lastLesson) || LESSONS[0];
+      const dash = document.createElement('div');
+      dash.id = 'htmlDashboard';
+      dash.className = 'row g-4 mb-4';
+      dash.innerHTML = `
+        <div class="col-lg-4">
+          <div class="card h-100"><div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2"><h5 class="mb-0">Ayush</h5><span class="badge bg-warning text-dark">HTML</span></div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width:56px;height:56px;color:#111;font-weight:600;">${(s.points||0)}</div>
+              <div><div class="small text-muted">Points</div><div class="fw-semibold">Complete lessons & quizzes</div></div>
+            </div>
+            <hr/>
+            <div class="small text-muted mb-2">Badges</div>
+            <div id="htmlBadgeHolder" class="d-flex flex-wrap gap-2">${(s.badges||[]).map(b=>`<span class='badge bg-success'>${b}</span>`).join('') || '<span class="text-muted">No badges yet</span>'}</div>
+          </div></div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card h-100"><div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2"><h5 class="mb-0">Course Progress</h5><span class="small text-muted">${pct}% complete</span></div>
+            <div class="progress mb-3" style="height:10px;"><div class="progress-bar bg-warning" role="progressbar" style="width:${pct}%" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"></div></div>
+            <div class="d-flex gap-2"><a href="${resume.path}" class="btn btn-warning text-dark"><i class="bi bi-play-fill"></i> Resume Lesson ${resume.id}</a><a href="${next.path}" class="btn btn-outline-warning">Next Lesson</a></div>
+          </div></div>
+        </div>
+        <div class="col-12">
+          <div class="card"><div class="card-body">
+            <h6 class="mb-3">Roadmap</h6>
+            <div class="row g-3">
+              ${LESSONS.map(l=>{
+                const done = isLessonComplete(l.id);
+                return `<div class='col-md-4 col-lg-2'>
+                  <a href='${l.path}' class='text-decoration-none'>
+                    <div class='p-3 border rounded h-100 ${done ? 'border-success' : ''}'>
+                      <div class='d-flex align-items-center gap-2 mb-1'>
+                        <i class='bi ${done ? 'bi-check-circle-fill text-success' : 'bi-circle'}'></i>
+                        <strong>Lesson ${l.id}</strong>
+                      </div>
+                      <div class='small text-muted'>${l.title}</div>
+                    </div>
+                  </a>
+                </div>`;
+              }).join('')}
+            </div>
+          </div></div>
+        </div>`;
+      container.prepend(dash);
+    }
+
+    function injectLessonUI(lessonId){
+      const col = document.querySelector('main .section .container .row .col-lg-9');
+      if (!col) return;
+      if (document.getElementById('htmlLessonControls')) return;
+      const completed = isLessonComplete(lessonId);
+      const wrap = document.createElement('div');
+      wrap.id = 'htmlLessonControls';
+      wrap.className = 'card mb-4';
+      wrap.innerHTML = `
+        <div class="card-body d-flex flex-wrap gap-2 align-items-center justify-content-between">
+          <div><div class="small text-muted">Lesson ${lessonId}</div><div class="fw-semibold">Mark your progress and take the quiz</div></div>
+          <div class="d-flex gap-2">
+            <button id="btnHtmlMarkComplete" class="btn ${completed ? 'btn-success' : 'btn-outline-success'}">${completed ? 'Completed' : 'Mark as Completed'}</button>
+            <a href="../html-practice.html?lesson=${lessonId}" class="btn btn-outline-warning text-dark"><i class="bi bi-code-slash"></i> Practice</a>
+          </div>
+        </div>`;
+      col.prepend(wrap);
+      const btn = wrap.querySelector('#btnHtmlMarkComplete');
+      btn.addEventListener('click', function(){
+        if (isLessonComplete(lessonId)) return;
+        markLessonComplete(lessonId);
+        addPoints(10);
+        if (lessonId === 1) addBadge('HTML Starter');
+        if (LESSONS.every(l=>isLessonComplete(l.id))) addBadge('HTML Novice');
+        btn.classList.remove('btn-outline-success'); btn.classList.add('btn-success'); btn.textContent = 'Completed';
+      });
+    }
+
+    function injectQuiz(lessonId){
+      const questions = QUIZZES[lessonId];
+      if (!questions) return;
+      if (document.getElementById('htmlLessonQuiz')) return;
+      const col = document.querySelector('main .section .container .row .col-lg-9');
+      if (!col) return;
+      const card = document.createElement('div');
+      card.id = 'htmlLessonQuiz';
+      card.className = 'card mt-4';
+      const existing = getStore().quizzes[lessonId];
+      card.innerHTML = `
+        <div class="card-header"><strong>Quick Quiz</strong></div>
+        <div class="card-body">
+          ${questions.map((q, idx)=>`
+            <div class="mb-3">
+              <div class="fw-semibold mb-1">Q${idx+1}. ${q.q.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+              ${q.opts.map((opt,i)=>`
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="hq${idx}" id="hq${idx}_${i}" value="${i}">
+                  <label class="form-check-label" for="hq${idx}_${i}">${opt.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</label>
+                </div>`).join('')}
+            </div>`).join('')}
+          <div class="d-flex gap-2 align-items-center">
+            <button id="btnHtmlSubmitQuiz" class="btn btn-warning text-dark">Submit Quiz</button>
+            <div id="htmlQuizFeedback" class="small"></div>
+          </div>
+        </div>`;
+      col.appendChild(card);
+
+      const feedback = card.querySelector('#htmlQuizFeedback');
+      if (existing) feedback.innerHTML = `<span class='text-success'>Previous score: ${existing.score}/${existing.total}</span>`;
+
+      card.querySelector('#btnHtmlSubmitQuiz').addEventListener('click', function(){
+        let score = 0; const total = questions.length;
+        questions.forEach((q, idx)=>{
+          const sel = card.querySelector(`input[name="hq${idx}"]:checked`);
+          if (sel && parseInt(sel.value,10) === q.a) score += 1;
+        });
+        setQuizScore(lessonId, score, total);
+        if (score === total) { addPoints(5); addBadge('HTML Quiz Whiz'); feedback.innerHTML = `<span class='text-success'>Perfect! ${score}/${total}</span>`; }
+        else { feedback.innerHTML = `<span class='text-primary'>Score: ${score}/${total}</span>`; }
+      });
+    }
+
+    // Route
+    renderDashboard();
+    const lid = currentLessonId();
+    if (lid) {
+      updateStore(s => { s.lastLesson = lid; });
+      injectLessonUI(lid);
+      injectQuiz(lid);
+    }
+  }
+
+  window.addEventListener('load', initHtmlCourseFeatures);
 
 })();
