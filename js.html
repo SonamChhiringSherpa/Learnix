@@ -352,6 +352,105 @@ document.getElementById("demo-container").appendChild(p);
     </div>
   </div>
 </article>
+<!-- Lesson 5 -->
+<article id="lesson-5" class="mb-5" data-aos="fade-up" data-aos-delay="400">
+  <h3>Lesson 5: Events & Game Logic</h3>
+  <p>Events allow your web pages to respond to user actions like clicks, mouse movements, or key presses. This is essential for interactive applications and games.</p>
+
+  <!-- Topic 1: Handling Click Events -->
+  <h5>📌 Click Events</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson5-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Click event example
+document.getElementById("clickBtn").addEventListener("click", function() {
+  console.log("Button clicked!");
+  alert("You clicked the button!");
+});
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson5Topic1()">Run Code</button>
+          <pre id="lesson5-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+          <button id="clickBtn" class="btn btn-success mt-2">Click Me!</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>We attach a click event listener to a button. When the user clicks it, the function runs, showing an alert and logging to the console.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2: Key Events -->
+  <h5 class="mt-3">📌 Key Press Events</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson5-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Key press event
+document.addEventListener("keydown", function(event) {
+  console.log("Key pressed:", event.key);
+  document.getElementById("keyDisplay").textContent = "Last key pressed: " + event.key;
+});
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson5Topic2()">Run Code</button>
+          <pre id="lesson5-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+          <p id="keyDisplay">Press any key to see it here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>The <code>keydown</code> event triggers whenever a key is pressed. You can use <code>event.key</code> to find out which key the user pressed and update the DOM or game state accordingly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 3: Simple Game Logic -->
+  <h5 class="mt-3">📌 Simple Game Logic Example</h5>
+  <div class="row g-3 align-items-stretch">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Code Example</strong></div>
+        <div class="card-body">
+          <textarea id="lesson5-topic3-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Simple click counter game
+let score = 0;
+document.getElementById("gameBtn").addEventListener("click", function() {
+  score++;
+  document.getElementById("scoreDisplay").textContent = "Score: " + score;
+  console.log("Score:", score);
+});
+          </textarea>
+          <button class="btn btn-primary mt-2" onclick="runLesson5Topic3()">Run Code</button>
+          <pre id="lesson5-topic3-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+          <button id="gameBtn" class="btn btn-warning mt-2">Click to Score!</button>
+          <p id="scoreDisplay">Score: 0</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-header py-2"><strong>Explanation</strong></div>
+        <div class="card-body">
+          <p>This example demonstrates a simple click-based game. Each button click increases the score, showing how events and variables can be combined for game logic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</article>
 
 
           </div>
@@ -489,6 +588,9 @@ function runLesson4Code(textareaId, outputId) {
         output.textContent = "Error: " + err.message;
     }
 }
+function runLesson5Topic1() { runCode("lesson5-topic1-code", "lesson5-topic1-output"); }
+  function runLesson5Topic2() { runCode("lesson5-topic2-code", "lesson5-topic2-output"); }
+  function runLesson5Topic3() { runCode("lesson5-topic3-code", "lesson5-topic3-output"); }
 </script>
 </body>
 
