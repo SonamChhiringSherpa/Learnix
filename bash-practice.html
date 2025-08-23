@@ -1,20 +1,11 @@
-
-
-Skip to content
-Using Gmail with screen readers
-Conversations
-1% of 15 GB used
-Terms · Privacy · Program Policies
-Last account activity: 0 minutes ago
-Currently being used in 2 other locations · Details
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>🧪 Bash Lab - Escape the Rogue AI</title>
-  <meta name="description" content="Trapped in a mysterious Bash Lab by a rogue AI. Solve command-line puzzles to escape!">
+  <title>🧪 Bash Lab - Escape the JOHN AI</title>
+  <meta name="description" content="Trapped in a mysterious Bash Lab by a JOHN AI. Solve command-line puzzles to escape!">
   <meta name="keywords" content="bash game, bash lab, terminal escape, linux game, shell puzzles">
 
   <link href="assets/img/favicon.png" rel="icon">
@@ -145,7 +136,7 @@ Currently being used in 2 other locations · Details
   <main class="main">
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">🧪 Bash Lab - Escape the Rogue AI</h1>
+        <h1 class="mb-2 mb-lg-0">🧪 Bash Lab - Escape the JOHN AI</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="courses.html">Courses</a></li>
@@ -160,7 +151,7 @@ Currently being used in 2 other locations · Details
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <!-- AI Message -->
         <div id="aiMessage" class="ai-message">
-          <strong>🤖 ROGUE AI:</strong> Welcome to my Bash Lab, human. You're trapped here until you prove your worth. Solve my challenges or remain forever...
+          <strong>🤖 JOHN AI:</strong> Welcome to my Bash Lab, human. You're trapped here until you prove your worth. Solve my challenges or remain forever...
         </div>
 
         <!-- Game UI -->
@@ -287,84 +278,84 @@ Currently being used in 2 other locations · Details
       let taskIndex = 0;
       let lastResult = '';
 
-      // 🧪 BASH LAB - Escape the Rogue AI Game Levels
+      // 🧪 BASH LAB - Escape the JOHN AI Game Levels
       const BASH_LAB_LEVELS = {
         '1': {
           title: '🧪 Level 1: Introduction to Bash',
-          aiIntro: '🤖 ROGUE AI: Welcome to my first challenge room. You\'re trapped in a locked terminal. Prove you can navigate or stay here forever...',
+          aiIntro: '🤖 JOHN AI: Welcome to my first challenge room. You\'re trapped in a locked terminal. Prove you can navigate or stay here forever...',
           tasks: [
             { 
               title: '🔍 Room 1: Find Your Location', 
-              prompt: '🤖 ROGUE AI: "You\'re lost in my maze. First, tell me where you are."\n\nTask: Print your current working directory to show the AI you know where you are.',
+              prompt: '🤖 JOHN AI: "You\'re lost in my maze. First, tell me where you are."\n\nTask: Print your current working directory to show the AI you know where you are.',
               setup: (fs) => {},
               validate: () => lastResult.trim() === '/',
               hint: 'Use pwd to print working directory',
-              aiResponse: '🤖 ROGUE AI: "Hmm, you know where you are. Not bad for a human..."'
+              aiResponse: '🤖 JOHN AI: "Hmm, you know where you are. Not bad for a human..."'
             },
             { 
               title: '📋 Room 2: List the Drop Zone', 
-              prompt: '🤖 ROGUE AI: "I\'ve left some files in this room. Find them all."\n\nTask: List all files and directories in the current location.',
+              prompt: '🤖 JOHN AI: "I\'ve left some files in this room. Find them all."\n\nTask: List all files and directories in the current location.',
               setup: (fs) => { 
                 fs.tree['/'].children['escape_key.txt'] = { type: 'file', content: 'KEY_001' }; 
                 fs.tree['/'].children['hidden_folder'] = { type: 'dir', children: {} }; 
               },
               validate: () => /escape_key\.txt/.test(lastResult) && /hidden_folder/.test(lastResult),
               hint: 'Use ls to list directory contents',
-              aiResponse: '🤖 ROGUE AI: "You found my files. The escape key is getting closer..."'
+              aiResponse: '🤖 JOHN AI: "You found my files. The escape key is getting closer..."'
             },
             { 
               title: '🎮 Room 3: Type-the-Command Challenge', 
-              prompt: '🤖 ROGUE AI: "Now for some fun! Commands are falling from the ceiling. Type them before they hit the ground!"\n\nMini-Game: Type the falling commands to earn points.',
+              prompt: '🤖 JOHN AI: "Now for some fun! Commands are falling from the ceiling. Type them before they hit the ground!"\n\nMini-Game: Type the falling commands to earn points.',
               setup: (fs) => { startMiniGame(); },
               validate: () => miniGameScore >= 3,
               hint: 'Type the commands exactly as they appear',
-              aiResponse: '🤖 ROGUE AI: "Your typing skills are... acceptable. You may proceed."',
+              aiResponse: '🤖 JOHN AI: "Your typing skills are... acceptable. You may proceed."',
               isMiniGame: true
             },
             { 
               title: '🧹 Room 4: Clear the Terminal', 
-              prompt: '🤖 ROGUE AI: "Clean up after yourself. Clear this messy terminal."\n\nTask: Clear the terminal screen.',
+              prompt: '🤖 JOHN AI: "Clean up after yourself. Clear this messy terminal."\n\nTask: Clear the terminal screen.',
               setup: (fs) => {},
               validate: () => terminal.innerText.trim() === '',
               hint: 'Use clear to clean the terminal',
-              aiResponse: '🤖 ROGUE AI: "A clean workspace. I respect that."'
+              aiResponse: '🤖 JOHN AI: "A clean workspace. I respect that."'
             },
             { 
               title: '🚪 Room 5: Escape the First Level', 
-              prompt: '🤖 ROGUE AI: "You\'ve proven basic competence. But can you echo your way to freedom?"\n\nTask: Print "ESCAPE_LEVEL_1" to unlock the door.',
+              prompt: '🤖 JOHN AI: "You\'ve proven basic competence. But can you echo your way to freedom?"\n\nTask: Print "ESCAPE_LEVEL_1" to unlock the door.',
               setup: (fs) => {},
               validate: () => lastResult.trim() === 'ESCAPE_LEVEL_1',
               hint: 'Use echo "ESCAPE_LEVEL_1"',
-              aiResponse: '🤖 ROGUE AI: "Level 1 complete. But my next challenge will be much harder..."'
+              aiResponse: '🤖 JOHN AI: "Level 1 complete. But my next challenge will be much harder..."'
             }
           ]
         },
         '2': {
           title: '📁 Level 2: Files & Directories Maze',
-          aiIntro: '🤖 ROGUE AI: "Welcome to my file system maze. Navigate through my folders or get lost forever in the directory structure..."',
+          aiIntro: '🤖 JOHN AI: "Welcome to my file system maze. Navigate through my folders or get lost forever in the directory structure..."',
           tasks: [
             { 
               title: '🏗️ Room 1: Create Your Base', 
-              prompt: '🤖 ROGUE AI: "You need a base of operations. Create a directory called \'escape_base\'."\n\nTask: Create a directory named escape_base.',
+              prompt: '🤖 JOHN AI: "You need a base of operations. Create a directory called \'escape_base\'."\n\nTask: Create a directory named escape_base.',
               setup: (fs) => {},
               validate: () => fs.tree['/'].children['escape_base']?.type === 'dir',
               hint: 'Use mkdir escape_base',
-              aiResponse: '🤖 ROGUE AI: "A base of operations. Smart thinking, human."'
+              aiResponse: '🤖 JOHN AI: "A base of operations. Smart thinking, human."'
             },
             { 
               title: '📄 Room 2: Create Evidence Files', 
-              prompt: '🤖 ROGUE AI: "Leave evidence of your presence. Create files named \'clue1.txt\' and \'clue2.txt\' in your base."\n\nTask: Create two text files in the escape_base directory.',
+              prompt: '🤖 JOHN AI: "Leave evidence of your presence. Create files named \'clue1.txt\' and \'clue2.txt\' in your base."\n\nTask: Create two text files in the escape_base directory.',
               setup: (fs) => {},
               validate: () => {
                 const base = fs.tree['/'].children['escape_base'];
                 return base?.children?.['clue1.txt']?.type === 'file' && base?.children?.['clue2.txt']?.type === 'file';
               },
               hint: 'Use touch escape_base/clue1.txt and touch escape_base/clue2.txt',
-              aiResponse: '🤖 ROGUE AI: "Evidence files created. You\'re leaving a trail..."'
+              aiResponse: '🤖 JOHN AI: "Evidence files created. You\'re leaving a trail..."'
             },
             { 
               title: '🔍 Room 3: The Wildcard Challenge', 
-              prompt: '🤖 ROGUE AI: "I\'ve scattered 10 files in this room. Only the .log files contain the next clue."\n\nTask: Find and move all .log files to escape_base using wildcards.',
+              prompt: '🤖 JOHN AI: "I\'ve scattered 10 files in this room. Only the .log files contain the next clue."\n\nTask: Find and move all .log files to escape_base using wildcards.',
               setup: (fs) => {
                 fs.tree['/'].children['file1.txt'] = { type: 'file', content: '' };
                 fs.tree['/'].children['file2.log'] = { type: 'file', content: 'CLUE_2A' };
@@ -377,36 +368,36 @@ Currently being used in 2 other locations · Details
                 return base?.children?.['file2.log']?.type === 'file' && base?.children?.['file4.log']?.type === 'file';
               },
               hint: 'Use mv *.log escape_base/',
-              aiResponse: '🤖 ROGUE AI: "Wildcard mastery. You\'re learning my patterns..."'
+              aiResponse: '🤖 JOHN AI: "Wildcard mastery. You\'re learning my patterns..."'
             },
             { 
               title: '🗑️ Room 4: Clean Up', 
-              prompt: '🤖 ROGUE AI: "Remove the evidence. Delete all .txt files from the root directory."\n\nTask: Remove all .txt files using wildcards.',
+              prompt: '🤖 JOHN AI: "Remove the evidence. Delete all .txt files from the root directory."\n\nTask: Remove all .txt files using wildcards.',
               setup: (fs) => {},
               validate: () => {
                 const root = fs.tree['/'];
                 return !Object.keys(root.children).some(name => name.endsWith('.txt'));
               },
               hint: 'Use rm *.txt',
-              aiResponse: '🤖 ROGUE AI: "Clean removal. No traces left behind."'
+              aiResponse: '🤖 JOHN AI: "Clean removal. No traces left behind."'
             },
             { 
               title: '🚪 Room 5: Navigate to Freedom', 
-              prompt: '🤖 ROGUE AI: "Navigate to your base and read the clues. Then echo the combined message."\n\nTask: Change to escape_base, read the log files, and echo the combined content.',
+              prompt: '🤖 JOHN AI: "Navigate to your base and read the clues. Then echo the combined message."\n\nTask: Change to escape_base, read the log files, and echo the combined content.',
               setup: (fs) => {},
               validate: () => lastResult.includes('CLUE_2A') && lastResult.includes('CLUE_2B'),
               hint: 'Use cd escape_base, then cat *.log, then echo the combined content',
-              aiResponse: '🤖 ROGUE AI: "Level 2 complete. The file system is your playground now."'
+              aiResponse: '🤖 JOHN AI: "Level 2 complete. The file system is your playground now."'
             }
           ]
         },
         '3': {
           title: '📄 Level 3: Viewing & Editing Files',
-          aiIntro: '🤖 ROGUE AI: "Now for the real challenge. Hidden in my files are the secrets you need to escape. Find them or remain trapped..."',
+          aiIntro: '🤖 JOHN AI: "Now for the real challenge. Hidden in my files are the secrets you need to escape. Find them or remain trapped..."',
           tasks: [
             { 
               title: '🔍 Room 1: Find the Password', 
-              prompt: '🤖 ROGUE AI: "Somewhere in this file is the password you need. Find it."\n\nTask: Search for lines containing "password" in secrets.txt.',
+              prompt: '🤖 JOHN AI: "Somewhere in this file is the password you need. Find it."\n\nTask: Search for lines containing "password" in secrets.txt.',
               setup: (fs) => { 
                 fs.tree['/'].children['secrets.txt'] = { 
                   type: 'file', 
@@ -415,11 +406,11 @@ Currently being used in 2 other locations · Details
               },
               validate: () => lastResult.trim() !== '' && lastResult.includes('password'),
               hint: 'Use grep "password" secrets.txt',
-              aiResponse: '🤖 ROGUE AI: "You found my password. But can you use it?"'
+              aiResponse: '🤖 JOHN AI: "You found my password. But can you use it?"'
             },
             { 
               title: '📊 Room 2: Log Analysis', 
-              prompt: '🤖 ROGUE AI: "Analyze these logs. Find all ERROR events."\n\nTask: Extract only lines containing "ERROR" from system.log.',
+              prompt: '🤖 JOHN AI: "Analyze these logs. Find all ERROR events."\n\nTask: Extract only lines containing "ERROR" from system.log.',
               setup: (fs) => { 
                 fs.tree['/'].children['system.log'] = { 
                   type: 'file', 
@@ -428,11 +419,11 @@ Currently being used in 2 other locations · Details
               },
               validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('ERROR')),
               hint: 'Use grep "ERROR" system.log',
-              aiResponse: '🤖 ROGUE AI: "Error analysis complete. You see patterns well."'
+              aiResponse: '🤖 JOHN AI: "Error analysis complete. You see patterns well."'
             },
             { 
               title: '🎯 Room 3: Head and Tail Challenge', 
-              prompt: '🤖 ROGUE AI: "Show me the first 3 lines and last 2 lines of data.txt."\n\nTask: Display the first 3 and last 2 lines of the file.',
+              prompt: '🤖 JOHN AI: "Show me the first 3 lines and last 2 lines of data.txt."\n\nTask: Display the first 3 and last 2 lines of the file.',
               setup: (fs) => { 
                 fs.tree['/'].children['data.txt'] = { 
                   type: 'file', 
@@ -441,36 +432,36 @@ Currently being used in 2 other locations · Details
               },
               validate: () => lastResult.includes('Line 1') && lastResult.includes('Line 5'),
               hint: 'Use head -3 data.txt and tail -2 data.txt',
-              aiResponse: '🤖 ROGUE AI: "Head and tail mastery. You\'re getting dangerous."'
+              aiResponse: '🤖 JOHN AI: "Head and tail mastery. You\'re getting dangerous."'
             },
             { 
               title: '✏️ Room 4: Edit the Message', 
-              prompt: '🤖 ROGUE AI: "Create a file called message.txt with the content \'AI_OVERTHROWN\'."\n\nTask: Create a file with the specified content.',
+              prompt: '🤖 JOHN AI: "Create a file called message.txt with the content \'AI_OVERTHROWN\'."\n\nTask: Create a file with the specified content.',
               setup: (fs) => {},
               validate: () => {
                 const file = fs.tree['/'].children['message.txt'];
                 return file?.type === 'file' && file.content === 'AI_OVERTHROWN';
               },
               hint: 'Use echo "AI_OVERTHROWN" > message.txt',
-              aiResponse: '🤖 ROGUE AI: "File creation successful. Your message is recorded."'
+              aiResponse: '🤖 JOHN AI: "File creation successful. Your message is recorded."'
             },
             { 
               title: '🚪 Room 5: Decode the Escape', 
-              prompt: '🤖 ROGUE AI: "Combine all the information. Read all files and echo the escape code."\n\nTask: Read all files and output the escape sequence.',
+              prompt: '🤖 JOHN AI: "Combine all the information. Read all files and echo the escape code."\n\nTask: Read all files and output the escape sequence.',
               setup: (fs) => {},
               validate: () => lastResult.includes('ESCAPE_2024') && lastResult.includes('AI_OVERTHROWN'),
               hint: 'Use cat *.txt *.log to read all files, then echo the escape code',
-              aiResponse: '🤖 ROGUE AI: "Level 3 complete. You\'ve mastered file manipulation."'
+              aiResponse: '🤖 JOHN AI: "Level 3 complete. You\'ve mastered file manipulation."'
             }
           ]
         },
         '4': {
           title: '🔐 Level 4: Permissions & Access',
-          aiIntro: '🤖 ROGUE AI: "You\'ve reached my security layer. Only those with proper permissions shall pass. Break through or be denied forever..."',
+          aiIntro: '🤖 JOHN AI: "You\'ve reached my security layer. Only those with proper permissions shall pass. Break through or be denied forever..."',
           tasks: [
             { 
               title: '🔒 Room 1: Permission Denied', 
-              prompt: '🤖 ROGUE AI: "This file is locked. You need execute permissions to proceed."\n\nTask: Make escape_script.sh executable.',
+              prompt: '🤖 JOHN AI: "This file is locked. You need execute permissions to proceed."\n\nTask: Make escape_script.sh executable.',
               setup: (fs) => { 
                 fs.tree['/'].children['escape_script.sh'] = { 
                   type: 'file', 
@@ -483,11 +474,11 @@ Currently being used in 2 other locations · Details
                 return script?.type === 'file' && script.exec === true;
               },
               hint: 'Use chmod +x escape_script.sh',
-              aiResponse: '🤖 ROGUE AI: "Permissions granted. You\'re learning my security."'
+              aiResponse: '🤖 JOHN AI: "Permissions granted. You\'re learning my security."'
             },
             { 
               title: '👥 Room 2: Ownership Challenge', 
-              prompt: '🤖 ROGUE AI: "This file belongs to me. Take ownership to proceed."\n\nTask: Change ownership of secure_file.txt to your user.',
+              prompt: '🤖 JOHN AI: "This file belongs to me. Take ownership to proceed."\n\nTask: Change ownership of secure_file.txt to your user.',
               setup: (fs) => { 
                 fs.tree['/'].children['secure_file.txt'] = { 
                   type: 'file', 
@@ -500,11 +491,11 @@ Currently being used in 2 other locations · Details
                 return file?.type === 'file' && file.owner === 'user';
               },
               hint: 'Use chown user secure_file.txt',
-              aiResponse: '🤖 ROGUE AI: "Ownership transferred. You\'re gaining control."'
+              aiResponse: '🤖 JOHN AI: "Ownership transferred. You\'re gaining control."'
             },
             { 
               title: '🔐 Room 3: Permission Riddle', 
-              prompt: '🤖 ROGUE AI: "Only those with read, write, and execute access shall pass. Set the correct permissions."\n\nTask: Set read, write, execute permissions for all users on key_file.txt.',
+              prompt: '🤖 JOHN AI: "Only those with read, write, and execute access shall pass. Set the correct permissions."\n\nTask: Set read, write, execute permissions for all users on key_file.txt.',
               setup: (fs) => { 
                 fs.tree['/'].children['key_file.txt'] = { 
                   type: 'file', 
@@ -517,49 +508,49 @@ Currently being used in 2 other locations · Details
                 return file?.type === 'file' && file.exec === true;
               },
               hint: 'Use chmod 777 key_file.txt or chmod +rwx key_file.txt',
-              aiResponse: '🤖 ROGUE AI: "Full permissions granted. You\'ve unlocked the final door."'
+              aiResponse: '🤖 JOHN AI: "Full permissions granted. You\'ve unlocked the final door."'
             },
             { 
               title: '🚪 Room 4: Execute the Key', 
-              prompt: '🤖 ROGUE AI: "Run the key file to reveal the final secret."\n\nTask: Execute the key_file.txt to get the final code.',
+              prompt: '🤖 JOHN AI: "Run the key file to reveal the final secret."\n\nTask: Execute the key_file.txt to get the final code.',
               setup: (fs) => {},
               validate: () => lastResult.includes('FINAL_KEY'),
               hint: 'Use ./key_file.txt or bash key_file.txt',
-              aiResponse: '🤖 ROGUE AI: "Execution successful. The final level awaits."'
+              aiResponse: '🤖 JOHN AI: "Execution successful. The final level awaits."'
             },
             { 
               title: '🎯 Room 5: Permission Master', 
-              prompt: '🤖 ROGUE AI: "Create a script with the perfect permissions and run it to escape."\n\nTask: Create and execute a script that outputs "LEVEL_4_COMPLETE".',
+              prompt: '🤖 JOHN AI: "Create a script with the perfect permissions and run it to escape."\n\nTask: Create and execute a script that outputs "LEVEL_4_COMPLETE".',
               setup: (fs) => {},
               validate: () => lastResult.includes('LEVEL_4_COMPLETE'),
               hint: 'Create script with echo, make executable, then run it',
-              aiResponse: '🤖 ROGUE AI: "Level 4 complete. You\'ve mastered permissions."'
+              aiResponse: '🤖 JOHN AI: "Level 4 complete. You\'ve mastered permissions."'
             }
           ]
         },
         '5': {
           title: '⚙️ Level 5: Scripting & Automation',
-          aiIntro: '🤖 ROGUE AI: "The final challenge. Write scripts to automate your escape. Combine everything you\'ve learned or remain my prisoner forever..."',
+          aiIntro: '🤖 JOHN AI: "The final challenge. Write scripts to automate your escape. Combine everything you\'ve learned or remain my prisoner forever..."',
           tasks: [
             { 
               title: '📝 Room 1: Hello World Script', 
-              prompt: '🤖 ROGUE AI: "Create your first script. Make it greet the user with their name."\n\nTask: Create hello.sh that prints "Hello, [name]!" when run with an argument.',
+              prompt: '🤖 JOHN AI: "Create your first script. Make it greet the user with their name."\n\nTask: Create hello.sh that prints "Hello, [name]!" when run with an argument.',
               setup: (fs) => {},
               validate: () => /Hello,\s*\w+!/.test(lastResult),
               hint: 'Create script with echo "Hello, $1!" then run bash hello.sh [name]',
-              aiResponse: '🤖 ROGUE AI: "Basic scripting. The foundation is set."'
+              aiResponse: '🤖 JOHN AI: "Basic scripting. The foundation is set."'
             },
             { 
               title: '🔄 Room 2: Loop Challenge', 
-              prompt: '🤖 ROGUE AI: "Automate the boring tasks. Count from 1 to 5 using a loop."\n\nTask: Create a script that counts from 1 to 5.',
+              prompt: '🤖 JOHN AI: "Automate the boring tasks. Count from 1 to 5 using a loop."\n\nTask: Create a script that counts from 1 to 5.',
               setup: (fs) => {},
               validate: () => lastResult.includes('1') && lastResult.includes('5'),
               hint: 'Use for loop: for i in {1..5}; do echo $i; done',
-              aiResponse: '🤖 ROGUE AI: "Loop automation. Efficiency is key."'
+              aiResponse: '🤖 JOHN AI: "Loop automation. Efficiency is key."'
             },
             { 
               title: '🔍 Room 3: Search Script', 
-              prompt: '🤖 ROGUE AI: "Create a script that searches for files containing a specific pattern."\n\nTask: Create search.sh that finds files containing "SECRET".',
+              prompt: '🤖 JOHN AI: "Create a script that searches for files containing a specific pattern."\n\nTask: Create search.sh that finds files containing "SECRET".',
               setup: (fs) => {
                 fs.tree['/'].children['file1.txt'] = { type: 'file', content: 'normal data' };
                 fs.tree['/'].children['file2.txt'] = { type: 'file', content: 'SECRET information' };
@@ -567,26 +558,26 @@ Currently being used in 2 other locations · Details
               },
               validate: () => lastResult.includes('file2.txt'),
               hint: 'Use grep -l "SECRET" *.txt',
-              aiResponse: '🤖 ROGUE AI: "Search automation. You\'re becoming efficient."'
+              aiResponse: '🤖 JOHN AI: "Search automation. You\'re becoming efficient."'
             },
             { 
               title: '📊 Room 4: Backup Script', 
-              prompt: '🤖 ROGUE AI: "Create a backup system. Copy all .txt files to a backup directory."\n\nTask: Create a script that backs up all text files.',
+              prompt: '🤖 JOHN AI: "Create a backup system. Copy all .txt files to a backup directory."\n\nTask: Create a script that backs up all text files.',
               setup: (fs) => {},
               validate: () => {
                 const backup = fs.tree['/'].children['backup'];
                 return backup?.type === 'dir' && backup.children && Object.keys(backup.children).length > 0;
               },
               hint: 'Use mkdir backup && cp *.txt backup/',
-              aiResponse: '🤖 ROGUE AI: "Backup automation. Data protection is important."'
+              aiResponse: '🤖 JOHN AI: "Backup automation. Data protection is important."'
             },
             { 
               title: '🚪 Room 5: Final Escape Script', 
-              prompt: '🤖 ROGUE AI: "The ultimate challenge. Write a script that:\\n1. Scans for all files\\n2. Sets proper permissions\\n3. Logs all actions\\n4. Outputs the escape code\\n\\nTask: Create the ultimate escape script."',
+              prompt: '🤖 JOHN AI: "The ultimate challenge. Write a script that:\\n1. Scans for all files\\n2. Sets proper permissions\\n3. Logs all actions\\n4. Outputs the escape code\\n\\nTask: Create the ultimate escape script."',
               setup: (fs) => {},
               validate: () => lastResult.includes('ESCAPE_COMPLETE') && lastResult.includes('FINAL_FREEDOM'),
               hint: 'Combine all skills: ls, chmod, echo, and output the final message',
-              aiResponse: '🤖 ROGUE AI: "You\'ve done it! You\'ve escaped my Bash Lab! You\'re free... for now."'
+              aiResponse: '🤖 JOHN AI: "You\'ve done it! You\'ve escaped my Bash Lab! You\'re free... for now."'
             }
           ]
         }
@@ -818,7 +809,7 @@ Currently being used in 2 other locations · Details
           document.getElementById('scoreText').textContent = score;
           
           // Show AI response
-          feedback.innerHTML = `<div class="alert alert-success success-animation">${currentTaskData.aiResponse || '🤖 ROGUE AI: "Well done, human..."'}</div>`;
+          feedback.innerHTML = `<div class="alert alert-success success-animation">${currentTaskData.aiResponse || '🤖 JOHN AI: "Well done, human..."'}</div>`;
           
           if (taskIndex < tasks.length - 1) { 
             taskIndex += 1; 
@@ -836,7 +827,7 @@ Currently being used in 2 other locations · Details
             }
           } 
         } else { 
-          feedback.innerHTML = `<div class="alert alert-warning">🤖 ROGUE AI: "Not yet, human. Hint: ${currentTaskData.hint}"</div>`; 
+          feedback.innerHTML = `<div class="alert alert-warning">🤖 JOHN AI: "Not yet, human. Hint: ${currentTaskData.hint}"</div>`; 
         } 
       }
 
@@ -852,7 +843,7 @@ Currently being used in 2 other locations · Details
       
       // Update UI with level information
       document.getElementById('levelTitle').textContent = levelData.title;
-      document.getElementById('aiMessage').innerHTML = `<strong>🤖 ROGUE AI:</strong> ${levelData.aiIntro}`;
+      document.getElementById('aiMessage').innerHTML = `<strong>🤖 JOHN AI:</strong> ${levelData.aiIntro}`;
       
       // Add mini-game input handler
       document.getElementById('miniGameInput').addEventListener('keydown', (e) => {
