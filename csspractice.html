@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>CSS Practice - Lernix</title>
+  <meta name="description" content="Interactive CSS practice challenges">
+  <meta name="keywords" content="css, practice, challenges, interactive">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .challenge { display: none; }
+  </style>
+</head>
+<body class="course-details-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Lernix</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">CSS Practice Challenges</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="current">Practice</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Challenges Container -->
+        <div class="col-lg-12">
+          <article id="practice" class="mb-5" data-aos="fade-up" data-aos-delay="150">
+            <h3>CSS Practice Challenges</h3>
+            <p>Complete the challenges below. Use <strong>Next</strong> and <strong>Previous</strong> to navigate.</p>
+
+            <!-- Challenge 1 -->
+            <div class="challenge" id="challenge-1">
+              <h5>1️⃣ Change the color of this heading to purple using CSS selectors</h5>
+              <textarea id="practice-ch1-code" style="width:100%; height:120px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<h2 class="challenge1">Hello, Lernix!</h2>
+<style>
+/* Write your CSS here */
+</style>
+              </textarea>
+              <button class="btn btn-primary mt-2" onclick="runPractice(1)">Run Code</button>
+              <iframe id="practice-ch1-output" style="width:100%; height:80px; border:1px solid #ccc; margin-top:10px; border-radius:5px;"></iframe>
+              <div class="mt-3 d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevChallenge()">Previous</button>
+                <button class="btn btn-success" onclick="nextChallenge()">Next</button>
+              </div>
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="challenge" id="challenge-2">
+              <h5>2️⃣ Create a red box of 150x150px with 20px padding and 10px border</h5>
+              <textarea id="practice-ch2-code" style="width:100%; height:120px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<div class="box2">Box</div>
+<style>
+/* Write your CSS here */
+</style>
+              </textarea>
+              <button class="btn btn-primary mt-2" onclick="runPractice(2)">Run Code</button>
+              <iframe id="practice-ch2-output" style="width:100%; height:100px; border:1px solid #ccc; margin-top:10px; border-radius:5px;"></iframe>
+              <div class="mt-3 d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevChallenge()">Previous</button>
+                <button class="btn btn-success" onclick="nextChallenge()">Next</button>
+              </div>
+            </div>
+
+            <!-- Challenge 3 -->
+            <div class="challenge" id="challenge-3">
+              <h5>3️⃣ Arrange three boxes horizontally with equal spacing using Flexbox</h5>
+              <textarea id="practice-ch3-code" style="width:100%; height:120px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<div class="flex-container">
+  <div class="flex-item">1</div>
+  <div class="flex-item">2</div>
+  <div class="flex-item">3</div>
+</div>
+<style>
+/* Write your CSS here */
+</style>
+              </textarea>
+              <button class="btn btn-primary mt-2" onclick="runPractice(3)">Run Code</button>
+              <iframe id="practice-ch3-output" style="width:100%; height:100px; border:1px solid #ccc; margin-top:10px; border-radius:5px;"></iframe>
+              <div class="mt-3 d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevChallenge()">Previous</button>
+                <button class="btn btn-success" onclick="nextChallenge()">Next</button>
+              </div>
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="challenge" id="challenge-4">
+              <h5>4️⃣ Make a button change color smoothly on hover using CSS transition</h5>
+              <textarea id="practice-ch4-code" style="width:100%; height:120px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<button class="trans-btn">Hover me!</button>
+<style>
+/* Write your CSS here */
+</style>
+              </textarea>
+              <button class="btn btn-primary mt-2" onclick="runPractice(4)">Run Code</button>
+              <iframe id="practice-ch4-output" style="width:100%; height:80px; border:1px solid #ccc; margin-top:10px; border-radius:5px;"></iframe>
+              <div class="mt-3 d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevChallenge()">Previous</button>
+                <button class="btn btn-success" onclick="nextChallenge()">Next</button>
+              </div>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div class="challenge" id="challenge-5">
+              <h5>5️⃣ Animate a box moving left to right using keyframes</h5>
+              <textarea id="practice-ch5-code" style="width:100%; height:120px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+<div class="anim-box"></div>
+<style>
+/* Write your CSS here */
+</style>
+              </textarea>
+              <button class="btn btn-primary mt-2" onclick="runPractice(5)">Run Code</button>
+              <iframe id="practice-ch5-output" style="width:100%; height:100px; border:1px solid #ccc; margin-top:10px; border-radius:5px;"></iframe>
+              <div class="mt-3 d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevChallenge()">Previous</button>
+                <button class="btn btn-success" onclick="alert('You have completed all challenges!')">Finish</button>
+              </div>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center"><span class="sitename">Lernix</span></a>
+          <p>Learn CSS with step-by-step lessons and interactive practice exercises.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari, Kathmandu, Nepal</p>
+          <p class="mt-2"><strong>Phone:</strong> +977 9876543210</p>
+          <p><strong>Email:</strong> info@lernix.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Lernix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    let currentChallenge = 1;
+    const totalChallenges = 5;
+
+    // Show first challenge initially
+    document.getElementById(`challenge-${currentChallenge}`).style.display = 'block';
+
+    function runPractice(num) {
+      const code = document.getElementById(`practice-ch${num}-code`).value;
+      document.getElementById(`practice-ch${num}-output`).srcdoc = code;
+    }
+
+    function nextChallenge() {
+      if(currentChallenge < totalChallenges){
+        document.getElementById(`challenge-${currentChallenge}`).style.display = 'none';
+        currentChallenge++;
+        document.getElementById(`challenge-${currentChallenge}`).style.display = 'block';
+      }
+    }
+
+    function prevChallenge() {
+      if(currentChallenge > 1){
+        document.getElementById(`challenge-${currentChallenge}`).style.display = 'none';
+        currentChallenge--;
+        document.getElementById(`challenge-${currentChallenge}`).style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
