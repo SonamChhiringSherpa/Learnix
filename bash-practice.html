@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Bash Practice Puzzles</title>
-  <meta name="description" content="Interactive Bash puzzles with a simulated terminal to practice commands.">
-  <meta name="keywords" content="bash practice, bash puzzles, terminal, linux, shell">
+  <title>🧪 Bash Lab - Escape the JOHN AI</title>
+  <meta name="description" content="Trapped in a mysterious Bash Lab by a JOHN AI. Solve command-line puzzles to escape!">
+  <meta name="keywords" content="bash game, bash lab, terminal escape, linux game, shell puzzles">
 
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -16,11 +16,99 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
   <style>
-    .terminal { background: #0b1620; color: #d6e9ff; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; border-radius: 8px; min-height: 240px; padding: 12px; overflow: auto; white-space: pre-wrap; }
-    .prompt-line { color: #8ab4f8; }
+    .terminal { 
+      background: #0b1620; 
+      color: #d6e9ff; 
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+      border-radius: 8px; 
+      min-height: 240px; 
+      padding: 12px; 
+      overflow: auto; 
+      white-space: pre-wrap;
+      border: 2px solid #ff4444;
+      box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+    }
+    .prompt-line { color: #ff4444; font-weight: bold; }
     .terminal .output { color: #cfe5ff; }
-    .terminal-input { background: #0b1620; color: #e8f1ff; border: none; outline: none; width: 100%; font-family: inherit; }
+    .terminal-input { 
+      background: #0b1620; 
+      color: #e8f1ff; 
+      border: none; 
+      outline: none; 
+      width: 100%; 
+      font-family: inherit;
+      border-left: 3px solid #ff4444;
+      padding-left: 8px;
+    }
     .badge-task { font-size: .8rem; }
+    .ai-message { 
+      background: linear-gradient(135deg, #ff4444, #cc0000);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 5px solid #ff0000;
+      animation: pulse 2s infinite;
+    }
+    .level-indicator {
+      background: linear-gradient(45deg, #ff4444, #ff8800);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .game-ui {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #ff4444;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .progress-bar {
+      background: #333;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, #ff4444, #ff8800);
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .mini-game {
+      background: #1a1a1a;
+      border: 2px solid #ff4444;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .falling-command {
+      position: absolute;
+      color: #ff4444;
+      font-family: monospace;
+      font-weight: bold;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes fall {
+      from { top: -50px; }
+      to { top: 100%; }
+    }
+    .success-animation {
+      animation: success 1s ease-in-out;
+    }
+    @keyframes success {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
   </style>
 </head>
 
@@ -48,12 +136,12 @@
   <main class="main">
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Bash Practice Puzzles</h1>
+        <h1 class="mb-2 mb-lg-0">🧪 Bash Lab - Escape the JOHN AI</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="courses.html">Courses</a></li>
             <li><a href="bash-course.html">Bash</a></li>
-            <li class="current">Practice</li>
+            <li class="current">Lab Escape</li>
           </ol>
         </nav>
       </div>
@@ -61,39 +149,70 @@
 
     <section class="section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- AI Message -->
+        <div id="aiMessage" class="ai-message">
+          <strong>🤖 JOHN AI:</strong> Welcome to my Bash Lab, human. You're trapped here until you prove your worth. Solve my challenges or remain forever...
+        </div>
+
+        <!-- Game UI -->
+        <div class="game-ui">
+          <div class="level-indicator">
+            <span id="levelTitle">🧪 Level 1: Introduction to Bash</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span>Progress: <span id="progressText">0/5</span></span>
+            <span>Score: <span id="scoreText">0</span></span>
+          </div>
+        </div>
+
         <div class="row g-4">
           <div class="col-lg-4">
             <div class="card">
-              <div class="card-header"><strong>Tasks</strong></div>
+              <div class="card-header"><strong>🏃‍♂️ Escape Route</strong></div>
               <div class="list-group list-group-flush" id="taskList">
                 <!-- Tasks will be injected based on lesson -->
               </div>
             </div>
-            <div class="alert alert-info mt-3 mb-0 small">
-              Use valid Bash commands only. Each task validates your command.
+            <div class="alert alert-warning mt-3 mb-0 small">
+              <strong>⚠️ WARNING:</strong> The AI is watching. Use valid Bash commands to escape each room.
             </div>
           </div>
 
           <div class="col-lg-8">
             <div class="card">
               <div class="card-header d-flex justify-content-between align-items-center">
-                <strong>Simulated Terminal</strong>
+                <strong>🔒 Locked Terminal</strong>
                 <div>
-                  <button id="resetBtn" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+                  <button id="resetBtn" class="btn btn-sm btn-outline-danger"><i class="bi bi-arrow-counterclockwise"></i> Restart Room</button>
                 </div>
               </div>
               <div class="card-body">
-                <div id="prompt" class="alert alert-primary mb-3 small" role="alert" style="white-space:pre-wrap"></div>
+                <div id="prompt" class="alert alert-danger mb-3 small" role="alert" style="white-space:pre-wrap"></div>
                 <div id="terminal" class="terminal" aria-live="polite"></div>
                 <div class="d-flex align-items-center mt-2">
                   <span class="prompt-line me-2">$</span>
-                  <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" placeholder="Type a command and press Enter" />
+                  <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" placeholder="Type your escape command..." />
                 </div>
                 <div id="feedback" class="mt-3"></div>
                 <div class="d-flex gap-2 mt-2">
-                  <button id="checkBtn" class="btn btn-primary">Check</button>
-                  <a href="bash-course.html" class="btn btn-outline-primary">Back to Lessons</a>
+                  <button id="checkBtn" class="btn btn-danger">🔓 Attempt Escape</button>
+                  <a href="bash-course.html" class="btn btn-outline-secondary">🏃‍♂️ Abandon Mission</a>
                 </div>
+              </div>
+            </div>
+
+            <!-- Mini-Game Container -->
+            <div id="miniGameContainer" class="mini-game" style="display: none;">
+              <h5>🎮 Type-the-Command Challenge</h5>
+              <div id="miniGameArea" style="position: relative; height: 200px; border: 2px solid #ff4444; border-radius: 8px; overflow: hidden;">
+                <!-- Falling commands will appear here -->
+              </div>
+              <div class="mt-2">
+                <input id="miniGameInput" type="text" class="form-control" placeholder="Type the falling command..." style="display: none;">
+                <div id="miniGameScore">Score: 0</div>
               </div>
             </div>
           </div>
@@ -126,7 +245,7 @@
           <p>New York, NY 535022</p>
           <p>United States</p>
           <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
         </div>
       </div>
     </div>
@@ -159,35 +278,384 @@
       let taskIndex = 0;
       let lastResult = '';
 
-      // Levels by lesson for the 🎮 Bash Breaker game
-      const LESSON_LEVELS = {
-        '1': [
-          { title: 'Explorer: Where am I?', prompt: 'You just logged into a remote system.\nTask: Print the current working directory.', setup: (fs) => {}, validate: () => lastResult.trim() === '/', hint: 'Use pwd' },
-          { title: 'Intel: List the drop zone', prompt: 'The drop zone might contain files left by an insider.\nTask: List the names in the current directory.', setup: (fs) => { fs.tree['/'].children['alpha'] = { type: 'file', content: '' }; fs.tree['/'].children['beta'] = { type: 'file', content: '' }; }, validate: () => /alpha/.test(lastResult) && /beta/.test(lastResult), hint: 'Use ls' }
-        ],
-        '2': [
-          { title: 'Create a project folder', prompt: '🧰 Setup\nTask: Create a directory named "playground" in the current folder.', setup: (fs) => {}, validate: () => fs.tree['/'].children['playground']?.type === 'dir', hint: 'Use mkdir playground' },
-          { title: 'Create notes.txt', prompt: '📄 Files\nTask: Inside "playground", create a file named notes.txt (can be empty).', setup: (fs) => {}, validate: () => fs.tree['/'].children['playground']?.children?.['notes.txt']?.type === 'file', hint: 'Try: echo "" > playground/notes.txt or touch playground/notes.txt' },
-          { title: 'Append Hello', prompt: '✏️ Edit\nTask: Append the line "Hello" to playground/notes.txt.', setup: (fs) => {}, validate: () => { const f = fs.tree['/'].children['playground']?.children?.['notes.txt']; return f?.type === 'file' && /(^|\n)Hello(\n|$)/.test(f.content || ''); }, hint: 'Use echo "Hello" >> playground/notes.txt' },
-          { title: 'Investigator: Stash the secret', prompt: '🕵️ Scenario\nTask: Create a file playground/secret.txt with the exact content TOP-SECRET (single line).', setup: (fs) => {}, validate: () => { const f = fs.tree['/'].children['playground']?.children?.['secret.txt']; return f?.type === 'file' && (f.content || '').trim() === 'TOP-SECRET'; }, hint: 'Use echo "TOP-SECRET" > playground/secret.txt' },
-          { title: 'Organizer: Two artifacts', prompt: '📦 Task\nCreate two files inside playground named a.txt and b.txt.', setup: (fs) => {}, validate: () => { const p = fs.tree['/'].children['playground']; return p?.children?.['a.txt']?.type === 'file' && p?.children?.['b.txt']?.type === 'file'; }, hint: 'Use touch playground/a.txt and touch playground/b.txt' }
-        ],
-        '3': [
-          { title: 'Hacker: Leak the Password', prompt: '🎮 Scenario: You are a hacker in a CTF challenge.\nA file named secrets.txt might contain a password.\nTask: Print the line that contains the word "password" (case-sensitive).', setup: (fs) => { fs.tree['/'].children['secrets.txt'] = { type: 'file', content: 'note: do not share\nuser: alice\npassword=AlpHa!234\nbackup: weekly' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('password')), hint: 'Try: grep "password" secrets.txt' },
-          { title: 'Forensics: Find Failed Logins', prompt: '🔍 Scenario: Incident response. You need to list all failed logins.\nFile: logs.txt\nTask: Print only the lines that contain the word "FAILED".', setup: (fs) => { fs.tree['/'].children['logs.txt'] = { type: 'file', content: '2025-01-01 INFO service started\n2025-01-01 FAILED password for invalid user root\n2025-01-01 SUCCESS login for alice\n2025-01-02 FAILED login attempt from 10.0.0.5' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('FAILED')), hint: 'Use grep "FAILED" logs.txt' },
-          { title: 'DevOps: Who Uses 8080?', prompt: '🛠️ Scenario: Port audit. Which service uses port 8080?\nFile: services.txt\nTask: Print the line(s) that mention 8080.', setup: (fs) => { fs.tree['/'].children['services.txt'] = { type: 'file', content: 'web:80\napi:8080\nadmin:3000' }; }, validate: () => /8080/.test(lastResult), hint: 'grep 8080 services.txt' },
-          { title: 'Analyst: Show ERROR lines', prompt: '📊 Scenario: Log analysis. Extract all ERROR events.\nFile: app.log\nTask: Print only lines that contain "ERROR".', setup: (fs) => { fs.tree['/'].children['app.log'] = { type: 'file', content: 'INFO starting up\nWARN low memory\nERROR db timeout\nINFO ready\nERROR cache miss' }; }, validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('ERROR')), hint: 'grep "ERROR" app.log' },
-          { title: 'CyberSec: API Keys Hunt', prompt: '🧪 Scenario: Secrets review. Extract API key mentions.\nFile: keys.txt\nTask: Print the line(s) that contain "API_KEY".', setup: (fs) => { fs.tree['/'].children['keys.txt'] = { type: 'file', content: 'token=abcd\nAPI_KEY=pk_test_12345\nowner=bob' }; }, validate: () => /API_KEY/.test(lastResult) && lastResult.split('\n').every(l => l.includes('API_KEY')), hint: 'grep "API_KEY" keys.txt' }
-        ],
-        '4': [
-          { title: 'Make an executable script', prompt: '🔐 Permissions\nTask: Create script.sh and make it executable.', setup: (fs) => {}, validate: () => { const s = fs.tree['/'].children['script.sh']; return s?.type === 'file' && s.exec === true; }, hint: 'Use touch script.sh then chmod +x script.sh' },
-          { title: 'Deploy rights', prompt: '🚀 Scenario\nA file deploy.sh exists but is not executable.\nTask: Make deploy.sh executable.', setup: (fs) => { fs.tree['/'].children['deploy.sh'] = { type: 'file', content: 'echo Deploy', exec: false }; }, validate: () => { const s = fs.tree['/'].children['deploy.sh']; return s?.type === 'file' && s.exec === true; }, hint: 'chmod +x deploy.sh' }
-        ],
-        '5': [
-          { title: 'Greeter Script (Alice)', prompt: '👋 Task\nCreate hello.sh that prints "Hello, Alice!" when run with argument Alice.', setup: (fs) => {}, validate: () => /Hello,\s*Alice!/.test(lastResult), hint: 'Write a script then run: bash hello.sh Alice' },
-          { title: 'Greeter Script (Bob)', prompt: '👋 Task\nUpdate or reuse hello.sh so it prints "Hello, Bob!" when run with argument Bob.', setup: (fs) => {}, validate: () => /Hello,\s*Bob!/.test(lastResult), hint: 'bash hello.sh Bob' }
-        ]
+      // 🧪 BASH LAB - Escape the JOHN AI Game Levels
+      const BASH_LAB_LEVELS = {
+        '1': {
+          title: '🧪 Level 1: Introduction to Bash',
+          aiIntro: '🤖 JOHN AI: Welcome to my first challenge room. You\'re trapped in a locked terminal. Prove you can navigate or stay here forever...',
+          tasks: [
+            { 
+              title: '🔍 Room 1: Find Your Location', 
+              prompt: '🤖 JOHN AI: "You\'re lost in my maze. First, tell me where you are."\n\nTask: Print your current working directory to show the AI you know where you are.',
+              setup: (fs) => {},
+              validate: () => lastResult.trim() === '/',
+              hint: 'Use pwd to print working directory',
+              aiResponse: '🤖 JOHN AI: "Hmm, you know where you are. Not bad for a human..."'
+            },
+            { 
+              title: '📋 Room 2: List the Drop Zone', 
+              prompt: '🤖 JOHN AI: "I\'ve left some files in this room. Find them all."\n\nTask: List all files and directories in the current location.',
+              setup: (fs) => { 
+                fs.tree['/'].children['escape_key.txt'] = { type: 'file', content: 'KEY_001' }; 
+                fs.tree['/'].children['hidden_folder'] = { type: 'dir', children: {} }; 
+              },
+              validate: () => /escape_key\.txt/.test(lastResult) && /hidden_folder/.test(lastResult),
+              hint: 'Use ls to list directory contents',
+              aiResponse: '🤖 JOHN AI: "You found my files. The escape key is getting closer..."'
+            },
+            { 
+              title: '🎮 Room 3: Type-the-Command Challenge', 
+              prompt: '🤖 JOHN AI: "Now for some fun! Commands are falling from the ceiling. Type them before they hit the ground!"\n\nMini-Game: Type the falling commands to earn points.',
+              setup: (fs) => { startMiniGame(); },
+              validate: () => miniGameScore >= 3,
+              hint: 'Type the commands exactly as they appear',
+              aiResponse: '🤖 JOHN AI: "Your typing skills are... acceptable. You may proceed."',
+              isMiniGame: true
+            },
+            { 
+              title: '🧹 Room 4: Clear the Terminal', 
+              prompt: '🤖 JOHN AI: "Clean up after yourself. Clear this messy terminal."\n\nTask: Clear the terminal screen.',
+              setup: (fs) => {},
+              validate: () => terminal.innerText.trim() === '',
+              hint: 'Use clear to clean the terminal',
+              aiResponse: '🤖 JOHN AI: "A clean workspace. I respect that."'
+            },
+            { 
+              title: '🚪 Room 5: Escape the First Level', 
+              prompt: '🤖 JOHN AI: "You\'ve proven basic competence. But can you echo your way to freedom?"\n\nTask: Print "ESCAPE_LEVEL_1" to unlock the door.',
+              setup: (fs) => {},
+              validate: () => lastResult.trim() === 'ESCAPE_LEVEL_1',
+              hint: 'Use echo "ESCAPE_LEVEL_1"',
+              aiResponse: '🤖 JOHN AI: "Level 1 complete. But my next challenge will be much harder..."'
+            }
+          ]
+        },
+        '2': {
+          title: '📁 Level 2: Files & Directories Maze',
+          aiIntro: '🤖 JOHN AI: "Welcome to my file system maze. Navigate through my folders or get lost forever in the directory structure..."',
+          tasks: [
+            { 
+              title: '🏗️ Room 1: Create Your Base', 
+              prompt: '🤖 JOHN AI: "You need a base of operations. Create a directory called \'escape_base\'."\n\nTask: Create a directory named escape_base.',
+              setup: (fs) => {},
+              validate: () => fs.tree['/'].children['escape_base']?.type === 'dir',
+              hint: 'Use mkdir escape_base',
+              aiResponse: '🤖 JOHN AI: "A base of operations. Smart thinking, human."'
+            },
+            { 
+              title: '📄 Room 2: Create Evidence Files', 
+              prompt: '🤖 JOHN AI: "Leave evidence of your presence. Create files named \'clue1.txt\' and \'clue2.txt\' in your base."\n\nTask: Create two text files in the escape_base directory.',
+              setup: (fs) => {},
+              validate: () => {
+                const base = fs.tree['/'].children['escape_base'];
+                return base?.children?.['clue1.txt']?.type === 'file' && base?.children?.['clue2.txt']?.type === 'file';
+              },
+              hint: 'Use touch escape_base/clue1.txt and touch escape_base/clue2.txt',
+              aiResponse: '🤖 JOHN AI: "Evidence files created. You\'re leaving a trail..."'
+            },
+            { 
+              title: '🔍 Room 3: The Wildcard Challenge', 
+              prompt: '🤖 JOHN AI: "I\'ve scattered 10 files in this room. Only the .log files contain the next clue."\n\nTask: Find and move all .log files to escape_base using wildcards.',
+              setup: (fs) => {
+                fs.tree['/'].children['file1.txt'] = { type: 'file', content: '' };
+                fs.tree['/'].children['file2.log'] = { type: 'file', content: 'CLUE_2A' };
+                fs.tree['/'].children['file3.txt'] = { type: 'file', content: '' };
+                fs.tree['/'].children['file4.log'] = { type: 'file', content: 'CLUE_2B' };
+                fs.tree['/'].children['file5.txt'] = { type: 'file', content: '' };
+              },
+              validate: () => {
+                const base = fs.tree['/'].children['escape_base'];
+                return base?.children?.['file2.log']?.type === 'file' && base?.children?.['file4.log']?.type === 'file';
+              },
+              hint: 'Use mv *.log escape_base/',
+              aiResponse: '🤖 JOHN AI: "Wildcard mastery. You\'re learning my patterns..."'
+            },
+            { 
+              title: '🗑️ Room 4: Clean Up', 
+              prompt: '🤖 JOHN AI: "Remove the evidence. Delete all .txt files from the root directory."\n\nTask: Remove all .txt files using wildcards.',
+              setup: (fs) => {},
+              validate: () => {
+                const root = fs.tree['/'];
+                return !Object.keys(root.children).some(name => name.endsWith('.txt'));
+              },
+              hint: 'Use rm *.txt',
+              aiResponse: '🤖 JOHN AI: "Clean removal. No traces left behind."'
+            },
+            { 
+              title: '🚪 Room 5: Navigate to Freedom', 
+              prompt: '🤖 JOHN AI: "Navigate to your base and read the clues. Then echo the combined message."\n\nTask: Change to escape_base, read the log files, and echo the combined content.',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('CLUE_2A') && lastResult.includes('CLUE_2B'),
+              hint: 'Use cd escape_base, then cat *.log, then echo the combined content',
+              aiResponse: '🤖 JOHN AI: "Level 2 complete. The file system is your playground now."'
+            }
+          ]
+        },
+        '3': {
+          title: '📄 Level 3: Viewing & Editing Files',
+          aiIntro: '🤖 JOHN AI: "Now for the real challenge. Hidden in my files are the secrets you need to escape. Find them or remain trapped..."',
+          tasks: [
+            { 
+              title: '🔍 Room 1: Find the Password', 
+              prompt: '🤖 JOHN AI: "Somewhere in this file is the password you need. Find it."\n\nTask: Search for lines containing "password" in secrets.txt.',
+              setup: (fs) => { 
+                fs.tree['/'].children['secrets.txt'] = { 
+                  type: 'file', 
+                  content: 'user: admin\nnote: do not share\npassword=ESCAPE_2024\nbackup: weekly\nstatus: active' 
+                }; 
+              },
+              validate: () => lastResult.trim() !== '' && lastResult.includes('password'),
+              hint: 'Use grep "password" secrets.txt',
+              aiResponse: '🤖 JOHN AI: "You found my password. But can you use it?"'
+            },
+            { 
+              title: '📊 Room 2: Log Analysis', 
+              prompt: '🤖 JOHN AI: "Analyze these logs. Find all ERROR events."\n\nTask: Extract only lines containing "ERROR" from system.log.',
+              setup: (fs) => { 
+                fs.tree['/'].children['system.log'] = { 
+                  type: 'file', 
+                  content: 'INFO: System startup\nERROR: Database connection failed\nWARN: Low memory\nERROR: Authentication timeout\nINFO: Service ready' 
+                }; 
+              },
+              validate: () => lastResult.trim() !== '' && lastResult.split('\n').every(l => l.includes('ERROR')),
+              hint: 'Use grep "ERROR" system.log',
+              aiResponse: '🤖 JOHN AI: "Error analysis complete. You see patterns well."'
+            },
+            { 
+              title: '🎯 Room 3: Head and Tail Challenge', 
+              prompt: '🤖 JOHN AI: "Show me the first 3 lines and last 2 lines of data.txt."\n\nTask: Display the first 3 and last 2 lines of the file.',
+              setup: (fs) => { 
+                fs.tree['/'].children['data.txt'] = { 
+                  type: 'file', 
+                  content: 'Line 1: Start\nLine 2: Middle\nLine 3: Important\nLine 4: Data\nLine 5: End' 
+                }; 
+              },
+              validate: () => lastResult.includes('Line 1') && lastResult.includes('Line 5'),
+              hint: 'Use head -3 data.txt and tail -2 data.txt',
+              aiResponse: '🤖 JOHN AI: "Head and tail mastery. You\'re getting dangerous."'
+            },
+            { 
+              title: '✏️ Room 4: Edit the Message', 
+              prompt: '🤖 JOHN AI: "Create a file called message.txt with the content \'AI_OVERTHROWN\'."\n\nTask: Create a file with the specified content.',
+              setup: (fs) => {},
+              validate: () => {
+                const file = fs.tree['/'].children['message.txt'];
+                return file?.type === 'file' && file.content === 'AI_OVERTHROWN';
+              },
+              hint: 'Use echo "AI_OVERTHROWN" > message.txt',
+              aiResponse: '🤖 JOHN AI: "File creation successful. Your message is recorded."'
+            },
+            { 
+              title: '🚪 Room 5: Decode the Escape', 
+              prompt: '🤖 JOHN AI: "Combine all the information. Read all files and echo the escape code."\n\nTask: Read all files and output the escape sequence.',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('ESCAPE_2024') && lastResult.includes('AI_OVERTHROWN'),
+              hint: 'Use cat *.txt *.log to read all files, then echo the escape code',
+              aiResponse: '🤖 JOHN AI: "Level 3 complete. You\'ve mastered file manipulation."'
+            }
+          ]
+        },
+        '4': {
+          title: '🔐 Level 4: Permissions & Access',
+          aiIntro: '🤖 JOHN AI: "You\'ve reached my security layer. Only those with proper permissions shall pass. Break through or be denied forever..."',
+          tasks: [
+            { 
+              title: '🔒 Room 1: Permission Denied', 
+              prompt: '🤖 JOHN AI: "This file is locked. You need execute permissions to proceed."\n\nTask: Make escape_script.sh executable.',
+              setup: (fs) => { 
+                fs.tree['/'].children['escape_script.sh'] = { 
+                  type: 'file', 
+                  content: 'echo "ACCESS_GRANTED"',
+                  exec: false 
+                }; 
+              },
+              validate: () => {
+                const script = fs.tree['/'].children['escape_script.sh'];
+                return script?.type === 'file' && script.exec === true;
+              },
+              hint: 'Use chmod +x escape_script.sh',
+              aiResponse: '🤖 JOHN AI: "Permissions granted. You\'re learning my security."'
+            },
+            { 
+              title: '👥 Room 2: Ownership Challenge', 
+              prompt: '🤖 JOHN AI: "This file belongs to me. Take ownership to proceed."\n\nTask: Change ownership of secure_file.txt to your user.',
+              setup: (fs) => { 
+                fs.tree['/'].children['secure_file.txt'] = { 
+                  type: 'file', 
+                  content: 'SECRET_DATA',
+                  owner: 'ai' 
+                }; 
+              },
+              validate: () => {
+                const file = fs.tree['/'].children['secure_file.txt'];
+                return file?.type === 'file' && file.owner === 'user';
+              },
+              hint: 'Use chown user secure_file.txt',
+              aiResponse: '🤖 JOHN AI: "Ownership transferred. You\'re gaining control."'
+            },
+            { 
+              title: '🔐 Room 3: Permission Riddle', 
+              prompt: '🤖 JOHN AI: "Only those with read, write, and execute access shall pass. Set the correct permissions."\n\nTask: Set read, write, execute permissions for all users on key_file.txt.',
+              setup: (fs) => { 
+                fs.tree['/'].children['key_file.txt'] = { 
+                  type: 'file', 
+                  content: 'FINAL_KEY',
+                  exec: false 
+                }; 
+              },
+              validate: () => {
+                const file = fs.tree['/'].children['key_file.txt'];
+                return file?.type === 'file' && file.exec === true;
+              },
+              hint: 'Use chmod 777 key_file.txt or chmod +rwx key_file.txt',
+              aiResponse: '🤖 JOHN AI: "Full permissions granted. You\'ve unlocked the final door."'
+            },
+            { 
+              title: '🚪 Room 4: Execute the Key', 
+              prompt: '🤖 JOHN AI: "Run the key file to reveal the final secret."\n\nTask: Execute the key_file.txt to get the final code.',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('FINAL_KEY'),
+              hint: 'Use ./key_file.txt or bash key_file.txt',
+              aiResponse: '🤖 JOHN AI: "Execution successful. The final level awaits."'
+            },
+            { 
+              title: '🎯 Room 5: Permission Master', 
+              prompt: '🤖 JOHN AI: "Create a script with the perfect permissions and run it to escape."\n\nTask: Create and execute a script that outputs "LEVEL_4_COMPLETE".',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('LEVEL_4_COMPLETE'),
+              hint: 'Create script with echo, make executable, then run it',
+              aiResponse: '🤖 JOHN AI: "Level 4 complete. You\'ve mastered permissions."'
+            }
+          ]
+        },
+        '5': {
+          title: '⚙️ Level 5: Scripting & Automation',
+          aiIntro: '🤖 JOHN AI: "The final challenge. Write scripts to automate your escape. Combine everything you\'ve learned or remain my prisoner forever..."',
+          tasks: [
+            { 
+              title: '📝 Room 1: Hello World Script', 
+              prompt: '🤖 JOHN AI: "Create your first script. Make it greet the user with their name."\n\nTask: Create hello.sh that prints "Hello, [name]!" when run with an argument.',
+              setup: (fs) => {},
+              validate: () => /Hello,\s*\w+!/.test(lastResult),
+              hint: 'Create script with echo "Hello, $1!" then run bash hello.sh [name]',
+              aiResponse: '🤖 JOHN AI: "Basic scripting. The foundation is set."'
+            },
+            { 
+              title: '🔄 Room 2: Loop Challenge', 
+              prompt: '🤖 JOHN AI: "Automate the boring tasks. Count from 1 to 5 using a loop."\n\nTask: Create a script that counts from 1 to 5.',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('1') && lastResult.includes('5'),
+              hint: 'Use for loop: for i in {1..5}; do echo $i; done',
+              aiResponse: '🤖 JOHN AI: "Loop automation. Efficiency is key."'
+            },
+            { 
+              title: '🔍 Room 3: Search Script', 
+              prompt: '🤖 JOHN AI: "Create a script that searches for files containing a specific pattern."\n\nTask: Create search.sh that finds files containing "SECRET".',
+              setup: (fs) => {
+                fs.tree['/'].children['file1.txt'] = { type: 'file', content: 'normal data' };
+                fs.tree['/'].children['file2.txt'] = { type: 'file', content: 'SECRET information' };
+                fs.tree['/'].children['file3.txt'] = { type: 'file', content: 'more data' };
+              },
+              validate: () => lastResult.includes('file2.txt'),
+              hint: 'Use grep -l "SECRET" *.txt',
+              aiResponse: '🤖 JOHN AI: "Search automation. You\'re becoming efficient."'
+            },
+            { 
+              title: '📊 Room 4: Backup Script', 
+              prompt: '🤖 JOHN AI: "Create a backup system. Copy all .txt files to a backup directory."\n\nTask: Create a script that backs up all text files.',
+              setup: (fs) => {},
+              validate: () => {
+                const backup = fs.tree['/'].children['backup'];
+                return backup?.type === 'dir' && backup.children && Object.keys(backup.children).length > 0;
+              },
+              hint: 'Use mkdir backup && cp *.txt backup/',
+              aiResponse: '🤖 JOHN AI: "Backup automation. Data protection is important."'
+            },
+            { 
+              title: '🚪 Room 5: Final Escape Script', 
+              prompt: '🤖 JOHN AI: "The ultimate challenge. Write a script that:\\n1. Scans for all files\\n2. Sets proper permissions\\n3. Logs all actions\\n4. Outputs the escape code\\n\\nTask: Create the ultimate escape script."',
+              setup: (fs) => {},
+              validate: () => lastResult.includes('ESCAPE_COMPLETE') && lastResult.includes('FINAL_FREEDOM'),
+              hint: 'Combine all skills: ls, chmod, echo, and output the final message',
+              aiResponse: '🤖 JOHN AI: "You\'ve done it! You\'ve escaped my Bash Lab! You\'re free... for now."'
+            }
+          ]
+        }
       };
+
+      // Game state variables
+      let currentLevel = 1;
+      let currentTask = 0;
+      let score = 0;
+      let miniGameScore = 0;
+      let miniGameActive = false;
+      let fallingCommands = [];
+      let gameInterval;
+
+      // Mini-game commands for the typing challenge
+      const MINI_GAME_COMMANDS = ['ls', 'pwd', 'cd', 'mkdir', 'touch', 'cat', 'grep', 'echo', 'clear', 'chmod', 'rm', 'mv', 'cp', 'head', 'tail', 'find', 'grep', 'sort', 'uniq', 'wc', 'diff'];
+
+      function startMiniGame() {
+        miniGameActive = true;
+        miniGameScore = 0;
+        fallingCommands = [];
+        document.getElementById('miniGameContainer').style.display = 'block';
+        document.getElementById('miniGameInput').style.display = 'block';
+        document.getElementById('miniGameInput').focus();
+        
+        // Start spawning falling commands
+        gameInterval = setInterval(() => {
+          spawnFallingCommand();
+        }, 2000);
+        
+        // Stop after 30 seconds
+        setTimeout(() => {
+          stopMiniGame();
+        }, 30000);
+      }
+
+      function stopMiniGame() {
+        miniGameActive = false;
+        clearInterval(gameInterval);
+        document.getElementById('miniGameContainer').style.display = 'none';
+        document.getElementById('miniGameInput').style.display = 'none';
+      }
+
+      function spawnFallingCommand() {
+        if (!miniGameActive) return;
+        
+        const command = MINI_GAME_COMMANDS[Math.floor(Math.random() * MINI_GAME_COMMANDS.length)];
+        const element = document.createElement('div');
+        element.className = 'falling-command';
+        element.textContent = command;
+        element.style.left = Math.random() * 80 + 10 + '%';
+        element.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        
+        document.getElementById('miniGameArea').appendChild(element);
+        
+        // Remove after animation
+        setTimeout(() => {
+          if (element.parentNode) {
+            element.parentNode.removeChild(element);
+          }
+        }, 4000);
+        
+        fallingCommands.push({ element, command });
+      }
+
+      function checkMiniGameInput(input) {
+        const typedCommand = input.trim();
+        for (let i = fallingCommands.length - 1; i >= 0; i--) {
+          if (fallingCommands[i].command === typedCommand) {
+            fallingCommands[i].element.remove();
+            fallingCommands.splice(i, 1);
+            miniGameScore++;
+            document.getElementById('miniGameScore').textContent = `Score: ${miniGameScore}`;
+            return true;
+          }
+        }
+        return false;
+      }
 
       let tasks = [];
 
@@ -217,8 +685,16 @@
         feedback.innerHTML = '';
         lastResult = '';
         const t = tasks[taskIndex];
-        try { t && t.setup && t.setup(fs); } catch(e) {}
-        print('Simulated Bash ready. Current directory: /');
+        try { 
+          t && t.setup && t.setup(fs); 
+          // Start mini-game if this task requires it
+          if (t && t.isMiniGame) {
+            startMiniGame();
+          } else if (miniGameActive) {
+            stopMiniGame();
+          }
+        } catch(e) {}
+        print('🔒 Locked Terminal Ready. Current directory: /');
       }
 
       function pathParts(path) { if (!path) return []; const clean = path.replace(/^\/+|\/+$/g, ''); return clean ? clean.split('/') : []; }
@@ -265,7 +741,48 @@
         if ((m = line.match(/^cat\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') writeOutput(node.content || ''); else writeOutput(`cat: ${file}: No such file`); return; }
         if ((m = line.match(/^grep\s+"([\s\S]*?)"\s+(.+)$/)) || (m = line.match(/^grep\s+(\S+)\s+(.+)$/))) { const pattern = m[1]; const file = m[2]; const node = getNode(file); if (node?.type === 'file') { const result = (node.content || '').split('\n').filter(l => l.includes(pattern)).join('\n'); writeOutput(result); } else { writeOutput(`grep: ${file}: No such file`); } return; }
         if ((m = line.match(/^chmod\s\+x\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') { node.exec = true; print(''); } else { print(`chmod: cannot access '${file}': No such file`); } return; }
-        if ((m = line.match(/^bash\s+(.+)\s*(.*)$/))) { const file = m[1]; const arg = m[2]?.trim(); const node = getNode(file); if (node?.type === 'file') { if (/hello\.sh$/.test(file) && arg) { print(`Hello, ${arg}!`); } else { print(''); } } else { print(`bash: ${file}: No such file or directory`); } return; }
+        if ((m = line.match(/^chmod\s+(\d+)\s+(.+)$/))) { const perms = m[1]; const file = m[2]; const node = getNode(file); if (node?.type === 'file') { node.exec = true; print(''); } else { print(`chmod: cannot access '${file}': No such file`); } return; }
+        if ((m = line.match(/^chmod\s\+rwx\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') { node.exec = true; print(''); } else { print(`chmod: cannot access '${file}': No such file`); } return; }
+        if ((m = line.match(/^chown\s+(\w+)\s+(.+)$/))) { const owner = m[1]; const file = m[2]; const node = getNode(file); if (node?.type === 'file') { node.owner = owner; print(''); } else { print(`chown: cannot access '${file}': No such file`); } return; }
+        if ((m = line.match(/^rm\s+(.+)$/))) { const file = m[1]; const node = getNode(file); if (node?.type === 'file') { delete fs.tree['/'].children[file]; print(''); } else { print(`rm: cannot remove '${file}': No such file`); } return; }
+        if ((m = line.match(/^mv\s+(.+)\s+(.+)$/))) { const src = m[1]; const dest = m[2]; const node = getNode(src); if (node?.type === 'file') { fs.tree['/'].children[dest] = node; delete fs.tree['/'].children[src]; print(''); } else { print(`mv: cannot move '${src}': No such file`); } return; }
+        if ((m = line.match(/^cp\s+(.+)\s+(.+)$/))) { const src = m[1]; const dest = m[2]; const node = getNode(src); if (node?.type === 'file') { fs.tree['/'].children[dest] = { ...node }; print(''); } else { print(`cp: cannot copy '${src}': No such file`); } return; }
+        if ((m = line.match(/^head\s+-(\d+)\s+(.+)$/))) { const lines = parseInt(m[1]); const file = m[2]; const node = getNode(file); if (node?.type === 'file') { const content = (node.content || '').split('\n').slice(0, lines).join('\n'); writeOutput(content); } else { writeOutput(`head: cannot open '${file}' for reading: No such file`); } return; }
+        if ((m = line.match(/^tail\s+-(\d+)\s+(.+)$/))) { const lines = parseInt(m[1]); const file = m[2]; const node = getNode(file); if (node?.type === 'file') { const content = (node.content || '').split('\n').slice(-lines).join('\n'); writeOutput(content); } return; }
+        if ((m = line.match(/^bash\s+(.+)\s*(.*)$/))) { 
+          const file = m[1]; 
+          const arg = m[2]?.trim(); 
+          const node = getNode(file); 
+          if (node?.type === 'file') { 
+            if (/hello\.sh$/.test(file) && arg) { 
+              print(`Hello, ${arg}!`); 
+            } else if (node.content && node.content.includes('$1')) {
+              // Simple script execution with arguments
+              const output = node.content.replace(/\$1/g, arg || '').replace(/echo\s+"([^"]*)"/g, '$1');
+              print(output);
+            } else {
+              print(node.content || '');
+            }
+          } else { 
+            print(`bash: ${file}: No such file or directory`); 
+          } 
+          return; 
+        }
+        if ((m = line.match(/^\.\/(.+)$/))) { 
+          const file = m[1]; 
+          const node = getNode(file); 
+          if (node?.type === 'file' && node.exec) { 
+            if (node.content && node.content.includes('$1')) {
+              const output = node.content.replace(/\$1/g, '').replace(/echo\s+"([^"]*)"/g, '$1');
+              print(output);
+            } else {
+              print(node.content || '');
+            }
+          } else { 
+            print(`bash: ${file}: Permission denied`); 
+          } 
+          return; 
+        }
         if (line.startsWith('echo ') && line.includes('>') && line.includes('.sh')) { // write simple scripts
           // allow writing scripts with echo 'content' > file.sh
           const match = line.match(/^echo\s+"([\s\S]*)"\s*>\s*(.+\.sh)$/);
@@ -283,7 +800,36 @@
         writeOutput(`Command not supported in simulator: ${line}`);
       }
 
-      function check() { const ok = tasks[taskIndex].validate(); if (ok) { feedback.innerHTML = '<div class="alert alert-success">Correct! ' + tasks[taskIndex].title + '</div>'; if (taskIndex < tasks.length - 1) { taskIndex += 1; selectTask(taskIndex); } else { feedback.innerHTML += '<div class="alert alert-primary mt-2">All tasks complete! 🎉</div>'; } } else { feedback.innerHTML = '<div class="alert alert-warning">Not yet. Hint: ' + tasks[taskIndex].hint + '</div>'; } }
+      function check() { 
+        const currentTaskData = tasks[taskIndex];
+        const ok = currentTaskData.validate(); 
+        
+        if (ok) { 
+          score += 10;
+          document.getElementById('scoreText').textContent = score;
+          
+          // Show AI response
+          feedback.innerHTML = `<div class="alert alert-success success-animation">${currentTaskData.aiResponse || '🤖 JOHN AI: "Well done, human..."'}</div>`;
+          
+          if (taskIndex < tasks.length - 1) { 
+            taskIndex += 1; 
+            selectTask(taskIndex); 
+            // Update progress
+            const progress = ((taskIndex) / tasks.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `${taskIndex}/${tasks.length}`;
+          } else { 
+            feedback.innerHTML += '<div class="alert alert-primary mt-2">🎉 LEVEL COMPLETE! You\'ve escaped this section of the Bash Lab!</div>';
+            if (currentLevel < 5) {
+              feedback.innerHTML += '<div class="alert alert-info mt-2">Ready for the next level? <a href="?lesson=' + (currentLevel + 1) + '" class="btn btn-success">Continue Escape</a></div>';
+            } else {
+              feedback.innerHTML += '<div class="alert alert-success mt-2">🏆 CONGRATULATIONS! You\'ve escaped the entire Bash Lab! You\'re free!</div>';
+            }
+          } 
+        } else { 
+          feedback.innerHTML = `<div class="alert alert-warning">🤖 JOHN AI: "Not yet, human. Hint: ${currentTaskData.hint}"</div>`; 
+        } 
+      }
 
       input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { exec(input.value); input.value = ''; } });
       resetBtn.addEventListener('click', () => selectTask(taskIndex));
@@ -292,7 +838,23 @@
       // Initialize levels based on ?lesson=<n>
       const params = new URLSearchParams(window.location.search);
       const lesson = params.get('lesson') || '1';
-      tasks = LESSON_LEVELS[lesson] || LESSON_LEVELS['1'];
+      const levelData = BASH_LAB_LEVELS[lesson] || BASH_LAB_LEVELS['1'];
+      tasks = levelData.tasks || [];
+      
+      // Update UI with level information
+      document.getElementById('levelTitle').textContent = levelData.title;
+      document.getElementById('aiMessage').innerHTML = `<strong>🤖 JOHN AI:</strong> ${levelData.aiIntro}`;
+      
+      // Add mini-game input handler
+      document.getElementById('miniGameInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && miniGameActive) {
+          const input = e.target.value;
+          if (checkMiniGameInput(input)) {
+            e.target.value = '';
+          }
+        }
+      });
+      
       renderTasks();
       selectTask(0);
     })();
@@ -301,5 +863,3 @@
 </body>
 
 </html>
-
-
