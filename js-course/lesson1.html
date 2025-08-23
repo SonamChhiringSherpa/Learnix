@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Lesson 1 - Introduction to JavaScript</title>
+  <meta name="description" content="Learn JavaScript step-by-step with interactive lessons and practice examples.">
+  <meta name="keywords" content="javascript, lesson1, basics, web development">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="course-details-page">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Lernix</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Lesson 1: Introduction to JavaScript</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="current">Lesson 1</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+
+          <!-- Sidebar -->
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action active" href="./lesson1">1. Introduction to JS</a>
+              <a class="list-group-item list-group-item-action" href="./lesson2.html">2. Variables & Data Types</a>
+              <a class="list-group-item list-group-item-action" href="./lesson3.html">3. Functions & Loops</a>
+              <a class="list-group-item list-group-item-action" href="./lesson4.html">4. DOM Manipulation</a>
+              <a class="list-group-item list-group-item-action" href="./lesson5.html">5. Events & Game Logic</a>
+            </div>
+            <!-- <a href="#lesson-1" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 1</a> -->
+            <a href="jspractice.html" class="btn btn-outline-primary w-100 mt-2"><i class="bi bi-terminal"></i> Practice Questions</a>
+          </aside>
+
+          <!-- Lesson Content -->
+          <div class="col-lg-9">
+
+            <!-- Lesson 1 -->
+            <article id="lesson-1" class="mb-5" data-aos="fade-up" data-aos-delay="150">
+              <h3>Lesson 1: Introduction to JavaScript</h3>
+              <p>JavaScript (JS) is a versatile programming language primarily used for web development. It allows you to make webpages dynamic and interactive.</p>
+
+              <!-- Topic 1: What is JavaScript? -->
+              <h5>📌 What is JavaScript?</h5>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson1-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Display a message in the console
+console.log("Hello, JavaScript!");
+
+// Show an alert
+alert("Welcome to JavaScript!");
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson1Topic1Code()">Run Code</button>
+                      <pre id="lesson1-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>JavaScript runs in the browser. <code>console.log()</code> prints messages to the console. <code>alert()</code> shows a popup message.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Topic 2: Including JavaScript -->
+              <h5 class="mt-3">📌 Including JavaScript</h5>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson1-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Example of internal JavaScript
+console.log("Internal JS code running!"); 
+alert("Hello from internal JS!");
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson1Topic2Code()">Run Code</button>
+                      <pre id="lesson1-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>You can include JavaScript inline, internally with &lt;script&gt; in HTML, or externally with a .js file.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Lernix</span>
+          </a>
+          <p>Learn JavaScript with hands-on examples and practice exercises.</p>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+977 9876543210</span></p>
+          <p><strong>Email:</strong> <span>info@lernix.com</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Lernix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // Lesson 1 code runners
+    function runLesson1Topic1Code() { runCode("lesson1-topic1-code", "lesson1-topic1-output"); }
+    function runLesson1Topic2Code() { runCode("lesson1-topic2-code", "lesson1-topic2-output"); }
+
+    // Generic runner
+    function runCode(textareaId, outputId) {
+      const code = document.getElementById(textareaId).value;
+      const output = document.getElementById(outputId);
+      try {
+        const originalConsole = console.log;
+        let logs = [];
+        console.log = function (...args) {
+          logs.push(args.join(" "));
+          originalConsole.apply(console, args);
+        }
+        eval(code);
+        console.log = originalConsole;
+        output.textContent = logs.join("\n");
+      } catch (err) {
+        output.textContent = "Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>

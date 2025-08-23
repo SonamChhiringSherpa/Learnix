@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Lesson 1 - Introduction to JavaScript</title>
-  <meta name="description" content="Learn JavaScript step-by-step with interactive lessons and practice examples.">
-  <meta name="keywords" content="javascript, lesson1, basics, web development">
+  <title>Lesson 4 - DOM Manipulation</title>
+  <meta name="description" content="Learn how to manipulate the DOM with JavaScript step-by-step.">
+  <meta name="keywords" content="javascript, lesson4, dom, html elements, web development">
 
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -17,6 +17,7 @@
 </head>
 
 <body class="course-details-page">
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <a href="index.html" class="logo d-flex align-items-center me-auto">
@@ -36,15 +37,16 @@
     </div>
   </header>
 
+  <!-- Main -->
   <main class="main">
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Lesson 1: Introduction to JavaScript</h1>
+        <h1 class="mb-2 mb-lg-0">Lesson 4: DOM Manipulation</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
             <li><a href="courses.html">Courses</a></li>
-            <li class="current">Lesson 1</li>
+            <li class="current">Lesson 4</li>
           </ol>
         </nav>
       </div>
@@ -57,40 +59,35 @@
           <!-- Sidebar -->
           <aside class="col-lg-3 mb-4">
             <div class="list-group small">
-              <a class="list-group-item list-group-item-action active" href="./lesson-1">1. Introduction to JS</a>
-              <a class="list-group-item list-group-item-action" href="./lesson2.html">2. Variables & Data Types</a>
-              <a class="list-group-item list-group-item-action" href="./lesson3.html">3. Functions & Loops</a>
-              <a class="list-group-item list-group-item-action" href="./lesson4.html">4. DOM Manipulation</a>
-              <a class="list-group-item list-group-item-action" href="./lesson5.html">5. Events & Game Logic</a>
-            </div>
-            <!-- <a href="#lesson-1" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 1</a> -->
+              <a class="list-group-item list-group-item-action" href="lesson1.html">1. Introduction to JS</a>
+              <a class="list-group-item list-group-item-action" href="lesson2.html">2. Variables & Data Types</a>
+              <a class="list-group-item list-group-item-action" href="lesson3.html">3. Functions & Loops</a>
+              <a class="list-group-item list-group-item-action active" href="lesson4.html">4. DOM Manipulation</a>
+              <a class="list-group-item list-group-item-action" href="lesson5.html">5. Events & Game Logic</a>
             <a href="jspractice.html" class="btn btn-outline-primary w-100 mt-2"><i class="bi bi-terminal"></i> Practice Questions</a>
+            </div>
+            <!-- <a href="#lesson-4" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 4</a> -->
           </aside>
 
           <!-- Lesson Content -->
           <div class="col-lg-9">
+            <article id="lesson-4" class="mb-5" data-aos="fade-up" data-aos-delay="150">
+              <h3>Lesson 4: DOM Manipulation</h3>
+              <p>The Document Object Model (DOM) allows JavaScript to interact with and modify HTML elements dynamically.</p>
 
-            <!-- Lesson 1 -->
-            <article id="lesson-1" class="mb-5" data-aos="fade-up" data-aos-delay="150">
-              <h3>Lesson 1: Introduction to JavaScript</h3>
-              <p>JavaScript (JS) is a versatile programming language primarily used for web development. It allows you to make webpages dynamic and interactive.</p>
-
-              <!-- Topic 1: What is JavaScript? -->
-              <h5>📌 What is JavaScript?</h5>
+              <!-- Topic 1: Selecting & Changing Content -->
+              <h5>📌 Selecting & Changing Content</h5>
               <div class="row g-3 align-items-stretch">
                 <div class="col-md-6">
                   <div class="card h-100">
                     <div class="card-header py-2"><strong>Code Example</strong></div>
                     <div class="card-body">
-                      <textarea id="lesson1-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Display a message in the console
-console.log("Hello, JavaScript!");
-
-// Show an alert
-alert("Welcome to JavaScript!");
+                      <textarea id="lesson4-topic1-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Select and change content
+document.getElementById("demo").textContent = "Hello from JS!";
                       </textarea>
-                      <button class="btn btn-primary mt-2" onclick="runLesson1Topic1Code()">Run Code</button>
-                      <pre id="lesson1-topic1-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+                      <button class="btn btn-primary mt-2" onclick="runLesson4Topic1Code()">Run Code</button>
+                      <div id="demo" class="mt-3 p-2 border rounded">Original Text</div>
                     </div>
                   </div>
                 </div>
@@ -98,26 +95,26 @@ alert("Welcome to JavaScript!");
                   <div class="card h-100">
                     <div class="card-header py-2"><strong>Explanation</strong></div>
                     <div class="card-body">
-                      <p>JavaScript runs in the browser. <code>console.log()</code> prints messages to the console. <code>alert()</code> shows a popup message.</p>
+                      <p><code>document.getElementById()</code> selects an element by ID and <code>textContent</code> changes its text.</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Topic 2: Including JavaScript -->
-              <h5 class="mt-3">📌 Including JavaScript</h5>
+              <!-- Topic 2: Changing Styles -->
+              <h5 class="mt-3">📌 Changing Styles</h5>
               <div class="row g-3 align-items-stretch">
                 <div class="col-md-6">
                   <div class="card h-100">
                     <div class="card-header py-2"><strong>Code Example</strong></div>
                     <div class="card-body">
-                      <textarea id="lesson1-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
-// Example of internal JavaScript
-console.log("Internal JS code running!"); 
-alert("Hello from internal JS!");
+                      <textarea id="lesson4-topic2-code" style="width:100%; height:160px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Change CSS style
+document.getElementById("styleBox").style.backgroundColor = "lightblue";
+document.getElementById("styleBox").style.color = "darkblue";
                       </textarea>
-                      <button class="btn btn-primary mt-2" onclick="runLesson1Topic2Code()">Run Code</button>
-                      <pre id="lesson1-topic2-output" style="background:#f1f1f1; padding:10px; border-radius:5px; margin-top:10px; min-height:80px;"></pre>
+                      <button class="btn btn-primary mt-2" onclick="runLesson4Topic2Code()">Run Code</button>
+                      <div id="styleBox" class="mt-3 p-3 border rounded">I will change color</div>
                     </div>
                   </div>
                 </div>
@@ -125,12 +122,46 @@ alert("Hello from internal JS!");
                   <div class="card h-100">
                     <div class="card-header py-2"><strong>Explanation</strong></div>
                     <div class="card-body">
-                      <p>You can include JavaScript inline, internally with &lt;script&gt; in HTML, or externally with a .js file.</p>
+                      <p>We can modify CSS properties directly using <code>element.style.property</code>.</p>
                     </div>
                   </div>
                 </div>
               </div>
 
+              <!-- Topic 3: Adding & Removing Elements -->
+              <h5 class="mt-3">📌 Adding & Removing Elements</h5>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Code Example</strong></div>
+                    <div class="card-body">
+                      <textarea id="lesson4-topic3-code" style="width:100%; height:180px; background:#0b1620; color:#d6e9ff; font-family:monospace; padding:10px; border-radius:5px;">
+// Add element
+let newItem = document.createElement("li");
+newItem.textContent = "New Item";
+document.getElementById("list").appendChild(newItem);
+
+// Remove first element
+let list = document.getElementById("list");
+list.removeChild(list.firstElementChild);
+                      </textarea>
+                      <button class="btn btn-primary mt-2" onclick="runLesson4Topic3Code()">Run Code</button>
+                      <ul id="list" class="mt-3 border rounded p-2">
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>We can create new elements using <code>document.createElement()</code> and remove them with <code>removeChild()</code>.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -176,36 +207,17 @@ alert("Hello from internal JS!");
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
+  <!-- Scripts -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
 
   <script>
-    // Lesson 1 code runners
-    function runLesson1Topic1Code() { runCode("lesson1-topic1-code", "lesson1-topic1-output"); }
-    function runLesson1Topic2Code() { runCode("lesson1-topic2-code", "lesson1-topic2-output"); }
-
-    // Generic runner
-    function runCode(textareaId, outputId) {
-      const code = document.getElementById(textareaId).value;
-      const output = document.getElementById(outputId);
-      try {
-        const originalConsole = console.log;
-        let logs = [];
-        console.log = function (...args) {
-          logs.push(args.join(" "));
-          originalConsole.apply(console, args);
-        }
-        eval(code);
-        console.log = originalConsole;
-        output.textContent = logs.join("\n");
-      } catch (err) {
-        output.textContent = "Error: " + err.message;
-      }
-    }
+    // Lesson 4 code runners
+    function runLesson4Topic1Code() { eval(document.getElementById("lesson4-topic1-code").value); }
+    function runLesson4Topic2Code() { eval(document.getElementById("lesson4-topic2-code").value); }
+    function runLesson4Topic3Code() { eval(document.getElementById("lesson4-topic3-code").value); }
   </script>
 </body>
 </html>
