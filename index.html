@@ -33,6 +33,24 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+ .card-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 10px;
+
+  /* Multi-line clamp compatibility */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;  /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* Optional fallback if clamp isn't supported */
+  max-height: calc(1.6em * 4); /* line-height × number of lines */
+}
+  </style>
 </head>
 
 <body class="index-page">
@@ -43,7 +61,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Learner</h1>
+        <h1 class="sitename">Learnix</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -52,8 +70,6 @@
           <li><a href="about.html">About</a></li>
           <li><a href="courses.html">Courses</a></li>
           <li><a href="blog.html">Blog</a></li>
-
-
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -75,17 +91,17 @@
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
               <div class="hero-text">
-                <h1>Transform Your Future with Expert-Led Online Courses</h1>
-                <p>Discover thousands of high-quality courses designed by industry professionals. Learn at your own pace, gain in-demand skills, and advance your career from anywhere in the world.</p>
+                <h1>Learn Web Development & Scripting Through Step-by-Step Lessons</h1>
+                <p>Access beginner-friendly Web Development and Scripting courses designed for self-paced learning. Gain practical skills and keep learning from anywhere.</p>
 
                 <div class="hero-stats">
                   <div class="stat-item">
-                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="50000" data-purecounter-duration="2"></span>
-                    <span class="label">Students Enrolled</span>
+                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2"></span>
+                    <span class="label">Students </span>
                   </div>
                   <div class="stat-item">
-                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="1200" data-purecounter-duration="2"></span>
-                    <span class="label">Expert Courses</span>
+                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="2"></span>
+                    <span class="label"> Courses</span>
                   </div>
                   <div class="stat-item">
                     <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2"></span>
@@ -94,8 +110,8 @@
                 </div>
 
                 <div class="hero-buttons">
-                  <a href="#courses" class="btn btn-primary">Browse Courses</a>
-                  <a href="#about" class="btn btn-outline">Learn More</a>
+                  <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+                  <a href="about.html" class="btn btn-outline">Learn More</a>
                 </div>
 
                 <div class="hero-features">
@@ -107,10 +123,12 @@
                     <i class="bi bi-clock"></i>
                     <span>Lifetime Access</span>
                   </div>
+                <!--
                   <div class="feature">
                     <i class="bi bi-people"></i>
                     <span>Expert Instructors</span>
                   </div>
+                  -->
                 </div>
               </div>
             </div>
@@ -128,17 +146,17 @@
                     </div>
                     <div class="card-content">
                       <h6>Web Development</h6>
-                      <span>2,450 Students</span>
+                      <span>300 Students</span>
                     </div>
                   </div>
 
                   <div class="course-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="card-icon">
-                      <i class="bi bi-palette"></i>
+                      <i class="bi bi-terminal"></i>
                     </div>
                     <div class="card-content">
-                      <h6>Game Development</h6>
-                      <span>1,890 Students</span>
+                      <h6>Scripting</h6>
+                      <span>200 Students</span>
                     </div>
                   </div>
                 </div>
@@ -174,15 +192,15 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="course-card">
-              <div class="course-image">
-                <img src="assets/img/education/students-9.webp" alt="Course" class="img-fluid">
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="assets/img/course/html5-emblem-orange-shield-and-white-text-vector.jpg" alt="Course" class="img-fluid" style="height: 200px;width: 250px;">
                 <div class="badge featured">Featured</div>
           
               </div>
               <div class="course-content">
                 <div class="course-meta">
                   <span class="level">Beginner</span>
-                  <span class="duration">8 Weeks</span>
+                  <span class="duration">5 Lessons</span>
                 </div>
                 <h3><a href="#">HTML</a></h3>
                 <p>Hypertext Markup Language (HTML) is the standard markup language for documents designed to be displayed in a web browser. It defines the content and structure of web content.</p>
@@ -204,24 +222,24 @@
                   </div>
                   <div class="students">
                     <i class="bi bi-people-fill"></i>
-                    <span>342 students</span>
+                    <span>100</span>
                   </div>
                 </div>
-                <a href="enroll.html" class="btn-course">Enroll Now</a>
+                <a href="html-course.html" class="btn-course">Start Learning</a>
               </div>
             </div>
           </div><!-- End Course Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="course-card">
-              <div class="course-image">
-                <img src="assets/img/education/campus-4.webp" alt="Course" class="img-fluid">
-                <div class="badge new">New</div>
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="assets/img/course/JavaScript-Emblem-500x281.png" alt="Course" class="img-fluid" style="width: 250px;height: 200px;padding-top: 30px;">
+                <div class="badge featured">Featured</div>
               </div>
               <div class="course-content">
                 <div class="course-meta">
-                  <span class="level">Intermediate</span>
-                  <span class="duration">6 Weeks</span>
+                  <span class="level">Beginner</span>
+                  <span class="duration">5 Lessons</span>
                 </div>
                 <h3><a href="#">JavaScript</a></h3>
                 <p>JavaScript (JS) is a programming language and core technology of the World Wide Web, alongside HTML and CSS. Ninety-nine percent of websites use JavaScript on the client side for webpage behavior.
@@ -245,25 +263,25 @@
                   </div>
                   <div class="students">
                     <i class="bi bi-people-fill"></i>
-                    <span>156 students</span>
+                    <span>150 students</span>
                   </div>
                 </div>
-                <a href="enroll.html" class="btn-course">Enroll Now</a>
+                <a href="js.html" class="btn-course">Start Learning</a>
               </div>
             </div>
           </div><!-- End Course Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="course-card">
-              <div class="course-image">
-                <img src="assets/img/education/students-7.webp" alt="Course" class="img-fluid">
-                <div class="badge certificate">Certificate</div>
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="assets/img/course/css3-logo-png_seeklogo-186678.png" alt="Course" class="img-fluid" style="width: 200px;height:180px;">
+                <div class="badge certificate">Pending</div>
                 
               </div>
               <div class="course-content">
                 <div class="course-meta">
                   <span class="level">Beginner</span>
-                  <span class="duration">4 Weeks</span>
+                  <span class="duration">Pending</span>
                 </div>
                 <h3><a href="#">CSS</a></h3>
                 <p>Cascading Style Sheets (CSS) is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML.</p>
@@ -285,10 +303,10 @@
                   </div>
                   <div class="students">
                     <i class="bi bi-people-fill"></i>
-                    <span>789 students</span>
+                    <span>0 students</span>
                   </div>
                 </div>
-                <a href="enroll.html" class="btn-course">Enroll Now</a>
+                <a href="404.html" class="btn-course">Start Learning</a>
               </div>
             </div>
           </div><!-- End Course Item -->
@@ -309,7 +327,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Course Categories</h2>
+        <h2>Course Category</h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -321,40 +339,21 @@
               <div class="category-icon">
                 <i class="bi bi-laptop"></i>
               </div>
-              <h5>HTML</h5>
-              <span class="course-count">24 Courses</span>
+              <h5>Web development</h5>
+              
+              <span class="course-count">3 Course</span>
             </a>
           </div><!-- End Category Item -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
-            <a href="courses.html" class="category-card category-business">
-              <div class="category-icon">
-                <i class="bi bi-briefcase"></i>
-              </div>
-              <h5>CSS</h5>
-              <span class="course-count">18 Courses</span>
-            </a>
-          </div><!-- End Category Item -->
-
-          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-            <a href="courses.html" class="category-card category-design">
-              <div class="category-icon">
-                <i class="bi bi-palette"></i>
-              </div>
-              <h5>JS</h5>
-              <span class="course-count">15 Courses</span>
-            </a>
-          </div><!-- End Category Item -->
-
           <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
             <a href="courses.html" class="category-card category-health">
               <div class="category-icon">
-                <i class="bi bi-heart-pulse"></i>
+                <i class="bi bi-terminal"></i>
               </div>
-              <h5>Bash</h5>
-              <span class="course-count">12 Courses</span>
+              <h5>Shell Scripting</h5>
+              <span class="course-count">1 Course</span>
             </a>
           </div><!-- End Category Item -->
+
         </div>
       </div>
 
@@ -384,7 +383,7 @@
                       <i class="bi bi-star-fill"></i>
                     </div>
                     <p>
-                      In an era where digital literacy is no longer optional, Learner delivers a rare combination: technical precision with remarkable accessibility. Its platform has become an essential toolkit not only for students but for working professionals looking to stay current in a fast-evolving field.
+                      In an era where digital literacy is no longer optional, Learnix delivers a rare combination: technical precision with remarkable accessibility. Its platform has become an essential toolkit not only for students but for working professionals looking to stay current in a fast-evolving field.
                     </p>
                     <div class="critic-info">
                       <div class="critic-name">The New York Times</div>
@@ -402,7 +401,7 @@
                       <i class="bi bi-star-half"></i>
                     </div>
                     <p>
-                      Learner has quietly but powerfully changed how people learn to code. Its interactive modules and real-time editing tools remove the friction often associated with technical education. For many, it is the first true entry point into the digital world</p>
+                      Learnix has quietly but powerfully changed how people learn to code. Its interactive modules and real-time editing tools remove the friction often associated with technical education. For many, it is the first true entry point into the digital world</p>
                     <div class="critic-info">
                       <div class="critic-name">Washington Post</div>
                     </div>
@@ -419,7 +418,7 @@
                       <i class="bi bi-star-fill"></i>
                     </div>
                     <p>
-                      When deadlines loom or a code snippet fails without explanation, Learner is the first tab many developers open. It’s not just an educational site — it’s a daily companion for those who build the web.
+                      When deadlines loom or a code snippet fails without explanation, Learnix is the first tab many developers open. It’s not just an educational site — it’s a daily companion for those who build the web.
                     </p>
                     <div class="critic-info">
                       <div class="critic-name">The Guardian</div>
@@ -467,7 +466,7 @@
                         <i class="bi bi-star-fill"></i>
                       </div>
                       <p>
-      Learner was my starting point into web development. The tutorials are easy to follow, and I love how hands-on everything is. The 'Try it Yourself' editor helped me understand code by actually writing it. Highly recommend for beginners!
+      Learnix was my starting point into web development. The tutorials are easy to follow. The 'Try it Yourself' editor helped me understand code by actually writing it. Highly recommend for beginners!
                       </p>
                       <div class="testimonial-profile">
                         <img src="assets/img/person/person-f-1.webp" alt="Reviewer" class="img-fluid rounded-circle">
@@ -489,7 +488,7 @@
                         <i class="bi bi-star-fill"></i>
                       </div>
                       <p>
-Even as an experienced developer, I still come back to Learner for quick syntax checks and examples. It's a great resource to refresh your memory or learn something new on the fly
+Even as an experienced developer, I still come back to Learnix for quick syntax checks and examples. It's a great resource to refresh your memory or learn something new on the fly
                       </p>
                       <div class="testimonial-profile">
                         <img src="assets/img/person/person-m-2.webp" alt="Reviewer" class="img-fluid rounded-circle">
@@ -511,7 +510,7 @@ Even as an experienced developer, I still come back to Learner for quick syntax 
                         <i class="bi bi-star-half"></i>
                       </div>
                       <p>
-I started learning HTML and CSS through Learner during my summer break. The self-paced structure allowed me to learn when I wanted, without pressure. Now I’m building my own websites!                      </p>
+I started learning HTML and CSS through Learnix during my summer break. The self-paced structure allowed me to learn when I wanted, without pressure. Now I’m building my own websites!                      </p>
                       <div class="testimonial-profile">
                         <img src="assets/img/person/person-f-3.webp" alt="Reviewer" class="img-fluid rounded-circle">
                         <div>
@@ -522,7 +521,7 @@ I started learning HTML and CSS through Learner during my summer break. The self
                     </div>
                   </div><!-- End testimonial item -->
 
-                  <div class="swiper-slide">
+                 <!-- <div class="swiper-slide">
                     <div class="testimonial-item">
                       <div class="stars">
                         <i class="bi bi-star-fill"></i>
@@ -541,7 +540,7 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
                         </div>
                       </div>
                     </div>
-                  </div><!-- End testimonial item -->
+                  </div> End testimonial item -->
 
                 </div>
                 <div class="swiper-pagination"></div>
@@ -563,7 +562,7 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
               </div>
               <p>Based on 230+ reviews</p>
               <div class="rating-platforms">
-                <span>Goodreads</span>
+                <span>Google</span>
                 <span>Amazon</span>
                 <span>Barnes &amp; Noble</span>
               </div>
@@ -579,7 +578,7 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Recent Blog Posts</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Insights, tutorials, and updates from our team</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -594,11 +593,11 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
                 <span class="ms-auto likes"><i class="bi bi-heart"></i> 65</span>
               </div>
               <div class="card-img-wrapper">
-                <img src="assets/img/blog/blog-post-1.webp" alt="Post Image">
+                <a href="blog-details.html"><img src="assets/img/blog/php-training-nepal.jpeg" alt="Post Image"></a>
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Sed ut perspiciatis unde omnis iste natus</a></h5>
-                <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione...</p>
+                <h5 class="card-title"><a href="blog-details.html">Mastering Semantic HTML: Why It Matters and How It Makes You a Better Developer</a></h5>
+                <p class="card-text">In today's digital world, knowing how to code is more than just a useful skill —it's a superpower. Whether you're building websites, automating tasks, or just trying to understand how the tools around you work, programming opens up a world of possibilities.</p>
               </div>
             </div>
           </div><!-- End Post Item Card -->
@@ -611,11 +610,13 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
                 <span class="ms-auto likes"><i class="bi bi-heart"></i> 35</span>
               </div>
               <div class="card-img-wrapper">
-                <img src="assets/img/blog/blog-post-2.webp" alt="Post Image">
+                <a href="blog-details.html"><img src="assets/img/blog/Web-Design-Trends-What-is-in-and-what-is-out.jpg" alt="Post Image"></a>
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Nemo enim ipsam voluptatem quia voluptas sit</a></h5>
-                <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos...</p>
+                <h5 class="card-title"><a href="blog-details.html">Current Web Design Trends: What’s In and What’s Out in 2023 & 2024</a></h5>
+                <p class="card-text">Web Design is as important to your website as a snazzy outfit is to a superhero! Imagine your favorite superhero, say, Batman decided to fight crime in his pajamas. It might still get the job done, but nothing beats the impact of a tight fit with a cape. Similarly, a well-designed website leaves a lasting impact, establishes credibility, and fulfills fundamental user needs.
+
+</p>
               </div>
             </div>
           </div><!-- End Post Item Card -->
@@ -628,11 +629,11 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
                 <span class="ms-auto likes"><i class="bi bi-heart"></i> 58</span>
               </div>
               <div class="card-img-wrapper">
-                <img src="assets/img/blog/blog-post-3.webp" alt="Post Image">
+                <a href="blog-details.html"><img src="assets/img/blog/Importance-of-AI-for-IT-Students.png" alt="Post Image"></a>
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Ut enim ad minima veniam, quis nostrum exercitationem</a></h5>
-                <p class="card-text">Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem...</p>
+                <h5 class="card-title"><a href="blog-details.html">Importance of AI for Information Technology Students: 4 Things to Know</a></h5>
+                <p class="card-text">Are you fascinated by the endless possibilities of technology? You definitely must’ve seen self-driving cars navigate complex city streets, virtual assistants respond to your voice commands, and recommendation systems tailor your favorite music playlist like living in a sci-fi movie. But it’s not sci-fi, it’s AI.</p>
               </div>
             </div>
           </div><!-- End Post Item Card -->
@@ -652,14 +653,14 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
 
           <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
             <div class="cta-content">
-              <h2>Transform Your Future with Expert-Led Online Courses</h2>
-              <p>Join thousands of successful learners who have advanced their careers through our comprehensive online education platform.</p>
+              <h2>Learn Web Development & Scripting Through Step-by-Step Lessons</h2>
+              <p>Join hundreds of successful learners who have advanced their careers through our comprehensive online education platform.</p>
 
               <div class="features-list">
-                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                <!--  <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
                   <i class="bi bi-check-circle-fill"></i>
-                  <span>20+ Expert instructors with industry experience</span>
-                </div>
+                  <span>10+ Expert instructors with industry experience</span>
+                </div> -->
                 <div class="feature-item" data-aos="fade-up" data-aos-delay="350">
                   <i class="bi bi-check-circle-fill"></i>
                   <span>Certificate of completion for every course</span>
@@ -681,11 +682,11 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
 
               <div class="stats-row" data-aos="fade-up" data-aos-delay="400">
                 <div class="stat-item">
-                  <h3><span data-purecounter-start="0" data-purecounter-end="15000" data-purecounter-duration="2" class="purecounter"></span>+</h3>
+                  <h3><span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2" class="purecounter"></span>+</h3>
                   <p>Students Enrolled</p>
                 </div>
                 <div class="stat-item">
-                  <h3><span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="2" class="purecounter"></span>+</h3>
+                  <h3><span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="2" class="purecounter"></span></h3>
                   <p>Courses Available</p>
                 </div>
                 <div class="stat-item">
@@ -728,15 +729,15 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
 
   </main>
 
+  
   <footer id="footer" class="footer accent-background">
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Learner</span>
+            <span class="sitename">Learnix</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Learnix is dedicated to making quality education accessible, flexible, and engaging for everyone. Join us in building a better future through practical learning.</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
@@ -748,48 +749,39 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
         <div class="col-lg-2 col-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="courses.html">Course</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
+          <h4>Our Courses</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="html-course.html">HTML Fundamentals</a></li>
+            <li><a href="courses.html">CSS Styling Techniques</a></li>
+            <li><a href="courses.html">JavaScript Programming</a></li>
+            <li><a href="bash-course.html">Bash Scripting</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
           <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
         </div>
 
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learner</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learnix</strong> <span>All Rights Reserved</span></p>
     </div>
-
   </footer>
 
   <!-- Scroll Top -->
