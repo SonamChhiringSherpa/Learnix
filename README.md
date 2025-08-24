@@ -15,15 +15,15 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 
 1. Clone the repository:
    ```bash
-      git clone https://github.com/SonamChhiringSherpa/Website-Development.github
+       git clone https://github.com/SonamChhiringSherpa/Website-Development.github
 
 2. Navigate into the project folder
 
-      cd Learnix
+       cd Learnix
 
 3.Open index.html in your browser to start learning.
 
-      No installation required (pure HTML, CSS, JS, and Bash lessons run in-browser)
+       No installation required (pure HTML, CSS, JS, and Bash lessons run in-browser)
 
 
 
@@ -65,6 +65,7 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 
 ### contact page
 ![contact](assets/screenshot/contact.png)
+
 
 
 
