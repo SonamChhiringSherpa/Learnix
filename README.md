@@ -52,11 +52,14 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 ![Homepage](assets/screenshot/home.png)
 
 ### 
-![Code Editor](assets/editor.png)
+![bash-practice](assets/screenshot/bash-practice.png)
 
 ### Challenge Section
-![Challenge](assets/challenge.png)
+![about](assets/screenshot/about.png)
 
 ### blog section
-![blog](assets/blog.png)
+![html-lessons](assets/screenshot/html-lesson.png)
+
+
+
 
