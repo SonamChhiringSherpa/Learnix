@@ -50,9 +50,9 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 ## 📸 Screenshots
 
 ### Homepage
-![Homepage](<img width="1884" height="967" alt="Image" src="https://github.com/user-attachments/assets/7d645603-22dc-4d02-9ab4-2ed364648630" />)
+![Homepage](assets/screenshot/home.png)
 
-### Lesson / Code Editor
+### 
 ![Code Editor](assets/editor.png)
 
 ### Challenge Section
