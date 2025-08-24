@@ -51,13 +51,13 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 ### Homepage
 ![Homepage](assets/screenshot/home.png)
 
-### 
-![bash-practice](assets/screenshot/bash-practice.png)
+### bash-challenge
+![bash-challenge](assets/screenshot/bash-practice.png)
 
-### Challenge Section
+### about
 ![about](assets/screenshot/about.png)
 
-### blog section
+### html-lessons
 ![html-lessons](assets/screenshot/html-lesson.png)
 
 ### course section
@@ -65,6 +65,7 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 
 ### contact page
 ![contact](assets/screenshot/contact.png)
+
 
 
 
