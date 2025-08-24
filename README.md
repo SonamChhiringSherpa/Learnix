@@ -60,6 +60,16 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 ### blog section
 ![html-lessons](assets/screenshot/html-lesson.png)
 
+### course section
+![course](assets/screenshot/course.png)
+
+### contact page
+![contact](assets/screenshot/contact.png)
+
+
+
+
+
 
 
 
