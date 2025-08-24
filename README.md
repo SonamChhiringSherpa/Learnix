@@ -16,23 +16,24 @@
 
 - [siddharth shrestha](https://github.com/evader5731) – home 
 
+## live hosted link
 
 ## 📸 Screenshots
 
 ### Homepage
 ![Homepage](assets/screenshot/home.png)
 
-### bash-challenge
-![bash-challenge](assets/screenshot/bash-practice.png)
-
 ### about
 ![about](assets/screenshot/about.png)
 
-### html-lessons
-![html-lessons](assets/screenshot/html-lesson.png)
-
 ### course section
 ![course](assets/screenshot/course.png)
+
+### bash-challenge
+![bash-challenge](assets/screenshot/bash-practice.png)
+
+### html-lessons
+![html-lessons](assets/screenshot/html-lesson.png)
 
 ### contact page
 ![contact](assets/screenshot/contact.png)
