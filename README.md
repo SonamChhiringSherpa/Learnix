@@ -23,7 +23,7 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 
 3.Open index.html in your browser to start learning.
 
-       No installation required (pure HTML, CSS, JS, and Bash lessons run in-browser)
+         No installation required (pure HTML, CSS, JS, and Bash lessons run in-browser)
 
 
 
@@ -65,6 +65,7 @@ It provides step-by-step lessons, coding challenges, and small projects that lea
 
 ### contact page
 ![contact](assets/screenshot/contact.png)
+
 
 
 
