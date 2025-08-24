@@ -8,7 +8,7 @@
 
 - [Sonam Chhiring Sherpa](https://github.com/SonamChhiringSherpa) –  html course , Project Lead
 
-- [Saket Yadav](https://github.com/saket-yadav) – JavaScript Challenges, Documentation
+- [Saket Yadav](https://github.com/saket-yadav) – JavaScript course & Challenges, documentation
 
 - [Papit Ghimire](https://github.com/papit-stack) – bash Challenges, Documentation
 
