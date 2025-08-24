@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Bash Course</title>
+  <meta name="description" content="Learn Bash step-by-step with interactive lessons and practice puzzles.">
+  <meta name="keywords" content="bash, shell, linux, terminal, scripting">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="course-details-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Learner</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash: From Zero to Scripting</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="current">Bash</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="./bash-course/bash-lesson-1.html">1. Introduction to Bash</a>
+              <a class="list-group-item list-group-item-action" href="./bash-course/bash-lesson-2.html">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="./bash-course/bash-lesson-3.html">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action" href="./bash-course/bash-lesson-4.html">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="./bash-course/bash-lesson-5.html">5. Scripting Basics</a>
+            </div>
+            <a href="./bash-course/bash-lesson-1.html" class="btn btn-primary w-100 mt-3"><i class="bi bi-book"></i> Start Lesson 1</a>
+            <a href="bash-practice.html?lesson=1" class="btn btn-outline-primary w-100 mt-2"><i class="bi bi-terminal"></i> Practice Puzzles</a>
+          </aside>
+
+          <div class="col-lg-9">
+            <article id="lesson-1" class="mb-5" data-aos="fade-up" data-aos-delay="150">
+              <h3>Lesson 1: Introduction to Bash</h3>
+              <p>Bash is a Unix shell and command language. You can run commands and automate tasks.</p>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Terminal (read-only)</strong></div>
+                    <div class="card-body" style="background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;min-height:160px;">
+$ echo "Hello, Bash!"
+Hello, Bash!
+$ uname -s
+Linux
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p><code>echo</code> prints text. <code>uname -s</code> shows the operating system kernel.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="lesson-2" class="mb-5" data-aos="fade-up" data-aos-delay="200">
+              <h3>Lesson 2: Creating Directories</h3>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Terminal (read-only)</strong></div>
+                    <div class="card-body" style="background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;min-height:160px;">
+$ mkdir projects
+$ ls -l
+drwxr-xr-x 2 user user 4096 Jan  1 00:00 projects
+$ cd projects
+$ pwd
+/home/user/projects
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p><code>mkdir</code> creates directories. Use <code>ls -l</code> to list details and <code>pwd</code> to show the current path.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="lesson-3" class="mb-5" data-aos="fade-up" data-aos-delay="250">
+              <h3>Lesson 3: Viewing & Editing Files</h3>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Terminal (read-only)</strong></div>
+                    <div class="card-body" style="background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;min-height:160px;">
+$ echo "Hello" > notes.txt
+$ cat notes.txt
+Hello
+$ echo "World" >> notes.txt
+$ cat notes.txt
+Hello
+World
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>Use <code>></code> to create/overwrite a file and <code>>></code> to append. <code>cat</code> prints file content.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="lesson-4" class="mb-5" data-aos="fade-up" data-aos-delay="300">
+              <h3>Lesson 4: Permissions</h3>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Terminal (read-only)</strong></div>
+                    <div class="card-body" style="background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;min-height:160px;">
+$ touch script.sh
+$ chmod +x script.sh
+$ ls -l script.sh
+-rwxr-xr-x 1 user user 0 Jan  1 00:00 script.sh
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p><code>chmod +x</code> makes a file executable. The <code>x</code> flag allows running a script.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article id="lesson-5" class="mb-4" data-aos="fade-up" data-aos-delay="350">
+              <h3>Lesson 5: Scripting Basics</h3>
+              <div class="row g-3 align-items-stretch">
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Terminal (read-only)</strong></div>
+                    <div class="card-body" style="background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;min-height:160px;">
+$ cat hello.sh
+#!/usr/bin/env bash
+name=$1
+echo "Hello, $name!"
+$ bash hello.sh Learner
+Hello, Learner!
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card h-100">
+                    <div class="card-header py-2"><strong>Explanation</strong></div>
+                    <div class="card-body">
+                      <p>This script reads an argument and prints a greeting. Pass arguments as <code>$1</code>, <code>$2</code>, etc.</p>
+                      <a href="bash-practice.html" class="btn btn-outline-primary mt-2">Go to Practice</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Learnix</span>
+          </a>
+          <p>Learnix is dedicated to making quality education accessible, flexible, and engaging for everyone. Join us in building a better future through practical learning.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="courses.html">Course</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Courses</h4>
+          <ul>
+            <li><a href="html-course.html">HTML Fundamentals</a></li>
+            <li><a href="courses.html">CSS Styling Techniques</a></li>
+            <li><a href="courses.html">JavaScript Programming</a></li>
+            <li><a href="bash-course.html">Bash Scripting</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learnix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
+

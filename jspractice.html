@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>JavaScript Practice - Learnix</title>
+  <meta name="description" content="Learn JavaScript step-by-step with interactive challenges and practice examples.">
+  <meta name="keywords" content="javascript, web, frontend, development, coding, practice">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="course-details-page">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Lernix</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html" class="active">Courses</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="enroll.html">Enroll Now</a>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">JavaScript: Fun Coding Challenges</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="current">JS-Practice</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ======= Challenge Section ======= -->
+    <section class="container my-5" data-aos="fade-up">
+      <div class="card shadow-lg p-4">
+        <h2 id="challengeTitle">Challenge 1</h2>
+        <p id="challengeDesc"></p>
+        <p class="text-muted"><strong>Hint:</strong> <span id="challengeHint"></span></p>
+
+        <textarea id="codeInput" class="form-control mb-3" rows="6"
+          placeholder="Write your JS code here..."></textarea>
+        <button id="runBtn" class="btn btn-primary me-2">▶ Run Code</button>
+        <button id="nextBtn" class="btn btn-success" disabled>➡ Next Challenge</button>
+
+        <h5 class="mt-4">Output:</h5>
+        <pre id="outputBox" class="bg-light p-3 rounded"></pre>
+        <p id="feedback" class="fw-bold"></p>
+      </div>
+    </section>
+    <!-- End Challenge Section -->
+
+  </main>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+<footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Learnix</span>
+          </a>
+          <p>Learnix is dedicated to making quality education accessible, flexible, and engaging for everyone. Join us in building a better future through practical learning.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="courses.html">Course</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Courses</h4>
+          <ul>
+            <li><a href="html-course.html">HTML Fundamentals</a></li>
+            <li><a href="courses.html">CSS Styling Techniques</a></li>
+            <li><a href="courses.html">JavaScript Programming</a></li>
+            <li><a href="bash-course.html">Bash Scripting</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learnix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <!-- End Footer -->
+
+  <!-- Scroll to top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const challenges = [
+      {
+        title: "Challenge 1: FizzBuzz Fun",
+        desc: "Print numbers from 1–20. Replace multiples of 3 with 'Fizz', multiples of 5 with 'Buzz', and both with 'FizzBuzz'.",
+        hint: "💡 Use i % 3 === 0 and i % 5 === 0 inside a loop.",
+        check: (output) => output.includes("Fizz") && output.includes("Buzz") && output.includes("FizzBuzz")
+      },
+      {
+        title: "Challenge 2: Reverse the String",
+        desc: "Write a function that reverses the string 'Lernix' and prints 'xinreL'.",
+        hint: "💡 Use .split('').reverse().join('').",
+        check: (output) => output.includes("xinreL")
+      },
+      {
+        title: "Challenge 3: Guess the Secret Number",
+        desc: "Set let secret = 7. Print 'Correct!' if guess === 7 else 'Wrong!'.",
+        hint: "💡 if(guess === secret){ console.log('Correct!'); }",
+        check: (output) => output.includes("Correct!") || output.includes("Wrong!")
+      },
+      {
+        title: "Challenge 4: Emoji Pyramid",
+        desc: "Print a pyramid of 🌟 with 5 rows.",
+        hint: "💡 Use nested loops or '🌟'.repeat(i).",
+        check: (output) => output.includes("🌟🌟🌟")
+      },
+      {
+        title: "Challenge 5: Random Dice Roller 🎲",
+        desc: "Simulate rolling a dice (1–6) and print the result.",
+        hint: "💡 Use Math.floor(Math.random()*6)+1.",
+        check: (output) => {
+          const num = parseInt(output.trim());
+          return num >= 1 && num <= 6;
+        }
+      },
+      {
+        title: "Challenge 6: Word Counter",
+        desc: "Count words in 'I love Lernix challenges' and print 4.",
+        hint: "💡 Use str.split(' ').length.",
+        check: (output) => output.trim() === "4"
+      }
+    ];
+
+    let current = 0;
+
+    function loadChallenge() {
+      const c = challenges[current];
+      document.getElementById("challengeTitle").textContent = c.title;
+      document.getElementById("challengeDesc").textContent = c.desc;
+      document.getElementById("challengeHint").textContent = c.hint;
+      document.getElementById("codeInput").value = "";
+      document.getElementById("outputBox").textContent = "";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("nextBtn").disabled = true;
+    }
+
+    document.getElementById("runBtn").onclick = () => {
+      const code = document.getElementById("codeInput").value;
+      let output = "";
+      try {
+        const log = console.log;
+        console.log = (...args) => {
+          output += args.join(" ") + "\n";
+        };
+        eval(code);
+        console.log = log;
+      } catch (e) {
+        output = "❌ Error: " + e.message;
+      }
+      document.getElementById("outputBox").textContent = output;
+      const correct = challenges[current].check(output);
+      const feedback = document.getElementById("feedback");
+      if (correct) {
+        feedback.style.color = "green";
+        feedback.textContent = "✅ Correct! Challenge Complete.";
+        document.getElementById("nextBtn").disabled = (current === challenges.length - 1);
+      } else {
+        feedback.style.color = "red";
+        feedback.textContent = "❌ Try again!";
+      }
+    };
+
+    document.getElementById("nextBtn").onclick = () => {
+      if (current < challenges.length - 1) {
+        current++;
+        loadChallenge();
+      }
+    };
+
+    window.onload = loadChallenge;
+  </script>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

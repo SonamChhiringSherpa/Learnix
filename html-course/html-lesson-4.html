@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>HTML Lesson 4: Lists & Tables</title>
+  <meta name="description" content="Bash basics: what a shell is, running commands, getting help, and understanding the prompt.">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css" rel="stylesheet">
+   <style>
+    .editor-box { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:2rem; }
+    .editor, .preview { flex:1; min-width:300px; }
+    textarea { width:100%; height:300px; background:#0b1620; color:#d6e9ff; border:none; border-radius:8px; padding:12px; font-family:monospace; font-size:14px; resize:vertical; }
+    iframe { width:100%; height:300px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .tag-description { margin-top:1.5rem; background:#f9f9f9; border-left:5px solid #0d6efd; padding:15px; border-radius:8px; }
+    .tag-description code { background:#eef; padding:2px 4px; border-radius:4px; }
+  
+</style>
+
+</head>
+
+<body class="course-details-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto"><h1 class="sitename">Learnix</h1></a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+         <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../courses.html" class="active">Courses</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="../enroll.html">Enroll Now</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">HTML Lesson 4: Lists & Tables</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="../courses.html">Courses</a></li>
+          <li><a href="../html-course.html">HTML</a></li>
+          <li class="current">Lesson 4</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item" href="html-lesson-1.html">1. Introduction</a>
+              <a class="list-group-item" href="html-lesson-2.html">2. Basic Tags</a>
+              <a class="list-group-item" href="html-lesson-3.html">3. Links & Images</a>
+              <a class="list-group-item active" href="html-lesson-4.html">4. Lists & Tables</a>
+              <a class="list-group-item" href="html-lesson-5.html">5. Forms</a>
+            </div>
+            <a href="../html-practice.html?lesson=4" class="btn btn-outline-primary w-100 mt-3">
+              <i class="bi bi-code-slash"></i> Practice
+            </a>
+          </aside>
+
+          <div class="col-lg-9">
+  <!-- Lesson Heading -->
+  <article class="mb-5">
+    <h3>Lesson 4: Lists & Tables</h3>
+    <p>
+      In HTML, <b>lists</b> are used to group related items, while <b>tables</b> are used to
+      organize data in rows and columns. Lists are great for menus, steps, or grouping items,
+      while tables are useful for structured data like schedules or reports.
+    </p>
+  </article>
+
+  <!-- Unordered Lists -->
+  <article class="mb-5">
+    <h4>Unordered Lists (<code>&lt;ul&gt;</code>)</h4>
+    <p>
+      Unordered lists display items with bullet points. They are used when the order of items
+      doesn’t matter.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor8" oninput="updatePreview('codeEditor8','livePreview8')">
+<ul>
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Cherry</li>
+</ul>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview8"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Ordered Lists -->
+  <article class="mb-5">
+    <h4>Ordered Lists (<code>&lt;ol&gt;</code>)</h4>
+    <p>
+      Ordered lists display items in a numbered format. They are used when the order of items
+      is important, such as steps in instructions.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor9" oninput="updatePreview('codeEditor9','livePreview9')">
+<ol>
+  <li>Step One</li>
+  <li>Step Two</li>
+  <li>Step Three</li>
+</ol>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview9"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Nested Lists -->
+  <article class="mb-5">
+    <h4>Nested Lists</h4>
+    <p>
+      You can place lists inside other lists. This is useful for creating sub-menus or categories.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor10" oninput="updatePreview('codeEditor10','livePreview10')">
+<ul>
+  <li>Fruits
+    <ul>
+      <li>Apple</li>
+      <li>Banana</li>
+    </ul>
+  </li>
+  <li>Vegetables
+    <ul>
+      <li>Carrot</li>
+      <li>Potato</li>
+    </ul>
+  </li>
+</ul>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview10"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Basic Table -->
+  <article class="mb-5">
+    <h4>Basic Table</h4>
+    <p>
+      Tables in HTML are created using the <code>&lt;table&gt;</code> element. Rows are defined
+      with <code>&lt;tr&gt;</code>, headers with <code>&lt;th&gt;</code>, and data cells with
+      <code>&lt;td&gt;</code>.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor11" oninput="updatePreview('codeEditor11','livePreview11')">
+<table border="1" cellpadding="5">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Alice</td>
+    <td>20</td>
+  </tr>
+  <tr>
+    <td>Bob</td>
+    <td>22</td>
+  </tr>
+</table>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview11"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Table with Rowspan and Colspan -->
+  <article class="mb-5">
+    <h4>Table with <code>rowspan</code> and <code>colspan</code></h4>
+    <p>
+      The <code>rowspan</code> and <code>colspan</code> attributes allow a cell to span multiple
+      rows or columns, making your table more flexible.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor12" oninput="updatePreview('codeEditor12','livePreview12')">
+<table border="1" cellpadding="5">
+  <tr>
+    <th rowspan="2">Name</th>
+    <th colspan="2">Scores</th>
+  </tr>
+  <tr>
+    <th>Math</th>
+    <th>Science</th>
+  </tr>
+  <tr>
+    <td>Alice</td>
+    <td>95</td>
+    <td>88</td>
+  </tr>
+  <tr>
+    <td>Bob</td>
+    <td>80</td>
+    <td>90</td>
+  </tr>
+</table>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview12"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Table with Styling -->
+  <article class="mb-5">
+    <h4>Table with Styling</h4>
+    <p>
+      You can style tables with inline CSS or external stylesheets to improve readability.
+    </p>
+    <div class="editor-box">
+      <div class="editor">
+        <textarea id="codeEditor13" oninput="updatePreview('codeEditor13','livePreview13')">
+<table style="border-collapse: collapse; width: 100%; text-align: left;">
+  <tr style="background-color: #f2f2f2;">
+    <th style="border: 1px solid #ccc; padding: 8px;">Product</th>
+    <th style="border: 1px solid #ccc; padding: 8px;">Price</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Laptop</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">$800</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Phone</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">$500</td>
+  </tr>
+</table>
+        </textarea>
+      </div>
+      <div class="preview">
+        <iframe id="livePreview13"></iframe>
+      </div>
+    </div>
+  </article>
+<article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+  <h4>Understanding Lists & Tables</h4>
+  <p>
+    Lists and tables are essential for organizing content on a webpage. 
+    Lists help display items in sequence or bullet form, while tables 
+    present structured data using rows and columns.
+  </p>
+  <div class="tag-description">
+    <ul>
+      <li><code>&lt;ul&gt;...&lt;/ul&gt;</code> → Creates an unordered list (bulleted).</li>
+      <li><code>&lt;ol&gt;...&lt;/ol&gt;</code> → Creates an ordered list (numbered).</li>
+      <li><code>&lt;li&gt;...&lt;/li&gt;</code> → Defines an item in a list.</li>
+      <li><code>&lt;table&gt;...&lt;/table&gt;</code> → Creates a table structure.</li>
+      <li><code>&lt;tr&gt;...&lt;/tr&gt;</code> → Defines a table row.</li>
+      <li><code>&lt;th&gt;...&lt;/th&gt;</code> → Defines a table header cell (bold and centered).</li>
+      <li><code>&lt;td&gt;...&lt;/td&gt;</code> → Defines a table data cell (normal cell).</li>
+    </ul>
+  </div>
+</article>
+
+
+
+
+            <div class="d-flex justify-content-between">
+              <a href="html-lesson-3.html" class="btn btn-outline-secondary">Previous</a>
+              <a href="html-lesson-5.html" class="btn btn-primary">Next: Forms</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+
+<!-- Footer -->
+<footer id="footer" class="footer accent-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="../index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Learnix</span>
+          </a>
+          <p>Learnix is dedicated to making quality education accessible, flexible, and engaging for everyone. Join us in building a better future through practical learning.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About us</a></li>
+            <li><a href="../courses.html">Course</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Courses</h4>
+          <ul>
+            <li><a href="../html-course.html">HTML Fundamentals</a></li>
+            <li><a href="../courses.html">CSS Styling Techniques</a></li>
+            <li><a href="../js.html">JavaScript Programming</a></li>
+            <li><a href="../bash-course.html">Bash Scripting</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>Kamal Pokhari</p>
+          <p>Kathmandu</p>
+          <p>Nepal</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Learnix</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+   <script>
+  function updatePreview(editorId, previewId) {
+    const code = document.getElementById(editorId).value;
+    const iframe = document.getElementById(previewId);
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  }
+
+  window.onload = function() {
+    updatePreview('codeEditor8','livePreview8');
+    updatePreview('codeEditor9','livePreview9');
+    updatePreview('codeEditor10','livePreview10');
+    updatePreview('codeEditor11','livePreview11');
+    updatePreview('codeEditor12','livePreview12');
+    updatePreview('codeEditor13','livePreview13');
+  }
+</script>
+
+</html>
