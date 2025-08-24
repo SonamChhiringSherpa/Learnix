@@ -135,6 +135,99 @@
       font-size: 1.5rem;
       margin: 0 10px;
     }
+  /* Overlay */
+.custom-alert {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Show Modal */
+.custom-alert.show {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Box */
+.custom-alert-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+  transform: translateY(-20px);
+  animation: slideIn 0.4s forwards;
+}
+
+/* Slide in animation */
+@keyframes slideIn {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Close Button */
+.close-alert {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.close-alert:hover,
+.close-alert:focus {
+  color: #333;
+  outline: none;
+}
+
+/* Icon */
+.alert-icon {
+  font-size: 48px;
+  color: #28a745;
+  margin-bottom: 15px;
+  animation: popIn 0.4s ease forwards;
+}
+
+/* Pop in animation for icon */
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Message text */
+.alert-message {
+  font-size: 1.2rem;
+  color: #222;
+  margin: 0;
+}
+
   </style>
   </head>
 
@@ -178,21 +271,45 @@
   <!-- End Hero -->
 
   <!-- ======= About Section ======= -->
-  <section id="about" class="about section">
-    <div class="container text-center">
-      <div class="section-title">
-        <h2>About Me</h2>
-      </div>
-      <p>
-        I am a young, active, and passionate individual who loves bringing creativity and dedication to everything I do.
-        With skills in web designing, leadership, sportsmanship, and video editing, I enjoy combining technology with creativity to deliver meaningful work.
-        Outside of my profession, I have a deep love for traveling and sports, which keep me energetic, inspired, and open to new experiences.
-      </p>
+ <section id="about" class="about section">
+  <div class="container text-center">
+    <div class="section-title">
+      <h2>About Me</h2>
     </div>
-  </section>
+    <p>
+      I am a motivated and versatile developer with a strong focus on creating efficient and user-friendly web applications.
+      Skilled in web development, problem-solving, and innovative design, I strive to deliver high-quality solutions while continuously
+      expanding my technical expertise. Outside of coding, I enjoy learning new technologies, collaborating with teams, and exploring
+      creative solutions to real-world challenges.
+    </p>
+  </div>
+</section>
   <!-- End About -->
 
   <!-- ======= Skills Section ======= -->
+<section id="skills" class="skills section">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>Skills & Expertise</h2>
+    </div>
+    <div class="row">
+      <!-- Technical Skills -->
+      <div class="col-md-6">
+        <h4>Technical Skills</h4>
+        <div class="progress mb-3">
+          <div class="progress-bar" style="width: 90%;">JavaScript 90%</div>
+        </div>
+        <div class="progress mb-3">
+          <div class="progress-bar" style="width: 85%;">Testing & Debugging 85%</div>
+        </div>
+        <div class="progress mb-3">
+          <div class="progress-bar" style="width: 80%;">User Experience Design 80%</div>
+        </div>
+        <div class="progress mb-3">
+          <div class="progress-bar" style="width: 75%;">C / C++ 75%</div>
+        </div>
+        <div class="progress mb-3">
+          <div class="progress-bar" style="width: 70%;">Version Control & Analytics 70%</div>
   <section id="skills" class="skills section">
     <div class="container">
       <div class="section-title text-center">
@@ -205,23 +322,28 @@
             <div class="progress-bar" style="width: 85%;">Web Development 85%</div>
           </div>
           <div class="progress mb-3">
-            <div class="progress-bar" style="width: 75%;">Video Editing 75%</div>
+            <div class="progress-bar" style="width: 80%;">React 80%</div>
           </div>
           <div class="progress mb-3">
-            <div class="progress-bar" style="width: 65%;">Design Tools 65%</div>
+            <div class="progress-bar" style="width: 75%;">Java 75%</div>
           </div>
         </div>
-        <div class="col-md-6">
-          <h4>Soft Skills</h4>
-          <ul>
-            <li>✔ Communication</li>
-            <li>✔ Leadership</li>
-            <li>✔ Creativity</li>
-          </ul>
-        </div>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="col-md-6">
+        <h4>Soft Skills</h4>
+        <ul>
+          <li>✔ Communication</li>
+          <li>✔ Problem-Solving</li>
+          <li>✔ Continuous Learning</li>
+          <li>✔ Leadership</li>
+          <li>✔ Creativity</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <!-- End Skills -->
 
   <!-- ======= Projects Section ======= -->
@@ -271,7 +393,7 @@
       </div>
       <div class="row gy-4 justify-content-center">
         <div class="col-lg-6">
-          <form action="#" method="post">
+          <form action="#" method="post" id="contactForm">
             <div class="row gy-3">
               <div class="col-md-6"><input type="text" name="name" class="form-control" placeholder="Your Name" required></div>
               <div class="col-md-6"><input type="email" name="email" class="form-control" placeholder="Your Email" required></div>
@@ -282,6 +404,14 @@
               </div>
             </div>
           </form>
+          <!-- Custom Alert Box -->
+<div id="customAlert" class="custom-alert" role="alert" aria-live="assertive" aria-atomic="true" tabindex="-1">
+  <div class="custom-alert-content" role="document">
+    <button class="close-alert" aria-label="Close alert" onclick="closeCustomAlert()">&times;</button>
+    <div class="alert-icon">✅</div>
+    <p class="alert-message">🎉 Message sent successfully!</p>
+  </div>
+</div>
           <div class="social-links d-flex justify-content-center mt-4">
             <a href="mailto:atishrsid@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
             <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
@@ -337,7 +467,7 @@
           <p>Kathmandu</p>
           <p>Nepal</p>
           <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>learnix@example.com</span></p>
+          <p><strong>Email:</strong> <span>info@learnix.com</span></p>
         </div>
 
       </div>
@@ -347,5 +477,39 @@
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Learnix</strong> <span>All Rights Reserved</span></p>
     </div>
   </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const alertBox = document.getElementById('customAlert');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Reset the form
+    form.reset();
+
+    // Show the alert modal
+    showCustomAlert();
+
+    // Auto-close after 3 seconds
+    setTimeout(() => {
+      closeCustomAlert();
+    }, 3000);
+  });
+});
+
+function showCustomAlert() {
+  const alertBox = document.getElementById('customAlert');
+  alertBox.classList.add('show');
+  alertBox.focus();
+}
+
+function closeCustomAlert() {
+  const alertBox = document.getElementById('customAlert');
+  alertBox.classList.remove('show');
+}
+</script>
+
 
 </body>
+</html>
