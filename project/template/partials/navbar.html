@@ -11,7 +11,7 @@
         <ul>
           <li><a href="{%url 'home' %}" class="{%if request.path == '/' or request.path == '/home/' %}active{%endif%}">Home</a></li>
           <li><a href="{%url 'about' %}" class="{%if request.path == '/about/' or '/portfolio/' in request.path %}active{%endif%}">About</a></li>
-          <li><a href="courses.html" class="{%if request.path == 'courses/' %}active{%endif%}">Courses</a></li>
+          <li><a href="{%url 'course' %}" class="{%if request.path == '/course/' or '/course/' in request.path %}active{%endif%}">Courses</a></li>
           <li><a href="{%url 'blog' %}"class="{%if request.path == '/blog/' or '/blog/' in request.path %}active{%endif%}">Blog</a></li>
           <li><a href="{%url 'contact' %}" class="{%if request.path == 'contact/' or '/contact/' in request.path %}active{%endif%}">Contact</a></li>
         </ul>
