@@ -154,52 +154,17 @@
     </div>
 
     <!-- Single Row (All Cards) -->
+    {%for p in Personal_info%}
     <div class="d-flex flex-wrap justify-content-center gap-4">
       <div class="portfolio-card shadow-sm">
-        <img src="{%static 'assets/img/protfolio/sonam.jpg' %}" class="card-img-top" alt="Sonam Chhiring Sherpa">
+        <img src="{{p.image.url}}" class="card-img-top" alt="Sonam Chhiring Sherpa">
         <div class="card-body-overlay">
-          <h5 class="card-title">Sonam Chhiring Sherpa</h5>
-          <p class="card-text">A showcase of our first featured project.</p>
-          <a href="protfolio-page/sonam-protfolio.html" class="btn btn-light">View More</a>
+          <h5 class="card-title">{{p.name}}</h5>
+          <p class="card-text">A showcase of our featured project.</p>
+          <a href="{% url 'portfolio_detail' p.slug %}" class="btn btn-light">View More</a>
         </div>
       </div>
-
-      <div class="portfolio-card shadow-sm">
-        <img src="{%static 'assets/img/protfolio/papit.jpeg' %}" class="card-img-top" alt="Papit Ghimire">
-        <div class="card-body-overlay">
-          <h5 class="card-title">Papit Ghimire</h5>
-          <p class="card-text">A showcase of our second featured project.</p>
-          <a href="protfolio-page/papit-protfolio.html" class="btn btn-light">View More</a>
-        </div>
-      </div>
-
-      <div class="portfolio-card shadow-sm">
-        <img src="{%static 'assets/img/protfolio/saket.jpg' %}" class="card-img-top" alt="Saket Yadav">
-        <div class="card-body-overlay">
-          <h5 class="card-title">Saket Yadav</h5>
-          <p class="card-text">A showcase of our third featured project.</p>
-          <a href="protfolio-page/saket-protfolio.html" class="btn btn-light">View More</a>
-        </div>
-      </div>
-
-      <div class="portfolio-card shadow-sm">
-        <img src="{%static 'assets/img/protfolio/prashant.jpg' %}" class="card-img-top" alt="Prashant Singh">
-        <div class="card-body-overlay">
-          <h5 class="card-title">Prashant Singh</h5>
-          <p class="card-text">A showcase of our fourth featured project.</p>
-          <a href="protfolio-page/prashant-protfolio.html" class="btn btn-light">View More</a>
-        </div>
-      </div>
-
-      <div class="portfolio-card shadow-sm">
-        <img src="{%static 'assets/img/protfolio/siddhartha.jpeg' %}" class="card-img-top" alt="Siddhartha Shrestha">
-        <div class="card-body-overlay">
-          <h5 class="card-title">Siddhartha Shrestha</h5>
-          <p class="card-text">A showcase of our fifth featured project.</p>
-          <a href="protfolio-page/sidddharth-protfolio.html" class="btn btn-light">View More</a>
-        </div>
-      </div>
-    </div>
+      {%endfor%}
 
   </div>
 </section>

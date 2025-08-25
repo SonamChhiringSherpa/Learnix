@@ -10,7 +10,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{%url 'home' %}" class="{%if request.path == '/' %}active{%endif%}">Home</a></li>
-          <li><a href="{%url 'about' %}" class="{%if request.path == 'about/' %}active{%endif%}">About</a></li>
+          <li><a href="{%url 'about' %}" class="{%if request.path == '/about/' %}active{%endif%}">About</a></li>
           <li><a href="courses.html" class="{%if request.path == 'courses/' %}active{%endif%}">Courses</a></li>
           <li><a href="blog.html"class="{%if request.path == 'blog/' %}active{%endif%}">Blog</a></li>
           <li><a href="contact.html" class="{%if request.path == 'contact/' %}active{%endif%}">Contact</a></li>
