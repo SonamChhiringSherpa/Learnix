@@ -13,7 +13,7 @@
           <li><a href="{%url 'about' %}" class="{%if request.path == '/about/' or '/portfolio/' in request.path %}active{%endif%}">About</a></li>
           <li><a href="courses.html" class="{%if request.path == 'courses/' %}active{%endif%}">Courses</a></li>
           <li><a href="{%url 'blog' %}"class="{%if request.path == '/blog/' or '/blog/' in request.path %}active{%endif%}">Blog</a></li>
-          <li><a href="contact.html" class="{%if request.path == 'contact/' %}active{%endif%}">Contact</a></li>
+          <li><a href="{%url 'contact' %}" class="{%if request.path == 'contact/' or '/contact/' in request.path %}active{%endif%}">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
