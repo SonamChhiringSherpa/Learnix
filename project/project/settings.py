@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app',
     'portfolio',
     'blog',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_PORT=465
+EMAIL_USE_SSL=True
+EMAIL_HOST_USER="linconghimire@gmail.com"
+EMAIL_HOST_PASSWORD="fhxo rrgg tawv nsgb"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

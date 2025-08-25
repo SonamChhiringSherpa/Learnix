@@ -526,64 +526,26 @@ I struggled to understand JavaScript until I found W3Schools. The examples are c
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
-
+          {%for i in blog %}
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
               <div class="card-top d-flex align-items-center">
-                <img src="{%static 'assets/img/person/person-f-12.webp' %}" alt="Author" class="rounded-circle me-2">
-                <span class="author-name">By Andy glamer</span>
+                <img src="{{i.author_image.url}}" alt="Author" class="rounded-circle me-2">
+                <span class="author-name">By {{i.author|capfirst}}</span>
                 <span class="ms-auto likes"><i class="bi bi-heart"></i> 65</span>
               </div>
               <div class="card-img-wrapper">
-                <a href="blog-details.html"><img src="{%static 'assets/img/blog/php-training-nepal.jpeg" alt="Post Image"></a>
+                <a href="{% url 'blog_detail' i.slug %}"><img src="{{i.image.url}}" alt="Post Image"></a>
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Mastering Semantic HTML: Why It Matters and How It Makes You a Better Developer</a></h5>
-                <p class="card-text">In today's digital world, knowing how to code is more than just a useful skill —it's a superpower. Whether you're building websites, automating tasks, or just trying to understand how the tools around you work, programming opens up a world of possibilities.</p>
+                <h5 class="card-title"><a href="{%url 'blog_detail' i.slug%}">{{i.title}}</a></h5>
+                <p class="card-text">{{i.content}}</p>
               </div>
             </div>
           </div><!-- End Post Item Card -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="card position-relative">
-              <div class="card-top d-flex align-items-center">
-                <img src="{%static 'assets/img/person/person-f-13.webp' %}" alt="Author" class="rounded-circle me-2">
-                <span class="author-name">By Den viliamson</span>
-                <span class="ms-auto likes"><i class="bi bi-heart"></i> 35</span>
-              </div>
-              <div class="card-img-wrapper">
-                <a href="blog-details.html"><img src="{%static 'assets/img/blog/Web-Design-Trends-What-is-in-and-what-is-out.jpg" alt="Post Image"></a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Current Web Design Trends: What’s In and What’s Out in 2023 & 2024</a></h5>
-                <p class="card-text">Web Design is as important to your website as a snazzy outfit is to a superhero! Imagine your favorite superhero, say, Batman decided to fight crime in his pajamas. It might still get the job done, but nothing beats the impact of a tight fit with a cape. Similarly, a well-designed website leaves a lasting impact, establishes credibility, and fulfills fundamental user needs.
-
-</p>
-              </div>
-            </div>
-          </div><!-- End Post Item Card -->
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="card">
-              <div class="card-top d-flex align-items-center">
-                <img src="{%static 'assets/img/person/person-m-10.webp' %}" alt="Author" class="rounded-circle me-2">
-                <span class="author-name">By Jones robbert</span>
-                <span class="ms-auto likes"><i class="bi bi-heart"></i> 58</span>
-              </div>
-              <div class="card-img-wrapper">
-                <a href="blog-details.html"><img src="{%static 'assets/img/blog/Importance-of-AI-for-IT-Students.png' %}" alt="Post Image"></a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="blog-details.html">Importance of AI for Information Technology Students: 4 Things to Know</a></h5>
-                <p class="card-text">Are you fascinated by the endless possibilities of technology? You definitely must’ve seen self-driving cars navigate complex city streets, virtual assistants respond to your voice commands, and recommendation systems tailor your favorite music playlist like living in a sci-fi movie. But it’s not sci-fi, it’s AI.</p>
-              </div>
-            </div>
-          </div><!-- End Post Item Card -->
-
+          {%endfor%}
         </div>
-
       </div>
-
     </section><!-- /Recent Blog Posts Section -->
 
     <!-- Cta Section -->

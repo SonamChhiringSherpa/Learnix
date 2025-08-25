@@ -2,10 +2,12 @@ from django.shortcuts import render,redirect
 from portfolio.models import Portfolio,Project
 from .models import ContactMessage
 from django.contrib import messages
-
+from blog.models import BlogPost,Category
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    blog=BlogPost.objects.all().order_by('-updated_at')[:3]
+    context={'blog':blog}
+    return render(request, 'index.html',context)
 def about(request):
     Personal_info = Portfolio.objects.all()
     Projects = Project.objects.all()
