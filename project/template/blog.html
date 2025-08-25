@@ -1,0 +1,129 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Blog{%endblock%}
+{%block class_title%}blog-page{%endblock%}
+{%block content %}
+    <!-- Page Title -->
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Blog</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{%url 'home' %}">Home</a></li>
+            <li class="current">Blog</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Blog Hero Section -->
+    <section id="blog-hero" class="blog-hero section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="blog-grid">
+
+          <!-- Featured Post (Large) -->
+         {% if featured_post %}
+        <article class="blog-item featured" data-aos="fade-up">
+          <img src="{{ featured_post.image.url }}" alt="{{ featured_post.title }}" class="img-fluid">
+          <div class="blog-content">
+            <div class="post-meta">
+              <span class="date">{{ featured_post.created_at|date:"M d, Y" }}</span>
+              <span class="category">{{ featured_post.category.name }}</span>
+            </div>
+            <h2 class="post-title">
+              <a href="{% url 'blog_detail' featured_post.slug %}" title="{{ featured_post.title }}">{{ featured_post.title }}</a>
+            </h2>
+          </div>
+        </article>
+        {% endif %}<!-- End Featured Post -->
+
+          <!-- Regular Posts -->
+          {% for post in regular_posts %}
+        <article class="blog-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+          <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+          <div class="blog-content">
+            <div class="post-meta">
+              <span class="date">{{ post.created_at|date:"M d, Y" }}</span>
+              <span class="category">{{ post.category.name }}</span>
+            </div>
+            <h3 class="post-title">
+              <a href="{% url 'blog_detail' post.slug %}" title="{{ post.title }}">{{ post.title }}</a>
+            </h3>
+          </div>
+        </article>
+        {% empty %}
+        <p>No posts found.</p>
+        {% endfor %}
+        </div>
+
+      </div>
+
+    </section><!-- /Blog Hero Section -->
+
+    <!-- Blog Posts Section -->
+    <section id="blog-posts" class="blog-posts section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
+        {%for i in all_posts|slice:":6" %}
+          <div class="col-lg-4">
+            <article class="position-relative h-100">
+              <div class="post-img position-relative overflow-hidden">
+                <img src="{{i.image.url}}" class="img-fluid" alt="">
+              </div>
+
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>{{i.created_at|date:"d"}}</span>{{ i.created_at|date:"F" }}
+</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">{{i.author}}</span>
+                </div>
+                <!-- <span class="px-3 text-black-50">/</span> -->
+                <!-- <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">Web developer</span>
+                </div> -->
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">{{i.title}}</h3>
+                <a href="{% url 'blog_detail' i.slug %}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+          {%endfor%}
+        </div>
+      </div>
+
+    </section><!-- /Blog Posts Section -->
+
+    <!-- Pagination 2 Section -->
+    <section id="pagination-2" class="pagination-2 section">
+
+          <div class="container">
+            <nav aria-label="Page navigation">
+      <ul>
+        {% if all_posts.has_previous %}
+          <li><a href="?page={{ all_posts.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+        {% for num in all_posts.paginator.page_range %}
+          <li><a href="?page={{ num }}" class="{% if all_posts.number == num %}active{% endif %}">{{ num }}</a></li>
+        {% endfor %}
+        
+        {% if all_posts.has_next %}
+          <li><a href="?page={{ all_posts.next_page_number }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+      </div>
+
+    </section><!-- /Pagination 2 Section -->
+
+  {%endblock%}
+  
