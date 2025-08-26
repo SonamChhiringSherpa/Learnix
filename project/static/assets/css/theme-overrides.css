@@ -1,0 +1,88 @@
+/* Lightweight theme improvements: softer surfaces, accent colors, elevated cards */
+
+:root {
+  --lx-surface: #0b1220;
+  --lx-surface-2: #0f172a;
+  --lx-card: #0f1b33;
+  --lx-border: rgba(255,255,255,0.08);
+  --lx-text: #e5e7eb;
+  --lx-muted: #94a3b8;
+  --lx-primary: #7c3aed; /* violet */
+  --lx-secondary: #06b6d4; /* cyan */
+  --lx-success: #22c55e;
+  --lx-warning: #f59e0b;
+}
+
+body.course-details-page {
+  background: radial-gradient(1200px 600px at 80% -100%, rgba(124,58,237,0.18), transparent),
+              radial-gradient(1000px 500px at -20% -120%, rgba(6,182,212,0.18), transparent),
+              var(--lx-surface-2);
+  color: var(--lx-text);
+}
+
+/* Fullscreen layout for practice */
+body.practice-fullscreen .section { padding-top: 16px; padding-bottom: 16px; }
+body.practice-fullscreen main.main { padding-top: 0; }
+body.practice-fullscreen .card { border-radius: 18px !important; }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid var(--lx-border) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25) !important;
+  border-radius: 14px !important;
+}
+
+.card .card-header {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-bottom: 1px solid var(--lx-border);
+  color: var(--lx-text);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--lx-primary), #9d6df1);
+  border: none;
+}
+.btn-outline-primary { border-color: var(--lx-primary); color: var(--lx-primary); }
+.btn-outline-primary:hover { background: var(--lx-primary); color: #fff; }
+
+.btn-warning {
+  background: linear-gradient(135deg, var(--lx-warning), #f7b64a);
+  border: none; color: #1f2430;
+}
+.btn-outline-warning { border-color: var(--lx-warning); color: var(--lx-warning); }
+.btn-outline-warning:hover { background: var(--lx-warning); color: #1f2430; }
+
+.progress { background: rgba(255,255,255,0.08); }
+.progress-bar { box-shadow: 0 2px 10px rgba(124,58,237,0.35); }
+
+.list-group-item {
+  background: transparent;
+  color: var(--lx-text);
+  border-color: var(--lx-border);
+}
+.list-group-item-action:hover { background: rgba(124,58,237,0.12); }
+
+.breadcrumbs { color: var(--lx-muted); }
+.breadcrumbs a { color: var(--lx-secondary); }
+.breadcrumbs .current { color: #fff; }
+
+/* Editors & Practice */
+#hpEditor {
+  background: #0b1220;
+  color: #dbeafe;
+  border: 1px solid var(--lx-border);
+  border-radius: 10px;
+}
+#hpPreview { background: #0b1220; }
+#hpPalette .btn { border-color: var(--lx-secondary); color: var(--lx-secondary); }
+#hpPalette .btn:hover { background: var(--lx-secondary); color: #0b1220; }
+
+/* Chatbot toggles adapt to theme */
+.bash-chat-toggle { background: linear-gradient(135deg, var(--lx-primary), #9d6df1) !important; }
+.html-chat-toggle { background: linear-gradient(135deg, var(--lx-warning), #f7b64a) !important; color:#1f2430 !important; }
+
+/* Tables, code blocks */
+code, pre code { color: #f1f5f9; }
+table { color: var(--lx-text); }
+
+
