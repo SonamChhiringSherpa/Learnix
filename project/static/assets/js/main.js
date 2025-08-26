@@ -353,7 +353,8 @@
    * HTML Course Chatbot Widget (appears on pages whose path includes "html")
    */
   function initHtmlChatbot() {
-    const isHtmlPage = /(\/)html-course\.html$/i.test(window.location.pathname) || /html-course\/html-lesson-\d+\.html$/i.test(window.location.pathname);
+    // Match Django routes: /course/html-course, /course/html/lesson/<num>/
+    const isHtmlPage = /\/course\/html-course(?:\/)?$/i.test(window.location.pathname) || /\/course\/html\/lesson\/\d+\/(?:)?$/i.test(window.location.pathname);
     if (!isHtmlPage) return;
     if (document.getElementById('htmlChatToggle')) return;
 
@@ -707,7 +708,8 @@
    * HTML Course: Dashboard, Progress, Quizzes (mirrors Bash)
    */
   function initHtmlCourseFeatures() {
-    const isHtml = /html-course|html-lesson-/i.test(window.location.pathname);
+    // Match Django routes for HTML course pages
+    const isHtml = /\/course\/html-course(?:\/)?$/i.test(window.location.pathname) || /\/course\/html\/lesson\/\d+\/(?:)?$/i.test(window.location.pathname);
     if (!isHtml) return;
 
     const STORAGE_KEY = 'htmlCourseProgress_v1';
@@ -759,7 +761,8 @@
     };
 
     function renderDashboard(){
-      if (!/html-course\.html$/i.test(window.location.pathname)) return;
+      // Only on the HTML course overview page
+      if (!/\/course\/html-course(?:\/)?$/i.test(window.location.pathname)) return;
       if (document.getElementById('htmlDashboard')) return;
       const container = document.querySelector('main .section .container');
       if (!container) return;
@@ -905,7 +908,8 @@
    * - Points + badges integrated with HTML course storage
    */
   function initHtmlPracticeGame() {
-    const isPractice = /\/html-practice\.html$/i.test(window.location.pathname);
+    // Match Django route: /course/html-practice
+    const isPractice = /\/course\/html-practice(?:\/)?$/i.test(window.location.pathname);
     if (!isPractice) return;
     if (document.getElementById('hpGame')) return;
 
