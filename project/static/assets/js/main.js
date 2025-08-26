@@ -104,6 +104,47 @@
   }
   window.addEventListener('load', aosInit);
 
+  // Auth + progress helpers
+  const IS_AUTHED = !!(window.CURRENT_USER && window.CURRENT_USER.isAuthenticated);
+  const USERNAME = (window.CURRENT_USER && window.CURRENT_USER.username) || null;
+  function userScopedKey(base) { return USERNAME ? `${base}__${USERNAME}` : base; }
+  function getCSRFToken() {
+    const name = 'csrftoken=';
+    const parts = document.cookie ? document.cookie.split(';') : [];
+    for (let c of parts) {
+      c = c.trim();
+      if (c.startsWith(name)) return decodeURIComponent(c.substring(name.length));
+    }
+    return '';
+  }
+  function pullProgress(course, storageKey) {
+    if (!IS_AUTHED) return Promise.resolve();
+    return fetch(`/api/progress/${course}/`, { credentials: 'same-origin' })
+      .then(r => r.ok ? r.json() : Promise.reject(r))
+      .then(d => {
+        const data = {
+          points: d.points || 0,
+          badges: Array.isArray(d.badges) ? d.badges : [],
+          lessonsCompleted: d.lessonsCompleted || {},
+          quizzes: d.quizzes || {},
+          lastLesson: d.lastLesson || 1
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      })
+      .catch(() => {});
+  }
+  function pushProgress(course, storageKey) {
+    if (!IS_AUTHED) return;
+    let body = {};
+    try { body = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch(e) { body = {}; }
+    fetch(`/api/progress/${course}/update/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCSRFToken() },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).catch(() => {});
+  }
+
   /**
    * Initiate Pure Counter
    */
@@ -466,22 +507,22 @@
    * Bash Course: Progress, Dashboard, Quizzes, Roadmap, Gamification
    */
   function initBashCourseFeatures() {
-    const isBash = /bash/i.test(window.location.pathname);
+    const isBash = /\/course\/bash-course(?:\/)?$/i.test(window.location.pathname) || /\/course\/bash\/lesson\/\d+\/(?:)?$/i.test(window.location.pathname) || /\/course\/bash-practice(?:\/)?$/i.test(window.location.pathname);
     if (!isBash) return;
 
-    const STORAGE_KEY = 'bashCourseProgress_v1';
+    const STORAGE_KEY = userScopedKey('bashCourseProgress_v1');
     const LESSONS = [
-      { id: 1, title: 'Introduction to Bash', path: 'bash-course/bash-lesson-1.html' },
-      { id: 2, title: 'Files & Directories', path: 'bash-course/bash-lesson-2.html' },
-      { id: 3, title: 'Viewing & Editing Files', path: 'bash-course/bash-lesson-3.html' },
-      { id: 4, title: 'Permissions', path: 'bash-course/bash-lesson-4.html' },
-      { id: 5, title: 'Scripting Basics', path: 'bash-course/bash-lesson-5.html' }
+      { id: 1, title: 'Introduction to Bash', path: '/course/bash/lesson/1/' },
+      { id: 2, title: 'Files & Directories', path: '/course/bash/lesson/2/' },
+      { id: 3, title: 'Viewing & Editing Files', path: '/course/bash/lesson/3/' },
+      { id: 4, title: 'Permissions', path: '/course/bash/lesson/4/' },
+      { id: 5, title: 'Scripting Basics', path: '/course/bash/lesson/5/' }
     ];
 
     function loadStore() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
     }
-    function saveStore(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+    function saveStore(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); pushProgress('bash', STORAGE_KEY); }
     function getStore() {
       const s = loadStore();
       return {
@@ -501,7 +542,7 @@
     function getProgressPct() { const s = getStore(); const completed = LESSONS.filter(l => s.lessonsCompleted[l.id]).length; return Math.round((completed / LESSONS.length) * 100); }
 
     function currentLessonIdFromPath() {
-      const m = window.location.pathname.match(/bash-lesson-(\d+)\.html/i);
+      const m = window.location.pathname.match(/\/course\/bash\/lesson\/(\d+)\//i);
       return m ? parseInt(m[1], 10) : null;
     }
 
@@ -530,7 +571,8 @@
     };
 
     function renderDashboard() {
-      if (!/bash-course\.html$/i.test(window.location.pathname)) return;
+      if (!/\/course\/bash-course(?:\/)?$/i.test(window.location.pathname)) return;
+      if (!IS_AUTHED) return; // Only for logged-in users
       if (document.getElementById('bashDashboard')) return;
 
       const container = document.querySelector('main .section .container');
@@ -549,7 +591,7 @@
           <div class="card h-100">
             <div class="card-body">
               <div class="d-flex align-items-center justify-content-between mb-2">
-                <h5 class="mb-0">Ayush</h5>
+                <h5 class="mb-0">${(window.CURRENT_USER && window.CURRENT_USER.username) || 'Learner'}</h5>
                 <span class="badge bg-primary">Bash</span>
               </div>
               <div class="d-flex align-items-center gap-3">
@@ -626,7 +668,7 @@
           </div>
           <div class="d-flex gap-2">
             <button id="btnMarkComplete" class="btn ${completed ? 'btn-success' : 'btn-outline-success'}">${completed ? 'Completed' : 'Mark as Completed'}</button>
-            <a href="../bash-practice.html?lesson=${lessonId}" class="btn btn-outline-primary"><i class="bi bi-terminal"></i> Practice</a>
+            <a href="/course/bash-practice?lesson=${lessonId}" class="btn btn-outline-primary"><i class="bi bi-terminal"></i> Practice</a>
           </div>
         </div>`;
       col.prepend(wrap);
@@ -693,7 +735,7 @@
     }
 
     // Page routing
-    renderDashboard();
+    pullProgress('bash', STORAGE_KEY).finally(() => { renderDashboard(); });
     const lessonId = currentLessonIdFromPath();
     if (lessonId) {
       updateStore(s => { s.lastLesson = lessonId; });
@@ -709,20 +751,20 @@
    */
   function initHtmlCourseFeatures() {
     // Match Django routes for HTML course pages
-    const isHtml = /\/course\/html-course(?:\/)?$/i.test(window.location.pathname) || /\/course\/html\/lesson\/\d+\/(?:)?$/i.test(window.location.pathname);
+    const isHtml = /\/course\/html-course(?:\/)?$/i.test(window.location.pathname) || /\/course\/html\/lesson\/\d+\/(?:)?$/i.test(window.location.pathname) || /\/course\/html-practice(?:\/)?$/i.test(window.location.pathname);
     if (!isHtml) return;
 
-    const STORAGE_KEY = 'htmlCourseProgress_v1';
+    const STORAGE_KEY = userScopedKey('htmlCourseProgress_v1');
     const LESSONS = [
-      { id: 1, title: 'Introduction', path: 'html-course/html-lesson-1.html' },
-      { id: 2, title: 'Basic Tags', path: 'html-course/html-lesson-2.html' },
-      { id: 3, title: 'Links & Images', path: 'html-course/html-lesson-3.html' },
-      { id: 4, title: 'Lists & Tables', path: 'html-course/html-lesson-4.html' },
-      { id: 5, title: 'Forms', path: 'html-course/html-lesson-5.html' }
+      { id: 1, title: 'Introduction', path: '/course/html/lesson/1/' },
+      { id: 2, title: 'Basic Tags', path: '/course/html/lesson/2/' },
+      { id: 3, title: 'Links & Images', path: '/course/html/lesson/3/' },
+      { id: 4, title: 'Lists & Tables', path: '/course/html/lesson/4/' },
+      { id: 5, title: 'Forms', path: '/course/html/lesson/5/' }
     ];
 
     function loadStore() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; } }
-    function saveStore(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+    function saveStore(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); pushProgress('html', STORAGE_KEY); }
     function getStore() {
       const s = loadStore();
       return { lessonsCompleted: s.lessonsCompleted || {}, quizzes: s.quizzes || {}, points: Number.isFinite(s.points)?s.points:0, badges: Array.isArray(s.badges)?s.badges:[], lastLesson: s.lastLesson || 1 };
@@ -735,7 +777,7 @@
     function setQuizScore(id,score,total){ updateStore(s => { s.quizzes[id] = { score, total }; }); }
     function progressPct(){ const s = getStore(); const c = LESSONS.filter(l => s.lessonsCompleted[l.id]).length; return Math.round((c/LESSONS.length)*100); }
 
-    function currentLessonId(){ const m = window.location.pathname.match(/html-lesson-(\d+)\.html/i); return m?parseInt(m[1],10):null; }
+    function currentLessonId(){ const m = window.location.pathname.match(/\/course\/html\/lesson\/(\d+)\//i); return m?parseInt(m[1],10):null; }
 
     const QUIZZES = {
       1: [
@@ -763,6 +805,7 @@
     function renderDashboard(){
       // Only on the HTML course overview page
       if (!/\/course\/html-course(?:\/)?$/i.test(window.location.pathname)) return;
+      if (!IS_AUTHED) return; // Only for logged-in users
       if (document.getElementById('htmlDashboard')) return;
       const container = document.querySelector('main .section .container');
       if (!container) return;
@@ -776,7 +819,7 @@
       dash.innerHTML = `
         <div class="col-lg-4">
           <div class="card h-100"><div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-2"><h5 class="mb-0">Ayush</h5><span class="badge bg-warning text-dark">HTML</span></div>
+            <div class="d-flex align-items-center justify-content-between mb-2"><h5 class="mb-0">${(window.CURRENT_USER && window.CURRENT_USER.username) || 'Learner'}</h5><span class="badge bg-warning text-dark">HTML</span></div>
             <div class="d-flex align-items-center gap-3">
               <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width:56px;height:56px;color:#111;font-weight:600;">${(s.points||0)}</div>
               <div><div class="small text-muted">Points</div><div class="fw-semibold">Complete lessons & quizzes</div></div>
@@ -830,7 +873,7 @@
           <div><div class="small text-muted">Lesson ${lessonId}</div><div class="fw-semibold">Mark your progress and take the quiz</div></div>
           <div class="d-flex gap-2">
             <button id="btnHtmlMarkComplete" class="btn ${completed ? 'btn-success' : 'btn-outline-success'}">${completed ? 'Completed' : 'Mark as Completed'}</button>
-            <a href="../html-practice.html?lesson=${lessonId}" class="btn btn-outline-warning text-dark"><i class="bi bi-code-slash"></i> Practice</a>
+            <a href="/course/html-practice?lesson=${lessonId}" class="btn btn-outline-warning text-dark"><i class="bi bi-code-slash"></i> Practice</a>
           </div>
         </div>`;
       col.prepend(wrap);
@@ -890,7 +933,7 @@
     }
 
     // Route
-    renderDashboard();
+    pullProgress('html', STORAGE_KEY).finally(() => { renderDashboard(); });
     const lid = currentLessonId();
     if (lid) {
       updateStore(s => { s.lastLesson = lid; });
@@ -914,7 +957,7 @@
     if (document.getElementById('hpGame')) return;
 
     // Practice storage
-    const PRACTICE_KEY = 'htmlPractice_v1';
+    const PRACTICE_KEY = userScopedKey('htmlPractice_v1');
     function loadP() { try { return JSON.parse(localStorage.getItem(PRACTICE_KEY) || '{}'); } catch(e) { return {}; } }
     function saveP(s) { localStorage.setItem(PRACTICE_KEY, JSON.stringify(s)); }
     function getP() {
@@ -929,11 +972,14 @@
     function setLevel(n, total) { const s = getP(); s.level = Math.max(1, Math.min(n, total)); saveP(s); return s.level; }
 
     // HTML course points/badges
-    const COURSE_KEY = 'htmlCourseProgress_v1';
+    const COURSE_KEY = userScopedKey('htmlCourseProgress_v1');
     function loadC() { try { return JSON.parse(localStorage.getItem(COURSE_KEY) || '{}'); } catch(e){ return {}; } }
-    function saveC(s) { localStorage.setItem(COURSE_KEY, JSON.stringify(s)); }
+    function saveC(s) { localStorage.setItem(COURSE_KEY, JSON.stringify(s)); pushProgress('html', COURSE_KEY); }
     function addCoursePoints(n) { const s = loadC(); s.points = Math.max(0, Number.isFinite(s.points)?(s.points+n):n); saveC(s); }
     function addCourseBadge(name) { const s = loadC(); s.badges = Array.isArray(s.badges)?s.badges:[]; if (!s.badges.includes(name)) s.badges.push(name); saveC(s); }
+
+    // Pull latest server progress before initializing levels
+    if (IS_AUTHED) { try { /* no-await */ pullProgress('html', COURSE_KEY).catch(()=>{}); } catch(e) {} }
 
     // Levels
     const LEVELS = [
@@ -1144,5 +1190,56 @@
   }
 
   window.addEventListener('load', initHtmlPracticeGame);
+
+  /**
+   * Bash Practice: Lightweight rewards tracker (points + badge) on /course/bash-practice
+   */
+  function initBashPracticeRewards() {
+    const isPractice = /\/course\/bash-practice(?:\/)?$/i.test(window.location.pathname);
+    if (!isPractice) return;
+    if (!IS_AUTHED) return;
+    if (document.getElementById('bashPracticeRewards')) return;
+
+    const KEY = userScopedKey('bashCourseProgress_v1');
+    function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ return {}; } }
+    function save(s) { localStorage.setItem(KEY, JSON.stringify(s)); pushProgress('bash', KEY); }
+    function addPts(n){ const s = load(); s.points = Math.max(0, Number.isFinite(s.points)?(s.points+n):n); save(s); return s.points; }
+    function addBadge(name){ const s = load(); s.badges = Array.isArray(s.badges)?s.badges:[]; if (!s.badges.includes(name)) s.badges.push(name); save(s); }
+
+    // Pull latest before showing
+    pullProgress('bash', KEY).finally(() => {
+      const container = document.querySelector('main .section .container') || document.querySelector('main') || document.body;
+      const card = document.createElement('div');
+      card.id = 'bashPracticeRewards';
+      card.className = 'card mb-4';
+      const pts = (load().points||0);
+      card.innerHTML = `
+        <div class="card-body d-flex flex-wrap align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge bg-primary">Bash Practice</span>
+            <span class="small text-muted">Logged in as ${(USERNAME||'Learner')}</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="small">Points: <strong id="bpPts">${pts}</strong></span>
+            <button id="bpComplete" class="btn btn-outline-primary btn-sm"><i class="bi bi-trophy"></i> Mark Practice Done (+5)</button>
+          </div>
+        </div>`;
+      container.prepend(card);
+
+      const btn = document.getElementById('bpComplete');
+      const ptsEl = document.getElementById('bpPts');
+      btn.addEventListener('click', function(){
+        const newPts = addPts(5);
+        addBadge('Bash Practitioner');
+        ptsEl.textContent = String(newPts);
+        btn.classList.remove('btn-outline-primary');
+        btn.classList.add('btn-success');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="bi bi-check-circle"></i> Recorded';
+      });
+    });
+  }
+
+  window.addEventListener('load', initBashPracticeRewards);
 
 })();

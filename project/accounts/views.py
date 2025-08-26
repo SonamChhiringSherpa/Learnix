@@ -11,8 +11,8 @@ from django.utils.text import slugify
 from .models import PasswordReset
 # Create your views here.
 def register_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect('home')
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method=="POST":
         first_name=request.POST.get('first_name')
         last_name=request.POST.get('last_name')
@@ -37,8 +37,8 @@ def register_view(request):
     return render(request,'account/register.html')
 
 def login_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect('home')
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method=="POST":
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -50,6 +50,11 @@ def login_view(request):
             messages.error(request, "Invalid username or password.")
             return redirect('login')
     return render(request,'account/enroll.html')
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 def forgot_password(request):
     if request.method == "POST":
@@ -109,3 +114,4 @@ def reset_password(request, reset_id):
         return redirect('login')
 
     return render(request, 'account/reset_password.html', {'reset_id': reset_id})
+

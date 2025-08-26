@@ -17,8 +17,13 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
+      {%if user.is_authenticated%}
+    <span style="color: #fff; font-weight: 600; margin-left: 100px;">
+      Hello, {{ user.username|capfirst }}
+    </span>
+      <a class="btn-getstarted" href="{%url 'logout' %}">Logout</a>
+      {%else%}
       <a class="btn-getstarted" href="{%url 'login' %}">Enroll Now</a>
-
+      {%endif%}
     </div>
   </header>

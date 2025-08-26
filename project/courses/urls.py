@@ -16,4 +16,7 @@ urlpatterns = [
     # Dynamic lesson routes
     path('course/bash/lesson/<int:num>/', views.bash_lesson, name='bash_lesson'),
     path('course/html/lesson/<int:num>/', views.html_lesson, name='html_lesson'),
+    # Progress API
+    path('api/progress/<str:course>/', views.progress_get, name='progress_get'),
+    path('api/progress/<str:course>/update/', views.progress_update, name='progress_update'),
 ]

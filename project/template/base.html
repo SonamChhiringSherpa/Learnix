@@ -57,6 +57,12 @@
   <script src="{%static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{%static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
   <script src="{%static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script>
+    window.CURRENT_USER = {
+      isAuthenticated: {{ request.user.is_authenticated|yesno:'true,false' }},
+      username: "{{ request.user.username|escapejs }}"
+    };
+  </script>
   <!-- Main JS File -->
   <script src="{%static 'assets/js/main.js' %}"></script>
 
