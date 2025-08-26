@@ -1,0 +1,160 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}HTML Lesson 2: Basic Tags{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{%block style_css%}
+  <style>
+    .editor-box { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:2rem; }
+    .editor, .preview { flex:1; min-width:300px; }
+    textarea { width:100%; height:300px; background:#0b1620; color:#d6e9ff; border:none; border-radius:8px; padding:12px; font-family:monospace; font-size:14px; resize:vertical; }
+    iframe { width:100%; height:300px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+    .tag-description { margin-top:1.5rem; background:#f9f9f9; border-left:5px solid #0d6efd; padding:15px; border-radius:8px; }
+    .tag-description code { background:#eef; padding:2px 4px; border-radius:4px; }
+  </style>
+{%endblock%}
+{%block content%}
+  <main class="main">
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">HTML Lesson 2: Basic Tags</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="{%url 'course' %}">Courses</a></li>
+          <li><a href="{%url 'html_course' %}">HTML</a></li>
+          <li class="current">Lesson 2</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <!-- Sidebar -->
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="{%url 'html_lesson' num=1 %}">1. Introduction</a>
+              <a class="list-group-item list-group-item-action active" href="{%url 'html_lesson' num=2 %}">2. Basic Tags</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'html_lesson' num=3 %}">3. Links & Images</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'html_lesson' num=4 %}">4. Lists & Tables</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'html_lesson' num=5 %}">5. Forms</a>
+            </div>
+            <a href="{%url 'html_practice' %}?lesson=2" class="btn btn-outline-primary w-100 mt-3">
+              <i class="bi bi-code-slash"></i> Practice
+            </a>
+          </aside>
+
+          <!-- Main Lesson Content -->
+         <div class="col-lg-9">
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+    <h3>Core Building Blocks</h3>
+    <p>This lesson covers the most-used tags: headings, paragraphs, emphasis, line breaks, and comments. Mastering these lets you structure readable content quickly.</p>
+    <p>You’ll also meet <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> — generic containers used for grouping content and inline text respectively.</p>
+  </article>
+
+  <!-- Headings -->
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <h4>Headings Example</h4>
+    <p>Try editing the headings and see how the preview updates.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <label class="fw-bold">HTML Code Editor</label>
+        <textarea id="codeEditor1" oninput="updatePreview('codeEditor1','livePreview1')">
+<h1>Main Heading (H1)</h1>
+<h2>Sub Heading (H2)</h2>
+<h3>Smaller Heading (H3)</h3>
+        </textarea>
+      </div>
+      <div class="preview">
+        <label class="fw-bold">Live Preview</label>
+        <iframe id="livePreview1"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Paragraphs & Formatting -->
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="220">
+    <h4>Paragraphs & Formatting</h4>
+    <p>Edit the text and experiment with <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code>.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <label class="fw-bold">HTML Code Editor</label>
+        <textarea id="codeEditor2" oninput="updatePreview('codeEditor2','livePreview2')">
+<p>This is a normal paragraph.</p>
+<p>This is a <strong>bold</strong> word and this is <em>italic</em>.</p>
+<p>Here is a line break: Line one.<br>Line two.</p>
+        </textarea>
+      </div>
+      <div class="preview">
+        <label class="fw-bold">Live Preview</label>
+        <iframe id="livePreview2"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Div & Span -->
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="240">
+    <h4>Div & Span Example</h4>
+    <p>Div is a block container, Span is inline. Try changing the background color of the span.</p>
+    <div class="editor-box">
+      <div class="editor">
+        <label class="fw-bold">HTML Code Editor</label>
+        <textarea id="codeEditor3" oninput="updatePreview('codeEditor3','livePreview3')">
+<div>
+  <p>This text is inside a div block.</p>
+  <p>Here is a <span style="background:yellow;">highlighted span</span>.</p>
+</div>
+        </textarea>
+      </div>
+      <div class="preview">
+        <label class="fw-bold">Live Preview</label>
+        <iframe id="livePreview3"></iframe>
+      </div>
+    </div>
+  </article>
+
+  <!-- Reference -->
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="260">
+    <h4>Tag Reference & Tips</h4>
+    <ul>
+      <li><code>&lt;h1&gt;...&lt;h6&gt;</code> — Heading hierarchy. Use exactly one <code>&lt;h1&gt;</code> per page.</li>
+      <li><code>&lt;p&gt;</code> — Paragraph block for text.</li>
+      <li><code>&lt;strong&gt;</code> — Strong importance (often bold).</li>
+      <li><code>&lt;em&gt;</code> — Emphasis (often italic).</li>
+      <li><code>&lt;br&gt;</code> — Line break (use sparingly).</li>
+      <li><code>&lt;div&gt;</code> — Block-level container.</li>
+      <li><code>&lt;span&gt;</code> — Inline container.</li>
+    </ul>
+  </article>
+
+  <div class="d-flex justify-content-between">
+    <a href="{%url 'html_course' %}" class="btn btn-outline-secondary">Back to Overview</a>
+    <a href="{%url 'html_lesson' num=3 %}" class="btn btn-primary">Next: Links & Images</a>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+{%endblock%}
+{%block script_js%}
+  <script>
+  function updatePreview(editorId, previewId) {
+    const code = document.getElementById(editorId).value;
+    const iframe = document.getElementById(previewId);
+    const doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  }
+
+  // Initialize previews when page loads
+  window.onload = function() {
+    updatePreview('codeEditor1','livePreview1');
+    updatePreview('codeEditor2','livePreview2');
+    updatePreview('codeEditor3','livePreview3');
+  }
+</script>
+{%endblock%}
