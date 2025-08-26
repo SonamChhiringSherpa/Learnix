@@ -33,7 +33,16 @@
 
       <!-- Post Meta -->
       <div class="article-meta mb-3 d-flex flex-wrap align-items-center gap-3">
-        <span class="text-muted"><i class="bi bi-person"></i> {{ post.author }}</span>
+        <!-- <span class="text-muted"><i class="bi bi-person"></i> {{ post.author }}</span> -->
+        <span class="text-muted">
+          {%if post.author_image%}
+          <img src="{{post.author_image.url}}" alt="Author" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; margin-right: 4px;">
+          {{ post.author }}
+          {%else%}
+          <span class="text-muted"><i class="bi bi-person"></i> {{ post.author }}</span>
+          {%endif%}
+        </span>
+        
         <span class="text-muted"><i class="bi bi-calendar4-week"></i> {{ post.created_at|date:"F d, Y" }}</span>
         {% if post.category %}
         <span class="badge bg-primary">{{ post.category.name }}</span>

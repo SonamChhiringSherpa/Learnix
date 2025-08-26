@@ -5,5 +5,6 @@ admin.site.site_header = "Learnix Admin"
 admin.site.index_title = "Welcome to Learnix Admin Portal"
 class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
+    list_display=['author','title']
 admin.site.register(Category)
 admin.site.register(BlogPost,BlogAdmin)
