@@ -27,3 +27,6 @@ def contact(request):
        messages.success(request, f"Thank you {name}, your message has been sent!")
        return redirect("contact")    
     return render(request, 'contact.html')
+
+def custom_404_error(request):
+    return render(request,'404.html')

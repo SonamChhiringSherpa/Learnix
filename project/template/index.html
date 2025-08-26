@@ -176,14 +176,14 @@
             <div class="course-card">
               <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
                 <img src="{%static 'assets/img/course/JavaScript-Emblem-500x281.png' %}" alt="Course" class="img-fluid" style="width: 250px;height: 200px;padding-top: 30px;">
-                <div class="badge featured">Featured</div>
+                <div class="badge certificate">Pending</div>
               </div>
               <div class="course-content">
                 <div class="course-meta">
                   <span class="level">Beginner</span>
                   <span class="duration">5 Lessons</span>
                 </div>
-                <h3><a href="#">JavaScript</a></h3>
+                <h3><a href="{%url 'course' %}">JavaScript</a></h3>
                 <p>JavaScript (JS) is a programming language and core technology of the World Wide Web, alongside HTML and CSS. Ninety-nine percent of websites use JavaScript on the client side for webp' %}age behavior.
 
 </p>
@@ -208,7 +208,7 @@
                     <span>150 students</span>
                   </div>
                 </div>
-                <a href="js.html" class="btn-course">Start Learning</a>
+                <a href="{%url 'course' %}" class="btn-course">Start Learning</a>
               </div>
             </div>
           </div><!-- End Course Item -->
@@ -225,7 +225,7 @@
                   <span class="level">Beginner</span>
                   <span class="duration">Pending</span>
                 </div>
-                <h3><a href="#">CSS</a></h3>
+                <h3><a href="{%url 'course' %}">CSS</a></h3>
                 <p>Cascading Style Sheets (CSS) is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML.</p>
                 <div class="instructor">
                   <img src="{%static 'assets/img/person/person-f-7.webp' %}" alt="Instructor" class="instructor-img">
@@ -248,14 +248,13 @@
                     <span>0 students</span>
                   </div>
                 </div>
-                <a href="404.html" class="btn-course">Start Learning</a>
+                <a href="{%url 'course' %}" class="btn-course">Start Learning</a>
               </div>
             </div>
           </div><!-- End Course Item -->
 <!--  -->
 
         </div>
-
         <div class="more-courses text-center" data-aos="fade-up" data-aos-delay="500">
           <a href="{%url 'course' %}" class="btn-more">View All Courses</a>
         </div>
