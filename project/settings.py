@@ -26,9 +26,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 SECRET_KEY = 'django-insecure-30l8%*77kz^*p9$x^+z5lakpye(utf&)fv1i(ut#9ac^&5&tev'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['django-practice-hpjf.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['learnix-nuwo.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
