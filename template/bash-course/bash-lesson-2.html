@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Bash Lesson 2 - Files and Directories{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{%block style_css%}
+  <style>.terminal{background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;border-radius:8px;padding:12px}</style>
+{%endblock%}
+{%block content%}
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 2: Files & Directories</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="{%url 'course' %}">Courses</a></li>
+          <li><a href="{%url 'bash_course' %}">Bash</a></li>
+          <li class="current">Lesson 2</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=1 %}">1. Introduction</a>
+              <a class="list-group-item list-group-item-action active" href="{%url 'bash_lesson' num=2 %}">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=3 %}">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=4 %}">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=5 %}">5. Scripting Basics</a>
+            </div>
+            <a href="{%url 'bash_practice' %}?lesson=2" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+           <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+      <h3>Working with Files and Directories</h3>
+      <p>In Linux (and other Unix-based systems), everything is a file — including directories! Knowing how to create, navigate, and manage them is a core Bash skill.</p>
+      <img src="{%static 'assets/img/course/linux-directory-structure.png' %}" alt="Filesystem tree" class="img-fluid rounded mb-3" style="width: 800px;">
+    </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <h4>📁 Creating Directories</h4>
+    <p>Use the <code>mkdir</code> command to create a new directory:</p>
+    <div class="terminal mb-3">
+  $ mkdir projects
+    </div>
+    <p>Let’s check if it was created with <code>ls</code> (list):</p>
+    <div class="terminal mb-3">
+  $ ls
+  projects
+    </div>
+    <p>Want detailed information like permissions, ownership, and timestamps? Use the long listing option:</p>
+    <div class="terminal mb-3">
+  $ ls -l
+  drwxr-xr-x 2 user user 4096 Jan 1 00:00 projects
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+    <h4>📂 Navigating the Filesystem</h4>
+    <p>Use <code>cd</code> (change directory) to move between folders. And if you ever get lost, <code>pwd</code> (print working directory) shows where you are.</p>
+    <div class="terminal mb-3">
+  $ cd projects
+  $ pwd
+  /home/user/projects
+    </div>
+    <p>Tip: <code>cd ..</code> takes you one directory up!</p>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="300">
+    <h4>🗑️ Deleting Files and Folders</h4>
+    <p>Use <code>rm</code> to delete files, and <code>rm -r</code> to remove directories and their contents.</p>
+    <div class="terminal mb-3">
+  $ rm old.txt
+  $ rm -r tmp
+    </div>
+    <p><strong>⚠️ Warning:</strong> There's no undo button! Double-check what you're deleting.</p>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="350">
+    <h4>🎯 Quick Practice Tips</h4>
+    <ul>
+      <li>Create a folder named <code>test_folder</code>.</li>
+      <li>Inside it, create a file using <code>touch notes.txt</code>.</li>
+      <li>Navigate back and remove the folder with <code>rm -r test_folder</code>.</li>
+    </ul>
+    <p>Try these in the practice terminal to build muscle memory!</p>
+  </article>
+
+
+
+            <div class="d-flex justify-content-between">
+              <a href="{%url 'bash_lesson' num=1 %}" class="btn btn-outline-secondary">Prev: Introduction</a>
+              <a href="{%url 'bash_lesson' num=3 %}" class="btn btn-primary">Next: Viewing & Editing Files</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{%endblock%}

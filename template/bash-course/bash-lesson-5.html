@@ -1,0 +1,115 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Bash Lesson 5 - Scripting Basics{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{%block style_css%}
+  <style>.terminal{background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;border-radius:8px;padding:12px}</style>
+{%endblock%}
+{%block content%}
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 5: Scripting Basics</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="{%url 'course' %}">Courses</a></li>
+          <li><a href="{%url 'bash_course' %}">Bash</a></li>
+          <li class="current">Lesson 5</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=1 %}">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=2 %}">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=3 %}">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action " href="{%url 'bash_lesson' num=4 %}">4. Permissions</a>
+              <a class="list-group-item list-group-item-action active" href="{%url 'bash_lesson' num=5 %}">5. Scripting Basics</a>
+            </div>
+            <a href="{%url 'bash_practice' %}?lesson=5" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+           <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+  <h3>Your First Script</h3>
+  <!-- <img src="assets/img/education/courses-14.webp" alt="Scripting" class="img-fluid rounded mb-3"> -->
+  <p>
+    Bash scripts let you automate tasks by writing sequences of commands in a file. Every script should begin with a
+    <strong>shebang</strong> (<code>#!/usr/bin/env bash</code>) to tell the system which interpreter to use.
+  </p>
+  <p>
+    After writing the script, use <code>chmod +x</code> to make it executable. You can also pass arguments to scripts to make them dynamic.
+  </p>
+  <div class="terminal mb-3">
+$ cat hello.sh<br>
+#!/usr/bin/env bash
+name=$1
+echo "Hello, $name!"<br>
+$ chmod +x hello.sh<
+$ ./hello.sh Learner
+Hello, Learner!
+  </div>
+</article> 
+<article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+  <h4>Variables in Bash: Storing and Using Data</h4>
+  <p>Variables are placeholders to store data like strings, numbers, or command outputs. You assign a value without spaces around the <code>=</code> sign, and you access the value by prefixing the variable name with <code>$</code>.</p>
+  <div class="terminal mb-3">
+$ # Assign a string to a variable
+$ greeting="Hello, World!"
+$ echo $greeting
+Hello, World!
+
+$ # Assign the output of a command
+$ today=$(date +%Y-%m-%d)
+$ echo "Today's date is $today"
+Today's date is 2025-08-19
+  </div>
+  <p><strong>Tips:</strong></p>
+  <ul>
+    <li>Use <code>""</code> around strings with spaces, e.g. <code>name="John Doe"</code>.</li>
+    <li>Use <code>${variable}</code> syntax to clearly delimit variable names when appending text, e.g., <code>echo "User: ${name}123"</code>.</li>
+  </ul>
+
+  <h4>Conditionals: Making Decisions in Your Script</h4>
+  <p>Conditionals let your script perform different actions based on tests, like comparing numbers, checking file existence, or matching strings. The syntax uses <code>if</code>, <code>then</code>, <code>else</code>, and <code>fi</code> (end if).</p>
+  <div class="terminal mb-3">
+$ count=15
+$ if [ $count -gt 10 ]; then
+> echo "Count is greater than 10"
+> else
+> echo "Count is 10 or less"
+> fi
+Count is greater than 10
+
+$ # Check if a file exists
+$ if [ -f "notes.txt" ]; then
+> echo "notes.txt exists"
+> else
+> echo "notes.txt does not exist"
+> fi
+notes.txt exists
+  </div>
+  <p><strong>Common Conditional Tests:</strong></p>
+  <ul>
+    <li><code>-eq, -ne, -lt, -le, -gt, -ge</code>: numeric comparisons (equal, not equal, less than, etc.)</li>
+    <li><code>-f filename</code>: true if file exists and is a regular file</li>
+    <li><code>-d directoryname</code>: true if directory exists</li>
+    <li><code>string1 = string2</code>: true if strings are equal (use <code>[[ ... ]]</code> or quote strings)</li>
+  </ul>
+  <p><strong>Best Practices:</strong></p>
+  <ul>
+    <li>Always quote variables inside test brackets to avoid errors: <code>if [ "$var" = "value" ]</code></li>
+    <li>Use double brackets <code>[[ ... ]]</code> for advanced pattern matching and safer syntax.</li>
+  </ul>
+</article>
+   <div class="d-flex justify-content-between">
+              <a href="{%url 'bash_lesson' num=4 %}" class="btn btn-outline-secondary">Prev: Permissions</a>
+              <a href="{%url 'bash_practice' %}?lesson=5" class="btn btn-primary">Go to Practice</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ {%endblock%}

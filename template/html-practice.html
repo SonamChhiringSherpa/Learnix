@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}HTML Course{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{% block content %}
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">HTML: From Zero to Website</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{%url 'home' %}">Home</a></li>
+            <li><a href="{%url 'course' %}">Courses</a></li>
+            <li class="current">HTML-Practice</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs" data-aos="fade-in">
+    <div class="container">
+      <h2>Build a Webpage — Challenge</h2>
+      <p>Complete level-based tasks to build a mini webpage. Unlock tags, earn points, and badges.</p>
+    </div>
+  </div>
+  <!-- End Breadcrumbs -->
+
+  <!-- The game UI card is injected by assets/js/main.js (initHtmlPracticeGame) -->
+
+</main>
+<!-- End #main -->
+{%endblock%}

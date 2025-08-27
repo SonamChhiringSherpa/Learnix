@@ -1,0 +1,199 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Contact{%endblock%}
+{%block class_title%}contact-page{%endblock%}
+{%block style_css%}
+<style>
+  /* Rounded, stylish SweetAlert */
+  .swal-rounded {
+    border-radius: 20px !important;
+    padding: 25px !important;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .swal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #2c3e50;
+  }
+
+  .swal-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #555;
+  }
+</style>
+{%endblock%}
+{%block content %}
+    <!-- Page Title -->
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Contact</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{%url 'home' %}">Home</a></li>
+            <li class="current">Contact</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-main-wrapper">
+          <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3013.7080322008105!2d85.32518335295835!3d27.70856994856888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1908434cb3c5%3A0x1fdf1a6d41d2512d!2sIslington%20College!5e0!3m2!1sen!2snp!4v1755500920544!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="contact-content">
+            <div class="contact-cards-container" data-aos="fade-up" data-aos-delay="300">
+              <div class="contact-card">
+                <div class="icon-box">  
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Location</h4>
+                  <p>
+                  <a href="https://www.google.com/maps/place/Islington+College,+Kamalpokhari,+Nepal" target="_blank" style="color: black;">
+                    Islington College, Kamalpokhari, Nepal
+                  </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="icon-box">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Email</h4>
+                  <p><a href="mailto:info@learnix.com" style="color: black;">info@learnix.com</a></p>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="icon-box">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Call</h4>
+                  <p><a href="tel:+9779876543210" style="color: black;">+977 9876543210</a></p>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="icon-box">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Open Hours</h4>
+                  <p>Sunday-Friday: 9AM - 6PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-container" data-aos="fade-up" data-aos-delay="400">
+              <h3>Get in Touch</h3>
+              <p></p>
+
+              <form id="contactForm" class="php-email-form" method="POST">
+                {%csrf_token%}
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
+                </div>
+                <div class="form-group mt-3">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit">Send Message</button>
+                  <div class="social-links">
+                    <a href="https://x.com/"><i class="bi bi-twitter"></i></a>
+                    <a href="https://facebook.com/"><i class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com/"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Contact Section -->
+{%endblock%}
+{% block script_js %}
+{% if messages %}
+{% for message in messages %}
+<script>
+Swal.fire({
+  title: "🎉 Message Sent!",
+  text: "{{ message|escapejs }}",   // escape for JS
+  icon: "success",
+  timer: 2500,
+  showConfirmButton: false,
+  customClass: {
+    popup: 'swal-rounded',
+    title: 'swal-title',
+    htmlContainer: 'swal-text'
+  }
+});
+</script>
+{% endfor %}
+{% endif %}
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop form submission for validation
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let subject = document.getElementById("subject").value.trim();
+    let message = document.querySelector("textarea[name='message']").value.trim();
+
+    let nameHasNumber = /\d/.test(name);
+    let emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !email || !subject || !message) {
+        Swal.fire({
+            title: "⚠️ Missing Fields",
+            text: "Please fill in all fields before submitting.",
+            icon: "warning",
+            confirmButtonText: "Okay",
+            customClass: { popup: 'swal-rounded', title: 'swal-title', htmlContainer: 'swal-text' }
+        });
+        return false;
+    } else if (nameHasNumber) {
+        Swal.fire({
+            title: "⚠️ Invalid Name",
+            text: "Name cannot contain numbers!",
+            icon: "warning",
+            confirmButtonText: "Okay",
+            customClass: { popup: 'swal-rounded', title: 'swal-title', htmlContainer: 'swal-text' }
+        });
+        return false;
+    } else if (!emailValid) {
+        Swal.fire({
+            title: "⚠️ Invalid Email",
+            text: "Please enter a valid email address!",
+            icon: "warning",
+            confirmButtonText: "Okay",
+            customClass: { popup: 'swal-rounded', title: 'swal-title', htmlContainer: 'swal-text' }
+        });
+        return false;
+    }
+
+    // Submit form if valid
+    this.submit();
+});
+</script>
+{% endblock %}
