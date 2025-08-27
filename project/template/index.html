@@ -1,0 +1,633 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Home{%endblock%}
+{%block style_css %}
+  <style>
+ .card-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 10px;
+
+  /* Multi-line clamp compatibility */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;  /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* Optional fallback if clamp isn't supported */
+  max-height: calc(1.6em * 4); /* line-height × number of lines */
+  }
+  </style>
+{%endblock%}
+{%block class_title%}index-page{%endblock%}
+
+{%block content %}
+    <!-- Courses Hero Section -->
+    <section id="courses-hero" class="courses-hero section light-background">
+
+      <div class="hero-content">
+        <div class="container">
+          <div class="row align-items-center">
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="hero-text">
+                <h1>Learn Web Development & Scripting Through Step-by-Step Lessons</h1>
+                <p>Access beginner-friendly Web Development and Scripting courses designed for self-paced learning. Gain practical skills and keep learning from anywhere.</p>
+
+                <div class="hero-stats">
+                  <div class="stat-item">
+                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2"></span>
+                    <span class="label">Students </span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="2"></span>
+                    <span class="label"> Courses</span>
+                  </div>
+                  <div class="stat-item">
+                    <span class="number purecounter" data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2"></span>
+                    <span class="label">Success Rate %</span>
+                  </div>
+                </div>
+
+                <div class="hero-buttons">
+                  <a href="{%url 'course' %}" class="btn btn-primary">Browse Courses</a>
+                  <a href="{%url 'about' %}" class="btn btn-outline">Learn More</a>
+                </div>
+
+                <div class="hero-features">
+                  <div class="feature">
+                    <i class="bi bi-shield-check"></i>
+                    <span>Certified Programs</span>
+                  </div>
+                  <div class="feature">
+                    <i class="bi bi-clock"></i>
+                    <span>Lifetime Access</span>
+                  </div>
+                <!--
+                  <div class="feature">
+                    <i class="bi bi-people"></i>
+                    <span>Expert Instructors</span>
+                  </div>
+                  -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="hero-image">
+                <div class="main-image">
+                  <img src="{%static 'assets/img/education/courses-13.webp' %}" alt="Online Learning" class="img-fluid">
+                </div>
+
+                <div class="floating-cards">
+                  <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon">
+                      <i class="bi bi-code-slash"></i>
+                    </div>
+                    <div class="card-content">
+                      <h6>Web Development</h6>
+                      <span>300 Students</span>
+                    </div>
+                  </div>
+
+                  <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon">
+                      <i class="bi bi-terminal"></i>
+                    </div>
+                    <div class="card-content">
+                      <h6>Scripting</h6>
+                      <span>200 Students</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-background">
+        <div class="bg-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+      </div>
+
+    </section><!-- /Courses Hero Section -->
+
+    <!-- Featured Courses Section -->
+    <section id="featured-courses" class="featured-courses section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Featured Courses</h2>
+        <p>Enroll in our highly-rated courses and learn all you need to land the job you want.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="course-card">
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="{%static 'assets/img/course/html5-emblem-orange-shield-and-white-text-vector.jpg' %}" alt="Course" class="img-fluid" style="height: 200px;width: 250px;">
+                <div class="badge featured">Featured</div>
+          
+              </div>
+              <div class="course-content">
+                <div class="course-meta">
+                  <span class="level">Beginner</span>
+                  <span class="duration">5 Lessons</span>
+                </div>
+                <h3><a href="{%url 'html_course' %}">HTML</a></h3>
+                <p>Hypertext Markup Language (HTML) is the standard markup language for documents designed to be displayed in a web browser. It defines the content and structure of web content.</p>
+                <div class="instructor">
+                  <img src="{%static 'assets/img/person/person-f-3.webp' %}" alt="Instructor" class="instructor-img">
+                  <div class="instructor-info">
+                    <h6>Sarah Johnson</h6>
+                    <span>Frontend Developer</span>
+                  </div>
+                </div>
+                <div class="course-stats">
+                  <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span>(4.5)</span>
+                  </div>
+                  <div class="students">
+                    <i class="bi bi-people-fill"></i>
+                    <span>100</span>
+                  </div>
+                </div>
+                <a href="{%url 'html_course' %}" class="btn-course">Start Learning</a>
+              </div>
+            </div>
+          </div><!-- End Course Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="course-card">
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="{%static 'assets/img/course/JavaScript-Emblem-500x281.png' %}" alt="Course" class="img-fluid" style="width: 250px;height: 200px;padding-top: 30px;">
+                <div class="badge certificate">Pending</div>
+              </div>
+              <div class="course-content">
+                <div class="course-meta">
+                  <span class="level">Beginner</span>
+                  <span class="duration">5 Lessons</span>
+                </div>
+                <h3><a href="{%url 'course' %}">JavaScript</a></h3>
+                <p>JavaScript (JS) is a programming language and core technology of the World Wide Web, alongside HTML and CSS. Ninety-nine percent of websites use JavaScript on the client side for webp' %}age behavior.
+
+</p>
+                <div class="instructor">
+                  <img src="{%static 'assets/img/person/person-m-5.webp' %}" alt="Instructor" class="instructor-img">
+                  <div class="instructor-info">
+                    <h6>Michael Chen</h6>
+                    <span>Full Stack Developer</span>
+                  </div>
+                </div>
+                <div class="course-stats">
+                  <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <span>(5.0)</span>
+                  </div>
+                  <div class="students">
+                    <i class="bi bi-people-fill"></i>
+                    <span>150 students</span>
+                  </div>
+                </div>
+                <a href="{%url 'course' %}" class="btn-course">Start Learning</a>
+              </div>
+            </div>
+          </div><!-- End Course Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="course-card">
+              <div class="course-image" style="display: flex; justify-content: center; align-items: center; height: 220px; position: relative;">
+                <img src="{%static 'assets/img/course/css3-logo-png_seeklogo-186678.png' %}" alt="Course" class="img-fluid" style="width: 200px;height:180px;">
+                <div class="badge certificate">Pending</div>
+                
+              </div>
+              <div class="course-content">
+                <div class="course-meta">
+                  <span class="level">Beginner</span>
+                  <span class="duration">Pending</span>
+                </div>
+                <h3><a href="{%url 'course' %}">CSS</a></h3>
+                <p>Cascading Style Sheets (CSS) is a style sheet language used for specifying the presentation and styling of a document written in a markup language such as HTML or XML.</p>
+                <div class="instructor">
+                  <img src="{%static 'assets/img/person/person-f-7.webp' %}" alt="Instructor" class="instructor-img">
+                  <div class="instructor-info">
+                    <h6>Er. Emily Watson</h6>
+                    <span>Frontend Developer</span>
+                  </div>
+                </div>
+                <div class="course-stats">
+                  <div class="rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                    <span>(4.2)</span>
+                  </div>
+                  <div class="students">
+                    <i class="bi bi-people-fill"></i>
+                    <span>0 students</span>
+                  </div>
+                </div>
+                <a href="{%url 'course' %}" class="btn-course">Start Learning</a>
+              </div>
+            </div>
+          </div><!-- End Course Item -->
+<!--  -->
+
+        </div>
+        <div class="more-courses text-center" data-aos="fade-up" data-aos-delay="500">
+          <a href="{%url 'course' %}" class="btn-more">View All Courses</a>
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Courses Section -->
+
+    <!-- Course Categories Section -->
+    <section id="course-categories" class="course-categories section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Course Category</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4">
+
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+            <a href="{%url 'course' %}" class="category-card category-tech">
+              <div class="category-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <h5>Web development</h5>
+              
+              <span class="course-count">3 Course</span>
+            </a>
+          </div><!-- End Category Item -->
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+            <a href="{%url 'course' %}" class="category-card category-health">
+              <div class="category-icon">
+                <i class="bi bi-terminal"></i>
+              </div>
+              <h5>Shell Scripting</h5>
+              <span class="course-count">1 Course</span>
+            </a>
+          </div><!-- End Category Item -->
+
+        </div>
+      </div>
+
+    </section><!-- /Course Categories Section -->
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Hear from graduates who have completed our courses.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-12">
+            <div class="critic-reviews" data-aos="fade-up" data-aos-delay="300">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="critic-review">
+                    <div class="review-quote">"</div>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      In an era where digital literacy is no longer optional, Learnix delivers a rare combination: technical precision with remarkable accessibility. Its platform has become an essential toolkit not only for students but for working professionals looking to stay current in a fast-evolving field.
+                    </p>
+                    <div class="critic-info">
+                      <div class="critic-name">The New York Times</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="critic-review">
+                    <div class="review-quote">"</div>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                    <p>
+                      Learnix has quietly but powerfully changed how people learn to code. Its interactive modules and real-time editing tools remove the friction often associated with technical education. For many, it is the first true entry point into the digital world</p>
+                    <div class="critic-info">
+                      <div class="critic-name">Washington Post</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="critic-review">
+                    <div class="review-quote">"</div>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      When deadlines loom or a code snippet fails without explanation, Learnix is the first tab many developers open. It’s not just an educational site — it’s a daily companion for those who build the web.
+                    </p>
+                    <div class="critic-info">
+                      <div class="critic-name">The Guardian</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonials-container">
+              <div class="swiper testimonials-slider init-swiper" data-aos="fade-up" data-aos-delay="400">
+                <script type="application/json" class="swiper-config">
+                  {
+                    "loop": true,
+                    "speed": 600,
+                    "autoplay": {
+                      "delay": 5000
+                    },
+                    "slidesPerView": 1,
+                    "spaceBetween": 30,
+                    "pagination": {
+                      "el": ".swiper-pagination",
+                      "type": "bullets",
+                      "clickable": true
+                    },
+                    "breakpoints": {
+                      "768": {
+                        "slidesPerView": 2
+                      },
+                      "992": {
+                        "slidesPerView": 3
+                      }
+                    }
+                  }
+                </script>
+
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </div>
+                      <p>
+      Learnix was my starting point into web development. The tutorials are easy to follow. The 'Try it Yourself' editor helped me understand code by actually writing it. Highly recommend for beginners!
+                      </p>
+                      <div class="testimonial-profile">
+                        <img src="{%static 'assets/img/person/person-f-1.webp' %}" alt="Reviewer" class="img-fluid rounded-circle">
+                        <div>
+                          <h3>Jane Smith</h3>
+                          <h4>Front-End Developer</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End testimonial item -->
+
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </div>
+                      <p>
+Even as an experienced developer, I still come back to Learnix for quick syntax checks and examples. It's a great resource to refresh your memory or learn something new on the fly
+                      </p>
+                      <div class="testimonial-profile">
+                        <img src="{%static 'assets/img/person/person-m-2.webp' %}" alt="Reviewer" class="img-fluid rounded-circle">
+                        <div>
+                          <h3>Michael Johnson</h3>
+                          <h4>Software Engineer</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End testimonial item -->
+
+                  <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                      </div>
+                      <p>
+I started learning HTML and CSS through Learnix during my summer break. The self-paced structure allowed me to learn when I wanted, without pressure. Now I’m building my own websites!                      </p>
+                      <div class="testimonial-profile">
+                        <img src="{%static 'assets/img/person/person-f-3.webp' %}" alt="Reviewer" class="img-fluid rounded-circle">
+                        <div>
+                          <h3>Emily Davis</h3>
+                          <h4>Student & Aspiring Web Designer</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End testimonial item -->
+
+                 <div class="swiper-slide">
+                    <div class="testimonial-item">
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                      </div>
+                      <p>
+I struggled to understand JavaScript until I found W3Schools. The examples are clear, and the explanations make complex concepts simple. It made learning fun again.                      </p>
+                      <div class="testimonial-profile">
+                        <img src="{%static 'assets/img/person/person-m-4.webp' %}" alt="Reviewer" class="img-fluid rounded-circle">
+                        <div>
+                          <h3>Robert Wilson</h3>
+                          <h4>Junior Developer</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center" data-aos="fade-up">
+            <div class="overall-rating">
+              <div class="rating-number">4.8</div>
+              <div class="rating-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
+              <p>Based on 230+ reviews</p>
+              <div class="rating-platforms">
+                <span>Google</span>
+                <span>Amazon</span>
+                <span>Barnes &amp; Noble</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Testimonials Section -->
+
+    <!-- Recent Blog Posts Section -->
+    <section id="recent-blog-posts" class="recent-blog-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Recent Blog Posts</h2>
+        <p>Insights, tutorials, and updates from our team</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          {%for i in blog %}
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <div class="card-top d-flex align-items-center">
+                <img src="{{i.author_image.url}}" alt="Author" class="rounded-circle me-2">
+                <span class="author-name">By {{i.author|capfirst}}</span>
+                <span class="ms-auto likes"><i class="bi bi-heart"></i> 65</span>
+              </div>
+              <div class="card-img-wrapper">
+                <a href="{% url 'blog_detail' i.slug %}"><img src="{{i.image.url}}" alt="Post Image"></a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><a href="{%url 'blog_detail' i.slug%}">{{i.title}}</a></h5>
+                <p class="card-text">{{i.content}}</p>
+              </div>
+            </div>
+          </div><!-- End Post Item Card -->
+          {%endfor%}
+        </div>
+      </div>
+    </section><!-- /Recent Blog Posts Section -->
+
+    <!-- Cta Section -->
+    <section id="cta" class="cta section light-background">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="cta-content">
+              <h2>Learn Web Development & Scripting Through Step-by-Step Lessons</h2>
+              <p>Join hundreds of successful learners who have advanced their careers through our comprehensive online education platform.</p>
+
+              <div class="features-list">
+                <!--  <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>10+ Expert instructors with industry experience</span>
+                </div> -->
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="350">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Certificate of completion for every course</span>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>24/7 access to course materials and resources</span>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="450">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Interactive assignments and real-world projects</span>
+                </div>
+              </div>
+
+              <div class="cta-actions" data-aos="fade-up" data-aos-delay="500">
+                <a href="{%url 'course' %}" class="btn btn-primary">Browse Courses</a>
+                <a href="{%url 'login' %}" class="btn btn-outline">Enroll Now</a>
+              </div>
+
+              <div class="stats-row" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="2" class="purecounter"></span>+</h3>
+                  <p>Students Enrolled</p>
+                </div>
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="2" class="purecounter"></span></h3>
+                  <p>Courses Available</p>
+                </div>
+                <div class="stat-item">
+                  <h3><span data-purecounter-start="0" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%</h3>
+                  <p>Success Rate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+            <div class="cta-image">
+              <img src="{%static 'assets/img/education/courses-4.webp' %}" alt="Online Learning Platform" class="img-fluid">
+              <div class="floating-element student-card" data-aos="zoom-in" data-aos-delay="600">
+                <div class="card-content">
+                  <i class="bi bi-person-check-fill"></i>
+                  <div class="text">
+                    <span class="number">2,450</span>
+                    <span class="label">New Students This Month</span>
+                  </div>
+                </div>
+              </div>
+              <div class="floating-element course-card" data-aos="zoom-in" data-aos-delay="700">
+                <div class="card-content">
+                  <i class="bi bi-play-circle-fill"></i>
+                  <div class="text">
+                    <span class="number">50+</span>
+                    <span class="label">Hours of Content</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Cta Section -->
+
+{%endblock%}

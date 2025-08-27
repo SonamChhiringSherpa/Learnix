@@ -1,0 +1,29 @@
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{%url 'home' %}" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.webp" alt=""> -->
+        <h1 class="sitename">Learnix</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{%url 'home' %}" class="{%if request.path == '/' or request.path == '/home/' %}active{%endif%}">Home</a></li>
+          <li><a href="{%url 'about' %}" class="{%if request.path == '/about/' or '/portfolio/' in request.path %}active{%endif%}">About</a></li>
+          <li><a href="{%url 'course' %}" class="{%if request.path == '/course/' or '/course/' in request.path %}active{%endif%}">Courses</a></li>
+          <li><a href="{%url 'blog' %}"class="{%if request.path == '/blog/' or '/blog/' in request.path %}active{%endif%}">Blog</a></li>
+          <li><a href="{%url 'contact' %}" class="{%if request.path == 'contact/' or '/contact/' in request.path %}active{%endif%}">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      {%if user.is_authenticated%}
+    <span style="color: #fff; font-weight: 600; margin-left: 100px;">
+      Hello, {{ user.username|capfirst }}
+    </span>
+      <a class="btn-getstarted" href="{%url 'logout' %}">Logout</a>
+      {%else%}
+      <a class="btn-getstarted" href="{%url 'login' %}">Enroll Now</a>
+      {%endif%}
+    </div>
+  </header>

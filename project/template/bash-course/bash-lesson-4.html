@@ -1,0 +1,110 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Bash Lesson 4 - Permissions{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{%block style_css%}
+  <style>.terminal{background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;border-radius:8px;padding:12px}</style>
+{%endblock%}
+{%block content%}
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 4: Permissions</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="{%url 'course' %}">Courses</a></li>
+          <li><a href="{%url 'bash_course' %}">Bash</a></li>
+          <li class="current">Lesson 4</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=1 %}">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=2 %}">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=3 %}">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action active" href="{%url 'bash_lesson' num=4 %}">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=5 %}">5. Scripting Basics</a>
+            </div>
+            <a href="{%url 'bash_practice' %}?lesson=4" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+              <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+    <h3>Understanding File Permissions</h3>
+    <img src="{%static 'assets/img/course/file_permissions.jpg' %}" alt="Permissions in Bash" class="img-fluid rounded mb-3" style="width: 400px;height: 400px;">
+    <p>Every file and directory in a Linux system has a set of permissions that define who can <strong>read</strong>, <strong>write</strong>, or <strong>execute</strong> it. These permissions are shown when you use <code>ls -l</code>:</p>
+    <div class="terminal mb-3">
+$ ls -l script.sh  
+-rw-r--r-- 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>This means:</p>
+    <ul>
+      <li><code>-</code> – It’s a regular file (not a directory).</li>
+      <li><code>rw-</code> – The owner (user) can read and write.</li>
+      <li><code>r--</code> – The group can only read.</li>
+      <li><code>r--</code> – Others (everyone else) can only read.</li>
+    </ul>
+    <p>To make a script executable:</p>
+    <div class="terminal mb-3">
+$ chmod +x script.sh  
+$ ls -l script.sh  
+-rwxr-xr-x 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>Now the owner, group, and others can all execute the file.</p>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <h4>Octal Notation for Permissions</h4>
+    <p>Bash also supports setting permissions using numbers. Each permission is represented by a digit:</p>
+    <ul>
+      <li><code>r</code> = 4 (read)</li>
+      <li><code>w</code> = 2 (write)</li>
+      <li><code>x</code> = 1 (execute)</li>
+    </ul>
+    <p>These are added together for each of the three groups: user, group, and others.</p>
+    <div class="terminal mb-3">
+$ chmod 755 script.sh  
+# 7 = rwx (4+2+1), 5 = r-x (4+0+1), 5 = r-x  
+$ ls -l script.sh  
+-rwxr-xr-x 1 user user 0 Jan 1 00:00 script.sh
+    </div>
+    <p>Another example:</p>
+    <div class="terminal mb-3">
+$ chmod 644 notes.txt  
+# 6 = rw-, 4 = r--, 4 = r--  
+$ ls -l notes.txt  
+-rw-r--r-- 1 user user 14 Jan 1 00:00 notes.txt
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+    <h4>Changing Ownership</h4>
+    <p>Only the file's owner or the superuser can change ownership of a file or directory using <code>chown</code>:</p>
+    <div class="terminal mb-3">
+$ sudo chown newuser notes.txt  
+$ ls -l notes.txt  
+-rw-r--r-- 1 <strong>newuser</strong> user 14 Jan 1 00:00 notes.txt
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="300">
+    <h4>Practice Tip</h4>
+    <p>Try creating files and applying different permission combinations using both symbolic and numeric methods:</p>
+    <ul>
+      <li>Create a file and restrict access only to yourself</li>
+      <li>Make a script readable and executable for everyone</li>
+      <li>Use <code>chmod</code> and <code>chown</code> together to secure shared directories</li>
+    </ul>
+  </article>
+            <div class="d-flex justify-content-between">
+              <a href="{%url 'bash_lesson' num=3 %}" class="btn btn-outline-secondary">Prev: Viewing & Editing Files</a>
+              <a href="{%url 'bash_lesson' num=5 %}" class="btn btn-primary">Next: Scripting Basics</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{%endblock%}

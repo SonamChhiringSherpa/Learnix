@@ -1,0 +1,97 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block title%}Bash Lesson 3 - Viewing and Editing Files{%endblock%}
+{%block class_title%}course-details-page{%endblock%}
+{%block style_css%}
+  <style>.terminal{background:#0b1620;color:#d6e9ff;font-family:monospace;white-space:pre-wrap;border-radius:8px;padding:12px}</style>
+{%endblock%}
+{%block content%}
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Bash Lesson 3: Viewing & Editing Files</h1>
+        <nav class="breadcrumbs"><ol>
+          <li><a href="{%url 'course' %}">Courses</a></li>
+          <li><a href="{%url 'bash_course' %}">Bash</a></li>
+          <li class="current">Lesson 3</li>
+        </ol></nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <aside class="col-lg-3 mb-4">
+            <div class="list-group small">
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=1 %}">1. Introduction</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=2 %}">2. Files & Directories</a>
+              <a class="list-group-item list-group-item-action active" href="{%url 'bash_lesson' num=3 %}">3. Viewing & Editing Files</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=4 %}">4. Permissions</a>
+              <a class="list-group-item list-group-item-action" href="{%url 'bash_lesson' num=5 %}">5. Scripting Basics</a>
+            </div>
+            <a href="{%url 'bash_practice' %}?lesson=3" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-terminal"></i> Practice</a>
+          </aside>
+
+          <div class="col-lg-9">
+           <article class="mb-5" data-aos="fade-up" data-aos-delay="150">
+    <h3>Redirecting Output</h3>
+    <!-- <img src="assets/img/education/courses-9.webp" alt="Redirect demo" class="img-fluid rounded mb-3"> -->
+    <p>In Bash, you can control where command output goes using redirection operators:</p>
+    <ul>
+      <li><code>></code> – Overwrites the file with new output</li>
+      <li><code>>></code> – Appends output to the end of the file</li>
+    </ul>
+    <div class="terminal mb-3">
+$ echo "Hello" > notes.txt  
+$ cat notes.txt  
+Hello  
+$ echo "World" >> notes.txt  
+$ cat notes.txt  
+Hello  
+World
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="200">
+    <h4>Viewing File Content</h4>
+    <p>Use these commands to preview the beginning or end of a file:</p>
+    <ul>
+      <li><code>head -n [number] filename</code> – shows the first lines</li>
+      <li><code>tail -n [number] filename</code> – shows the last lines</li>
+    </ul>
+    <div class="terminal mb-3">
+$ head -n 2 notes.txt  
+Hello  
+World  
+$ tail -n 1 notes.txt  
+World
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="250">
+    <h4>Searching in Files</h4>
+    <p>To search for lines containing a specific word or pattern, use <code>grep</code>:</p>
+    <div class="terminal mb-3">
+$ grep "Hello" notes.txt  
+Hello
+    </div>
+  </article>
+
+  <article class="mb-5" data-aos="fade-up" data-aos-delay="300">
+    <h4>Try it Yourself</h4>
+    <p>Here's a mini challenge for practice:</p>
+    <ul>
+      <li>Create a file named <code>log.txt</code> and add several lines to it.</li>
+      <li>Use <code>head</code> and <code>tail</code> to view specific parts.</li>
+      <li>Search for a word in your file using <code>grep</code>.</li>
+    </ul>
+  </article>
+
+            <div class="d-flex justify-content-between">
+              <a href="{%url 'bash_lesson' num=2 %}" class="btn btn-outline-secondary">Prev: Files & Directories</a>
+              <a href="{%url 'bash_lesson' num=4 %}" class="btn btn-primary">Next: Permissions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {%endblock%}
