@@ -17,8 +17,8 @@ Learnix is a modern, multi-app Django platform for learning and content publishi
 
 ## 🌐 Live Demo (Render)
 
-- Example: `https://learnix-example.onrender.com` (replace with your deployed URL)
-
+- Click here for live demo : [https://learnix-nuwo.onrender.com/](https://learnix-nuwo.onrender.com/)
+  
 If you’d like to deploy your own instance, see the Render guide below.
 
 ---
