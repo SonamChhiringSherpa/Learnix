@@ -41,7 +41,7 @@ If you’d like to deploy your own instance, see the Render guide below.
 
 1) Clone
 ```bash
-git clone <your-fork-or-repo-url>
+git clone https://github.com/SonamChhiringSherpa/Learnix.git
 cd Learnix
 ```
 
@@ -167,7 +167,7 @@ After the first successful deploy, your app will be served at something like:
 - [Saket Yadav](https://github.com/saket-yadav) — JavaScript challenges, Contact us  
 - [Papit Ghimire](https://github.com/papit-stack) — Homepage, Bash Course  
 - [Prashant Singh](https://github.com/Prashant-singh23) — Blog, Documentation  
-- [Siddharth Shrestha](https://github.com/Prashant-singh23) — About Us, Course
+- [Siddharth Shrestha](https://github.com/evader5731) — About Us, Course
 
 ---
 
